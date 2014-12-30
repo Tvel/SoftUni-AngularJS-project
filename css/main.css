@@ -1,0 +1,90 @@
+header .col-md-12, footer .col-md-12 {
+
+    background-color: #aad18f;
+}
+
+header h1 {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+header {
+    margin-bottom: 1em;
+    border-bottom: 0.1em solid #517f34;
+}
+
+footer{
+    border-top: 0.1em solid #517f34;
+}
+
+.panel-body {
+    padding: 1.5em;
+}
+
+.panel-default {
+    background-color: #aad18f;
+    border: 0.1em outset #517f34;
+    border-radius: 8px;
+
+}
+
+.panel-default h2 {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+.panel-default hr{
+    border-color: inherit;
+}
+
+.panel-default .btn {
+    background-color: #71ae48;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 2px 2px #517f34;
+}
+
+.panel-side {
+    border-radius: 0px;
+}
+
+.panel-main {
+
+}
+
+
+.login-register {
+
+}
+
+.alert-warning {
+    background-color: #ec7a5b;
+    color: #ffffff;
+}
+
+.alert-warning .close {
+    color: #000000;
+}
+
+
+
+
+
+
+
+
+
+.buttonnn{
+    background-color: #71ae48;
+}
+
+.errorrr {
+   background-color: #ec7a5b;
+}
+
+.bordercollor {
+    background-color: #517f34;
+}
+
+.selected {
+    background-color: #daa702;
+}
