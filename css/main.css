@@ -3,9 +3,18 @@ header .col-md-12, footer .col-md-12 {
     background-color: #aad18f;
 }
 
-header h1 {
+.small-margin {
     margin-top: 0.1em;
     margin-bottom: 0.1em;
+}
+
+.bottom-margin {
+    margin-top: 0.1em;
+    margin-bottom: 0.5em;
+}
+header h1 {
+    /*margin-top: 0.1em;*/
+    /*margin-bottom: 0.1em;*/
 }
 
 header {
@@ -29,8 +38,8 @@ footer{
 }
 
 .panel-default h2 {
-    margin-top: 0.1em;
-    margin-bottom: 0.1em;
+    /*margin-top: 0.1em;*/
+    /*margin-bottom: 0.1em;*/
 }
 .panel-default hr{
     border-color: inherit;
@@ -45,6 +54,10 @@ footer{
 
 .panel-side {
     border-radius: 0px;
+}
+.panel-side h3 {
+    /*margin-top: 0.1em;*/
+    /*margin-bottom: 0.1em;*/
 }
 
 .panel-main .panel-body {
@@ -65,6 +78,27 @@ footer{
     color: #000000;
 }
 
+.panel-default .btn-link{
+    background-color: #aad18f;
+    color: #000000;
+    text-shadow: none;
+    border-radius: 0px;
+
+}
+
+.panel-default .btn-link:hover{
+    background-color: #daa702;
+    color: #000000;
+
+}
+
+.panel-default .btn-link-active{
+    background-color: #daa702;
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 0px;
+    text-shadow: none;
+}
 
 
 
