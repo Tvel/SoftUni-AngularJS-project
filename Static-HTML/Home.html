@@ -18,8 +18,10 @@
 
 <header class="container">
     <div class="row">
-        <div class="col-md-12 text-center">
-            <h1><strong>Ads-Login</strong></h1>
+        <div class="col-md-12 text-center ">
+
+            <h1 class="small-margin"><strong>Ads-Login</strong></h1>
+
         </div>
     </div>
 
@@ -52,19 +54,31 @@
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmzMFjujgib4Md4MHoGD4VoIDwqjaG3DDrylUns_rY8dgSuybA" class="img-responsive" alt="Responsive image">
                             </div>
                             <div class="col-md-8">
-                            <form >
-
+                            <form class="form-horizontal">
                                 <div class="form-group clearfix">
-                                    <label for="username">Username</label>
-                                    <input type="text" required class="form-control" id="username" placeholder="Enter username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="username">Password</label>
-                                    <input type="password" required class="form-control" id="password" placeholder="Password">
+                                <textarea class="form-control" readonly ></textarea>
                                 </div>
 
-                                <button type="submit" class="btn btn-defaul btn-lg">Login</button>
-                                <a class="pull-right login-register" href="">Register here</a>
+                                <div class="form-group small-margin">
+                                    <label for="name" class="col-sm-2 control-label ">Name</label>
+                                    <div class="col-sm-10 remove-right-padding">
+                                        <input type="email" class="form-control" id="name" readonly placeholder="Name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group small-margin">
+                                    <label for="email" class="col-sm-2 control-label ">Email</label>
+                                    <div class="col-sm-10 remove-right-padding">
+                                        <input type="email" class="form-control " id="email" readonly placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group small-margin">
+                                    <label for="tel" class="col-sm-2 control-label ">Tel.</label>
+                                    <div class="col-sm-10 remove-right-padding">
+                                        <input type="email" class="form-control" id="tel" readonly placeholder="tel.">
+                                    </div>
+                                </div>
 
                             </form>
                             </div>
@@ -72,9 +86,117 @@
                     </div>
                 </div>
 
+                <div class="col-md-12 ">
+                    <div class="panel panel-default panel-main">
+                        <div class="panel-body">
+                            <h2 class="bottom-margin"><strong>Title 1</strong> <small class="pull-right ">DD-MM-YYYY</small></h2>
+
+                            <div class="col-md-4">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmzMFjujgib4Md4MHoGD4VoIDwqjaG3DDrylUns_rY8dgSuybA" class="img-responsive" alt="Responsive image">
+                            </div>
+                            <div class="col-md-8">
+                                <form class="form-horizontal">
+                                    <div class="form-group clearfix">
+                                        <textarea class="form-control" readonly ></textarea>
+                                    </div>
+
+                                    <div class="form-group small-margin">
+                                        <label for="name" class="col-sm-2 control-label ">Name</label>
+                                        <div class="col-sm-10 remove-right-padding">
+                                            <input type="email" class="form-control" id="name" readonly placeholder="Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group small-margin">
+                                        <label for="email" class="col-sm-2 control-label ">Email</label>
+                                        <div class="col-sm-10 remove-right-padding">
+                                            <input type="email" class="form-control " id="email" readonly placeholder="Email">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group small-margin">
+                                        <label for="tel" class="col-sm-2 control-label ">Tel.</label>
+                                        <div class="col-sm-10 remove-right-padding">
+                                            <input type="email" class="form-control" id="tel" readonly placeholder="tel.">
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-md-12 text-center">
+                        <nav class="center-block float-none text-center">
+                            <ul class="pagination">
+                                <li>
+                                    <a class="" href="#" aria-label="First">
+                                        First
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        Previous
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        Next
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" aria-label="Last">
+                                        Last
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="row">
+
+                    <div class="panel panel-default panel-side">
+                        <div class="panel-body">
+                            <h3 class="text-center small-margin"><strong>Categories</strong></h3>
+                            <hr>
+                            <a class="btn-link-active btn btn-block" href="">All</a>
+                            <a class="btn btn-link btn-block" href="">Cars</a>
+                            <a class="btn btn-link btn-block" href="">Properties</a>
+                            <a class="btn btn-link btn-block" href="">Electronics</a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="panel panel-default panel-side">
+                        <div class="panel-body">
+                            <h3 class="text-center small-margin"><strong>Towns</strong></h3>
+                            <hr>
+                            <a class="btn-link-active btn btn-block" href="">All</a>
+                            <a class="btn btn-link btn-block" href="">Plovdiv</a>
+                            <a class="btn btn-link btn-block" href="">Sofia</a>
+                            <a class="btn btn-link btn-block" href="">Rousse</a>
+                        </div>
+                    </div>
+
+
             </div>
         </div>
     </div>
+
+
 </div>
 
 <footer class="container">
