@@ -47,13 +47,13 @@ footer{
     border-radius: 0px;
 }
 
-.panel-main {
-
+.panel-main .panel-body {
+    padding: 2em;
 }
 
 
 .login-register {
-
+ margin-top: 1em;
 }
 
 .alert-warning {
