@@ -9,18 +9,47 @@
 
     <link rel="stylesheet" href="css/normalize.css"/>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/main.css"/>
+    <!--<base href="/home">-->
 
 </head>
-<body>
+<body ng-app="AdsProject">
 
+<header class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="small-margin"><strong>Ads-Login</strong></h1>
+        </div>
+    </div>
+</header>
+
+
+<main class="container" ng-view>
+
+</main>
+
+
+<footer class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h5>© 2014 by Software University Foundation, No Rights Reserved</h5>
+        </div>
+    </div>
+</footer>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>-->
+<!--<script src="https://code.angularjs.org/1.3.8/angular-route.min.js"></script>-->
+<!--<script src="https://code.angularjs.org/1.3.8/angular-sanitize.min.js"></script>-->
 
 <script src="js/angular.min.js"></script>
 <script src="js/angular-route.min.js"></script>
 <script src="js/angular-sanitize.min.js"></script>
 <script src="js/ui-bootstrap-0.12.0.min.js"></script>
 
+
 <script src="app/app.js"></script>
 
+<script src="app/controllers/home.js"></script>
+<script src="app/services/adsApi.js"></script>
 </body>
 </html>

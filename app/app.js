@@ -1,16 +1,17 @@
 'use strict';
 
-var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap'])
-    .config(function ($routeProvider, $locationProvider) {
-        //$routeProvider.when('/main', {
-        //    templateUrl: 'templates/main.html',
-        //    controller: 'Main as main'
-        //});
-        //$routeProvider.when('/add', {
-        //    templateUrl: 'templates/add.html',
-        //    controller: 'Add as add'
-        //});
-        $routeProvider.otherwise({redirectTo: '/main'});
+var app = angular.module('AdsProject', ['ngRoute'])
+    .config(function ($routeProvider) {
+        $routeProvider.when('/home', {
+            templateUrl: 'templates/home.html',
+            controller: 'home as home'
+        });
 
-        $locationProvider.html5Mode(true);
+        //$routeProvider.when('/login', {
+        //    templateUrl: 'templates/login.html',
+        //    controller: 'login'
+        //});
+        $routeProvider.otherwise({redirectTo: '/home'});
+
+        //$locationProvider.html5Mode(true);
     });
