@@ -16,7 +16,7 @@
         <!--<div class="col-md-12 ">-->
         <div ng-repeat="ad in home.ads.ads" class="panel panel-default panel-main col-md-12">
             <div class="panel-body">
-                <h2 class="bottom-margin"><strong>{{ad.title}}</strong> <small class="pull-right ">{{ad.date | date}}</small></h2>
+                <h2 class="bottom-margin"><strong>{{ad.title}}</strong> <small class="pull-right ">{{ad.date | date:'d-MMM-yyyy'}}</small></h2>
 
                 <div class="col-md-4">
                     <img ng-src="{{ad.imageDataUrl}}" class="img-responsive" alt="Responsive image">
@@ -86,7 +86,7 @@
                 <h3 class="text-center small-margin"><strong>Towns</strong></h3>
                 <hr>
                 <ul class="list-unstyled">
-                <li><a ng-click="home.filterByTown('all');" class="btn-link btn btn-block" ng-class="{true: 'btn-link-active'}[home.categoryId == 'all']">All</a></li>
+                <li><a ng-click="home.filterByTown('all');" class="btn-link btn btn-block" ng-class="{true: 'btn-link-active'}[home.townId == 'all']">All</a></li>
                     <li ng-repeat="town in home.towns"><a ng-click="home.filterByTown(town.id);"  class="btn btn-link btn-block" ng-class="{true: 'btn-link-active'}[home.townId == town.id]">{{town.name}}</a></li>
                 </ul>
             </div>
