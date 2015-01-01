@@ -11,6 +11,30 @@ app.factory('AdsApi', [ '$http','$q',function($http, $q) {
             .then( handleSuccess, handleError );
     }
 
+    //GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}
+    function getAds(categoryId, townId, startPage, pageSize) {
+        if (categoryId == 'all') categoryId = '';
+        if (townId == 'all') townId = '';
+
+        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+
+        console.log(categoryId + townId + startPage + pageSize);
+
+        var request = $http({
+            method: "get",
+            url: "http://softuni-ads.azurewebsites.net/api/Ads",
+            params: {
+                CategoryId: categoryId,
+                TownId : townId,
+                StartPage: startPage,
+                PageSize: pageSize
+            }
+        });
+
+        return( request.then( handleSuccess, handleError ) );
+    }
+
     function testpost( name ) {
 
         var request = $http({
@@ -31,6 +55,7 @@ app.factory('AdsApi', [ '$http','$q',function($http, $q) {
     return {
         getTowns: getTowns,
         getCategories: getCategories,
+        getAds: getAds,
         test: 'test'
     };
 

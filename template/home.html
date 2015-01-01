@@ -30,7 +30,7 @@
                         <div class="form-group small-margin">
                             <label for="name" class="col-sm-2 control-label ">Name</label>
                             <div class="col-sm-10 remove-right-padding">
-                                <input type="email" class="form-control" id="name" readonly placeholder="Name" value="Name">
+                                <input type="text" class="form-control" id="name" readonly placeholder="Name" value="Name">
                             </div>
                         </div>
 
@@ -44,7 +44,7 @@
                         <div class="form-group small-margin">
                             <label for="tel" class="col-sm-2 control-label ">Tel.</label>
                             <div class="col-sm-10 remove-right-padding">
-                                <input type="email" class="form-control" id="tel" readonly placeholder="tel.">
+                                <input type="text" class="form-control" id="tel" readonly placeholder="tel.">
                             </div>
                         </div>
 
@@ -71,7 +71,7 @@
                         <div class="form-group small-margin">
                             <label for="name" class="col-sm-2 control-label ">Name</label>
                             <div class="col-sm-10 remove-right-padding">
-                                <input type="email" class="form-control" id="name" readonly placeholder="Name">
+                                <input type="text" class="form-control" id="name" readonly placeholder="Name">
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@
                         <div class="form-group small-margin">
                             <label for="tel" class="col-sm-2 control-label ">Tel.</label>
                             <div class="col-sm-10 remove-right-padding">
-                                <input type="email" class="form-control" id="tel" readonly placeholder="tel.">
+                                <input type="text" class="form-control" id="tel" readonly placeholder="tel.">
                             </div>
                         </div>
 
@@ -96,7 +96,7 @@
         <!--</div>-->
 
         <div class="col-md-12 text-center">
-            <pagination total-items="home.pagTotalItems" ng-model="home.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+            <pagination total-items="home.pagTotalItems" ng-change="home.pageChanged()" ng-model="home.pagCurrentPage" items-per-page="home.itemsPerPage" ng-model="home.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
         </div>
 
         <!--</div>-->
@@ -110,7 +110,7 @@
                 <h3 class="text-center small-margin"><strong>Categories</strong></h3>
                 <hr>
                 <ul class="list-unstyled">
-                    <li><a ng-click="home.filterByCategory('test');" class="btn-link-active btn btn-block">All</a></li>
+                    <li><a ng-click="home.filterByCategory('all');" class="btn-link-active btn btn-block">All</a></li>
                     <li ng-repeat="cat in home.categories">
                         <a ng-click="home.filterByCategory(cat.id);" class="btn btn-link btn-block">{{cat.name}}</a>
                     </li>
