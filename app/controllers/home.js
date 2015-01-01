@@ -1,10 +1,12 @@
-app.controller('home',  [ 'AdsApi','$routeParams', function( AdsApi, $routeParams) {
+app.controller('home',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
     var self = this;
 
+    self.title = 'Home';
     self.categoryId = 'all';
     self.townId = 'all';
     self.startPage = 1;
     self.pageSize = 4;
+    self.pagTotalItems = Infinity;
 
     if ($routeParams.CategoryId){
         self.categoryId = $routeParams.CategoryId;
@@ -15,9 +17,14 @@ app.controller('home',  [ 'AdsApi','$routeParams', function( AdsApi, $routeParam
     if ($routeParams.CategoryId){
         self.startPage = $routeParams.StartPage;
     }
-    if ($routeParams.CategoryId){
-        self.pageSize = $routeParams.PageSize;
-    }
+    //if ($routeParams.CategoryId){
+    //    self.pageSize = $routeParams.PageSize;
+    //}
+
+    self.maxSize = 5;
+    self.itemsPerPage = self.pageSize;
+    self.pagCurrentPage = Number(self.startPage);
+    console.log('PagCurrentPage: '+self.pagCurrentPage);
 
     function getAds() {
 
@@ -41,30 +48,40 @@ app.controller('home',  [ 'AdsApi','$routeParams', function( AdsApi, $routeParam
 
     self.test =  AdsApi.test;
     self.filterByCategory = function(id){
-        console.log(id);
+        console.log('CatFilter: '+id);
         self.categoryId = id;
-        getAds();
+        $location.path('/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage});
+        //getAds();
     };
 
     self.filterByTown = function(id){
-        console.log(id);
+        console.log('TownFilter: '+id);
         self.townId = id;
-        getAds();
+        var path = "/home?CategoryId=" +self.categoryId  + '&TownId='+ self.townId+ '&StartPage=' + self.startPage;
+        $location.path('/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage});
+
+        //getAds();
     };
 
     self.pageChanged  = function(){
-        console.log(self.pagCurrentPage);
-        self.startPage = self.pagCurrentPage;
-        getAds();
+
+        console.log('PageChange:' + self.pagCurrentPage);
+        self.startPage = Number(self.pagCurrentPage);
+        $location.path('/home').search({
+            CategoryId: self.categoryId,
+            TownId: self.townId,
+            StartPage: self.startPage
+        });
+
+        //getAds();
+
     };
 
     console.log($routeParams);
 
 
-    self.maxSize = 5;
 
-    self.itemsPerPage = self.pageSize;
-    self.pagCurrentPage = self.startPage;
+
 
 
 

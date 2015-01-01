@@ -6,6 +6,10 @@ var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap'])
             templateUrl: 'template/home.html',
             controller: 'home as home'
         });
+        //$routeProvider.when('/home?Category=:', {
+        //    templateUrl: 'template/home.html',
+        //    controller: 'home as home'
+        //});
 
         //$routeProvider.when('/login', {
         //    templateUrl: 'templates/login.html',
@@ -17,16 +21,3 @@ var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap'])
     });
 
 
-app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
-    var original = $location.path;
-    $location.path = function (path, reload) {
-        if (reload === false) {
-            var lastRoute = $route.current;
-            var un = $rootScope.$on('$locationChangeSuccess', function () {
-                $route.current = lastRoute;
-                un();
-            });
-        }
-        return original.apply($location, [path]);
-    };
-}]);

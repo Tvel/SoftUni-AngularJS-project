@@ -14,37 +14,37 @@
     <div class="col-md-8">
         <!--<div class="row">-->
         <!--<div class="col-md-12 ">-->
-        <div class="panel panel-default panel-main col-md-12">
+        <div ng-repeat="ad in home.ads.ads" class="panel panel-default panel-main col-md-12">
             <div class="panel-body">
-                <h2 class="bottom-margin"><strong>Title 1</strong> <small class="pull-right ">DD-MM-YYYY</small></h2>
+                <h2 class="bottom-margin"><strong>{{ad.title}}</strong> <small class="pull-right ">{{ad.date | date}}</small></h2>
 
                 <div class="col-md-4">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmzMFjujgib4Md4MHoGD4VoIDwqjaG3DDrylUns_rY8dgSuybA" class="img-responsive" alt="Responsive image">
+                    <img ng-src="{{ad.imageDataUrl}}" class="img-responsive" alt="Responsive image">
                 </div>
                 <div class="col-md-8">
                     <form class="form-horizontal">
                         <div class="form-group clearfix">
-                            <textarea class="form-control" readonly ></textarea>
+                            <p>{{ad.text}}</p>
                         </div>
 
                         <div class="form-group small-margin">
-                            <label for="name" class="col-sm-2 control-label ">Name</label>
+                            <label for="name" class="col-sm-2 control-label text-right remove-right-padding">Name</label>
                             <div class="col-sm-10 remove-right-padding">
-                                <input type="text" class="form-control" id="name" readonly placeholder="Name" value="Name">
+                                <p id="name" >{{ad.ownerName}}</p>
                             </div>
                         </div>
 
                         <div class="form-group small-margin">
-                            <label for="email" class="col-sm-2 control-label ">Email</label>
+                            <label for="email" class="col-sm-2 control-label remove-right-padding">Email</label>
                             <div class="col-sm-10 remove-right-padding">
-                                <input type="email" class="form-control " id="email" readonly placeholder="Email">
+                                <p id="email" >{{ad.ownerEmail}}</p>
                             </div>
                         </div>
 
                         <div class="form-group small-margin">
-                            <label for="tel" class="col-sm-2 control-label ">Tel.</label>
+                            <label for="tel" class="col-sm-2 control-label remove-right-padding">Tel.</label>
                             <div class="col-sm-10 remove-right-padding">
-                                <input type="text" class="form-control" id="tel" readonly placeholder="tel.">
+                                <p id="tel">{{ad.ownerPhone}}</p>
                             </div>
                         </div>
 
@@ -54,49 +54,10 @@
         </div>
         <!--</div>-->
 
-        <!--<div class="col-md-12 ">-->
-        <div class="panel panel-default panel-main col-md-12">
-            <div class="panel-body">
-                <h2 class="bottom-margin"><strong>Title 1</strong> <small class="pull-right ">DD-MM-YYYY</small></h2>
-
-                <div class="col-md-4">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmzMFjujgib4Md4MHoGD4VoIDwqjaG3DDrylUns_rY8dgSuybA" class="img-responsive" alt="Responsive image">
-                </div>
-                <div class="col-md-8">
-                    <form class="form-horizontal">
-                        <div class="form-group clearfix">
-                            <textarea class="form-control" readonly ></textarea>
-                        </div>
-
-                        <div class="form-group small-margin">
-                            <label for="name" class="col-sm-2 control-label ">Name</label>
-                            <div class="col-sm-10 remove-right-padding">
-                                <input type="text" class="form-control" id="name" readonly placeholder="Name">
-                            </div>
-                        </div>
-
-                        <div class="form-group small-margin">
-                            <label for="email" class="col-sm-2 control-label ">Email</label>
-                            <div class="col-sm-10 remove-right-padding">
-                                <input type="email" class="form-control " id="email" readonly placeholder="Email">
-                            </div>
-                        </div>
-
-                        <div class="form-group small-margin">
-                            <label for="tel" class="col-sm-2 control-label ">Tel.</label>
-                            <div class="col-sm-10 remove-right-padding">
-                                <input type="text" class="form-control" id="tel" readonly placeholder="tel.">
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--</div>-->
 
         <div class="col-md-12 text-center">
-            <pagination total-items="home.pagTotalItems" ng-change="home.pageChanged()" ng-model="home.pagCurrentPage" items-per-page="home.itemsPerPage" ng-model="home.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+            <pagination total-items="home.pagTotalItems" ng-change="home.pageChanged()"  items-per-page="home.itemsPerPage" ng-model="home.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+
         </div>
 
         <!--</div>-->
@@ -110,9 +71,9 @@
                 <h3 class="text-center small-margin"><strong>Categories</strong></h3>
                 <hr>
                 <ul class="list-unstyled">
-                    <li><a ng-click="home.filterByCategory('all');" class="btn-link-active btn btn-block">All</a></li>
+                    <li><a ng-click="home.filterByCategory('all');" class="btn-link btn btn-block" ng-class="{true: 'btn-link-active'}[home.categoryId == 'all']">All</a></li>
                     <li ng-repeat="cat in home.categories">
-                        <a ng-click="home.filterByCategory(cat.id);" class="btn btn-link btn-block">{{cat.name}}</a>
+                        <a ng-click="home.filterByCategory(cat.id);" class="btn btn-link btn-block" ng-class="{true: 'btn-link-active'}[home.categoryId == cat.id]">{{cat.name}}</a>
                     </li>
                 </ul>
 
@@ -125,8 +86,8 @@
                 <h3 class="text-center small-margin"><strong>Towns</strong></h3>
                 <hr>
                 <ul class="list-unstyled">
-                <li><a ng-click="home.filterByTown('all');" class="btn-link-active btn btn-block" href="">All</a></li>
-                    <li ng-repeat="town in home.towns"><a ng-click="home.filterByTown(town.id);"  class="btn btn-link btn-block" href="">{{town.name}}</a></li>
+                <li><a ng-click="home.filterByTown('all');" class="btn-link btn btn-block" ng-class="{true: 'btn-link-active'}[home.categoryId == 'all']">All</a></li>
+                    <li ng-repeat="town in home.towns"><a ng-click="home.filterByTown(town.id);"  class="btn btn-link btn-block" ng-class="{true: 'btn-link-active'}[home.townId == town.id]">{{town.name}}</a></li>
                 </ul>
             </div>
         </div>

@@ -34,6 +34,7 @@ footer{
     padding: 1.5em;
 }
 
+
 .panel-default {
     background-color: #aad18f;
     border: 0.1em outset #517f34;
@@ -69,6 +70,12 @@ footer{
     padding: 15px;
 }
 
+.panel-main p, .panel-main input {
+    background-color: #c5e0b4;
+    border: 1px solid #517f34;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}
 
 .login-register {
  margin-top: 1em;
@@ -171,4 +178,8 @@ input[readonly] {
 
 .selected {
     background-color: #daa702;
+}
+
+.inputpback {
+    background-color: #c5e0b4;
 }
