@@ -106,7 +106,11 @@ footer{
 }
 
 
-.pagination>li>a{
+.pagination>li>a,
+.pagination>li>span,
+.pagination>.disabled>a,
+.pagination>.disabled>a:hover,
+.pagination>.disabled>a:focus{
     background-color: #aad18f;
     color: #000000;
     text-shadow: none;
@@ -116,14 +120,14 @@ footer{
 
 }
 
-.pagination>li>a:hover{
+.pagination>li>a:hover, .pagination>.active>a:hover, .pagination>.active>a:focus{
     background-color: #71ae48;
     color: #000000;
     border: 1px solid #000000;
 
 }
 
-.pagination>li>.active{
+.pagination>.active>a{
     background-color: #71ae48;
     color: #000000;
     border: 1px solid #000000;

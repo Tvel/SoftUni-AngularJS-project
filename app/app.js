@@ -3,7 +3,7 @@
 var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap'])
     .config(function ($routeProvider) {
         $routeProvider.when('/home', {
-            templateUrl: 'templates/home.html',
+            templateUrl: 'template/home.html',
             controller: 'home as home'
         });
 

@@ -19,6 +19,10 @@ app.controller('home',  [ 'AdsApi', function( AdsApi) {
     };
 
 
+    self.maxSize = 5;
+    self.pagTotalItems = 175;
+    self.pagCurrentPage = 1;
+
 
 
 
