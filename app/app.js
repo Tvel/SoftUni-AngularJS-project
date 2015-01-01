@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('AdsProject', ['ngRoute'])
+var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap'])
     .config(function ($routeProvider) {
         $routeProvider.when('/home', {
             templateUrl: 'templates/home.html',

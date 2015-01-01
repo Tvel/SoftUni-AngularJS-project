@@ -145,7 +145,13 @@ footer{
     float:none;
 }
 
+input[readonly] {
+    cursor: default; !important;
+}
 
+.form-control[readonly] {
+    cursor: default; !important;
+}
 
 .buttonnn{
     background-color: #71ae48;

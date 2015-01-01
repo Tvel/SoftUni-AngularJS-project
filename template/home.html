@@ -30,7 +30,7 @@
                         <div class="form-group small-margin">
                             <label for="name" class="col-sm-2 control-label ">Name</label>
                             <div class="col-sm-10 remove-right-padding">
-                                <input type="email" class="form-control" id="name" readonly placeholder="Name">
+                                <input type="email" class="form-control" id="name" readonly placeholder="Name" value="Name">
                             </div>
                         </div>
 
@@ -96,6 +96,7 @@
         <!--</div>-->
 
         <div class="col-md-12 text-center">
+            <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"></pagination>
             <nav class="center-block float-none text-center">
                 <ul class="pagination">
                     <li>
@@ -137,8 +138,14 @@
             <div class="panel-body">
                 <h3 class="text-center small-margin"><strong>Categories</strong></h3>
                 <hr>
-                <a class="btn-link-active btn btn-block" href="">All</a>
-                <a ng-repeat="cat in home.categories" class="btn btn-link btn-block" href="">{{cat.name}}</a>
+                <ul class="list-unstyled">
+                    <li><a ng-click="home.filterByCategory('test');" class="btn-link-active btn btn-block">All</a></li>
+                    <li ng-repeat="cat in home.categories">
+                        <a ng-click="home.filterByCategory(cat.id);" class="btn btn-link btn-block">{{cat.name}}</a>
+                    </li>
+                </ul>
+
+
             </div>
         </div>
 
@@ -146,8 +153,10 @@
             <div class="panel-body">
                 <h3 class="text-center small-margin"><strong>Towns</strong></h3>
                 <hr>
-                <a class="btn-link-active btn btn-block" href="">All</a>
-                <a ng-repeat="town in home.towns" class="btn btn-link btn-block" href="">{{town.name}}</a>
+                <ul class="list-unstyled">
+                <li><a ng-click="home.filterByTown('all');" class="btn-link-active btn btn-block" href="">All</a></li>
+                    <li ng-repeat="town in home.towns"><a ng-click="home.filterByTown(town.id);"  class="btn btn-link btn-block" href="">{{town.name}}</a></li>
+                </ul>
             </div>
         </div>
 

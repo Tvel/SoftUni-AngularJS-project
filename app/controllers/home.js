@@ -10,6 +10,13 @@ app.controller('home',  [ 'AdsApi', function( AdsApi) {
     });
 
     self.test =  AdsApi.test;
+    self.filterByCategory = function(id){
+        console.log(id);
+    };
+
+    self.filterByTown = function(id){
+        console.log(id);
+    };
 
 
 
