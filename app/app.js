@@ -16,7 +16,7 @@ var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap'])
             controller: 'login as login'
         });
         $routeProvider.when('/register', {
-            templateUrl: 'templates/register.html',
+            templateUrl: 'template/register.html',
             controller: 'register as register'
         });
         $routeProvider.otherwise({redirectTo: '/home'});
