@@ -1,6 +1,9 @@
 app.controller('home',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
     var self = this;
 
+    self.ifNotLogged = true;
+    self.ifLogged = false;
+
     self.title = 'Home';
     self.categoryId = 'all';
     self.townId = 'all';

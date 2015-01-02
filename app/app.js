@@ -11,10 +11,14 @@ var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap'])
         //    controller: 'home as home'
         //});
 
-        //$routeProvider.when('/login', {
-        //    templateUrl: 'templates/login.html',
-        //    controller: 'login'
-        //});
+        $routeProvider.when('/login', {
+            templateUrl: 'template/login.html',
+            controller: 'login as login'
+        });
+        $routeProvider.when('/register', {
+            templateUrl: 'templates/register.html',
+            controller: 'register as register'
+        });
         $routeProvider.otherwise({redirectTo: '/home'});
 
         //$locationProvider.html5Mode(true);
