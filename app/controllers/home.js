@@ -1,8 +1,16 @@
 app.controller('home',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
     var self = this;
 
-    self.ifNotLogged = true;
-    self.ifLogged = false;
+    AdsApi.checkLogin().then(function(){
+        // if logged
+        self.ifNotLogged = false;
+        self.ifLogged = true;
+    },function(){
+        // if not logged
+        self.ifNotLogged = true;
+        self.ifLogged = false;
+    });
+
 
     self.title = 'Home';
     self.categoryId = 'all';

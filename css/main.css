@@ -91,6 +91,10 @@ footer{
     color: #000000;
 }
 
+.alert-height {
+    min-height: 72px;
+}
+
 .panel-default .btn-link{
     background-color: #aad18f;
     color: #000000;

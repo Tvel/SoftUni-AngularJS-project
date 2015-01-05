@@ -1,13 +1,14 @@
-app.factory('AdsApi', [ '$http','$q',function($http, $q) {
+app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cookieStore) {
 
+    var API_URL = 'http://softuni-ads.azurewebsites.net';
 
     function getTowns() {
-        return $http.get('http://softuni-ads.azurewebsites.net/api/Towns')
+        return $http.get( API_URL +'/api/Towns')
             .then( handleSuccess, handleError );
     }
 
     function getCategories() {
-        return $http.get('http://softuni-ads.azurewebsites.net/api/Categories')
+        return $http.get( API_URL + '/api/Categories')
             .then( handleSuccess, handleError );
     }
 
@@ -23,7 +24,7 @@ app.factory('AdsApi', [ '$http','$q',function($http, $q) {
 
         var request = $http({
             method: "get",
-            url: "http://softuni-ads.azurewebsites.net/api/Ads",
+            url: API_URL + "/api/Ads",
             params: {
                 CategoryId: categoryId,
                 TownId : townId,
@@ -51,7 +52,7 @@ app.factory('AdsApi', [ '$http','$q',function($http, $q) {
 
         var request = $http({
             method: "post",
-            url: "http://softuni-ads.azurewebsites.net/api/user/Register",
+            url: API_URL +"/api/user/Register",
             params: {
                 Username: Username,
                 Password: Password,
@@ -63,20 +64,53 @@ app.factory('AdsApi', [ '$http','$q',function($http, $q) {
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleError )
+            .then(function(response){
+                console.log(response);
+                $cookieStore.put('userdata', response);
+            }));
     }
 
     function login(Username, Password){
         var request = $http({
             method: "post",
-            url: "http://softuni-ads.azurewebsites.net/api/user/Login",
-            params: {
-                Username: Username,
-                Password: Password
+            url: API_URL + "/api/user/Login",
+            data: {
+                username: Username,
+                password: Password
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleError )
+            .then(function(response){
+                console.log(response);
+                $cookieStore.put('userdata', response);
+            })
+        );
+    }
+
+    function logout() {
+        $cookieStore.remove('userdata');
+
+        var deferred = $q.defer();
+
+        return deferred.resolve( {msg: 'Successful logout'} );
+
+    }
+
+    function checkLogin() {
+        var userdata = $cookieStore.get('userdata');
+
+        console.log( userdata);
+        var deferred = $q.defer();
+
+        if (angular.isDefined(userdata)){
+            deferred.resolve(userdata);
+        }
+        else {deferred.reject('not logged')}
+
+        return deferred.promise;
+
     }
 
     function testpost( name ) {
@@ -103,6 +137,8 @@ app.factory('AdsApi', [ '$http','$q',function($http, $q) {
         getAds: getAds,
         register: register,
         login: login,
+        checkLogin: checkLogin,
+        logout: logout,
         test: 'test'
     };
 
@@ -119,7 +155,7 @@ app.factory('AdsApi', [ '$http','$q',function($http, $q) {
         // may have to normalize it on our end, as best we can.
         if (
             ! angular.isObject( response.data ) ||
-            ! response.data.message
+            ! response.data.error
         ) {
 
             return( $q.reject( "An unknown error occurred." ) );
@@ -127,7 +163,7 @@ app.factory('AdsApi', [ '$http','$q',function($http, $q) {
         }
 
         // Otherwise, use expected error message.
-        return( $q.reject( response.data.message ) );
+        return( $q.reject( response.data.error_description ) );
 
     }
 
