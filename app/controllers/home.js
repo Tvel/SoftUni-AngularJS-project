@@ -1,18 +1,21 @@
 app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
     var self = this;
+    self.header = {title:'Home'};
 
-    AdsApi.checkLogin().then(function(){
+    AdsApi.checkLogin().then(function( data){
         // if logged
         self.ifNotLogged = false;
         self.ifLogged = true;
+        self.header = {title:'Home', username: data.username};
     },function(){
         // if not logged
         self.ifNotLogged = true;
         self.ifLogged = false;
+
     });
 
 
-    self.title = 'Home';
+
     self.categoryId = 'all';
     self.townId = 'all';
     self.startPage = 1;
@@ -88,7 +91,7 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
 
     };
 
-    console.log($routeParams);
+    //console.log($routeParams);
 
 
 

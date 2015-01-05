@@ -1,6 +1,7 @@
 app.controller('LoginController',  [ 'AdsApi', '$location', '$interval', function( AdsApi, $location, $interval) {
 var self = this;
 
+    self.header = {title:'Login'};
 
    AdsApi.checkLogin()
        .then(
