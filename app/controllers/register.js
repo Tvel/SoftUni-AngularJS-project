@@ -1,4 +1,4 @@
-app.controller('register',  [ 'AdsApi', '$location', function( AdsApi, $location) {
+app.controller('RegisterController',  [ 'AdsApi', '$location', function( AdsApi, $location) {
 
 
 

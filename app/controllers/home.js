@@ -1,4 +1,4 @@
-app.controller('home',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
+app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
     var self = this;
 
     AdsApi.checkLogin().then(function(){

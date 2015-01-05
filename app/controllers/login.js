@@ -1,4 +1,4 @@
-app.controller('login',  [ 'AdsApi', '$location', '$interval', function( AdsApi, $location, $interval) {
+app.controller('LoginController',  [ 'AdsApi', '$location', '$interval', function( AdsApi, $location, $interval) {
 var self = this;
 
 

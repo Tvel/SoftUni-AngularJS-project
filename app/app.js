@@ -1,10 +1,10 @@
 'use strict';
 
-var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
+var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
     .config(function ($routeProvider) {
         $routeProvider.when('/home', {
             templateUrl: 'template/home.html',
-            controller: 'home as home'
+            controller: 'HomeController as home'
         });
         //$routeProvider.when('/home?Category=:', {
         //    templateUrl: 'template/home.html',
@@ -13,11 +13,11 @@ var app = angular.module('AdsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
 
         $routeProvider.when('/login', {
             templateUrl: 'template/login.html',
-            controller: 'login as login'
+            controller: 'LoginController as login'
         });
         $routeProvider.when('/register', {
             templateUrl: 'template/register.html',
-            controller: 'register as register'
+            controller: 'RegisterController as register'
         });
         $routeProvider.otherwise({redirectTo: '/home'});
 
