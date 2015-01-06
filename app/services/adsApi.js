@@ -38,7 +38,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
         if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
 
-        console.log(categoryId + townId + startPage + pageSize);
+        //console.log(categoryId + townId + startPage + pageSize);
 
         var request = $http({
             method: "get",
@@ -123,9 +123,20 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         var deferred = $q.defer();
 
         if (angular.isDefined(userdata)){
-            deferred.resolve(userdata);
+
+            var dateNow = new Date(new Date().getTime());
+            var dateExpires = new Date(userdata['.expires']);
+
+            if (dateNow > dateExpires) {
+                deferred.reject('session expired');
+            }
+            else {
+                deferred.resolve(userdata);
+            }
         }
         else {deferred.reject('not logged')}
+
+
 
         return deferred.promise;
 
