@@ -4,6 +4,9 @@ angular.module('adsProject')
             scope: {
             headerInfo: '=headerinfo'
             },
+            link: function(scope,element){
+                element.addClass('row');
+            },
             templateUrl: 'template/header.html'
         }
     }]);

@@ -1,17 +1,11 @@
-<header header-main headerinfo="home.header" class="row">
-
-</header>
+<header header-main headerinfo="home.header"></header>
 
 <div class="row">
     <div class="col-md-2">
-
-        <div ng-if="home.ifNotLogged" menu-login class="panel panel-default panel-side">
-        </div>
-
-        <div ng-if="home.ifLogged" menu-navigation class="panel panel-default panel-side">
-        </div>
-
+        <div ng-if="home.ifNotLogged" menu-login></div>
+        <div ng-if="home.ifLogged" menu-navigation></div>
     </div>
+
     <div class="col-md-8">
 
         <div ng-repeat="ad in home.ads.ads" class="panel panel-default panel-main col-md-12">
@@ -59,28 +53,8 @@
     </div>
 
     <div class="col-md-2">
-        <div class="panel panel-default panel-side">
-            <div class="panel-body">
-                <h3 class="text-center small-margin"><strong>Categories</strong></h3>
-                <hr>
-                <ul class="list-unstyled">
-                    <li><a ng-click="home.filterByCategory('all');" class="btn-link btn btn-block" ng-class="{true: 'btn-link-active'}[home.categoryId == 'all']">All</a></li>
-                    <li ng-repeat="cat in home.categories">
-                        <a ng-click="home.filterByCategory(cat.id);" class="btn btn-link btn-block" ng-class="{true: 'btn-link-active'}[home.categoryId == cat.id]">{{cat.name}}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="panel panel-default panel-side">
-            <div class="panel-body">
-                <h3 class="text-center small-margin"><strong>Towns</strong></h3>
-                <hr>
-                <ul class="list-unstyled">
-                <li><a ng-click="home.filterByTown('all');" class="btn-link btn btn-block" ng-class="{true: 'btn-link-active'}[home.townId == 'all']">All</a></li>
-                    <li ng-repeat="town in home.towns"><a ng-click="home.filterByTown(town.id);"  class="btn btn-link btn-block" ng-class="{true: 'btn-link-active'}[home.townId == town.id]">{{town.name}}</a></li>
-                </ul>
-            </div>
-        </div>
+        <div ads-filter filtertitle="'Categories'" filterid="home.categoryId" clickfn="home.filterByCategory" filterlist="home.categories" ></div>
+        <div ads-filter filtertitle="'Towns'" filterid="home.townId" clickfn="home.filterByTown" filterlist="home.towns"></div>
+    </div>
     </div>
 </div>
