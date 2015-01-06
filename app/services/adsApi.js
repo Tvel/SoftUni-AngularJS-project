@@ -118,7 +118,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
     function checkLogin() {
         var userdata = $cookieStore.get('userdata');
 
-        console.log( userdata);
+        //console.log( userdata);
         var deferred = $q.defer();
 
         if (angular.isDefined(userdata)){
@@ -168,7 +168,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
             headers: {
                 Authorization: 'Bearer ' + userdata.access_token
             },
-            params: {
+            data: {
                 Name: name,
                 Email: email,
                 PhoneNumber: phone,
@@ -179,6 +179,26 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         return( request.then( handleSuccess, handleError ) );
 
 
+    }
+
+    function changePassword( oldPass, newPass, newPassConf ) {
+
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/user/ChangePassword",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                OldPassword: oldPass,
+                NewPassword: newPass,
+                ConfirmPassword: newPassConf
+            }
+        });
+
+        return( request.then( handleSuccess, handleRegisterError) );
     }
 
 
@@ -212,6 +232,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         logout: logout,
         getProfileInfo: getProfileInfo,
         setProfileInfo: setProfileInfo,
+        changePassword: changePassword,
         test: 'test'
     };
 

@@ -53,37 +53,20 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
         AdsApi.getProfileInfo()
             .then(function(profile){
                 self.profile = profile;
-                console.log(profile);
+                //console.log(profile);
 
-                if (angular.isDefined(profileinfoInterval)) {
-                    $interval.cancel(profileinfoInterval);
-                    profileinfoInterval = undefined;
-                }
             });
     };
+    self.refreshInfo();
 
-    var profileinfoInterval = undefined;
-    if (!angular.isDefined(self.profile))
-    {
-        if (!angular.isDefined(profileinfoInterval)) {
-            profileinfoInterval = $interval(function () {
-                self.refreshInfo();
-            }, 1000)
-        }
-
-    }
 
 
 
     self.submitEdit = function (){
-
-        AdsApi.register(self.username, self.password, self.passwordconf, self.name, self.email, self.phone, self.town)
+        AdsApi.setProfileInfo(self.profile.name, self.profile.email, self.profile.phoneNumber, self.profile.townId)
             .then(function(data){
                 //console.log(data);
-                self.addAlert('success', 'Register Successful, plase <a href="#/login">login</a> if not redirected.');
-
-                $location.path('/home');
-
+                self.addAlert('success', 'Edit Profile Successful.');
 
             }, function(data){
                 console.error(data);
@@ -92,20 +75,26 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
                     for (info in msg)
                         self.addAlert('danger', msg[info]);
                 }
-
-
             });
-    }
+    };
 
     self.submitChangePass = function (){
 
-        AdsApi.register(self.username, self.password, self.passwordconf, self.name, self.email, self.phone, self.town)
+        if (self.newpassword !== self.newpasswordconf) {
+            return  self.addAlert('danger','Password and confirmation are not the same');
+        }
+        if (self.changePassForm.$error.minlength) {
+            return  self.addAlert('danger','New Password must be longer that 2 symbols');
+        }
+        if (self.changePassForm.$error.maxlength) {
+            return  self.addAlert('danger','New Password must be shorter that 100 symbols');
+        }
+
+        AdsApi.changePassword(self.oldpassword, self.newpassword, self.newpasswordconf)
             .then(function(data){
-                //console.log(data);
-                self.addAlert('success', 'Register Successful, plase <a href="#/login">login</a> if not redirected.');
-
-                $location.path('/home');
-
+               //console.log(data);
+                self.addAlert('success', 'Password Changed!');
+               // $location.path('/home');
 
             }, function(data){
                 console.error(data);
