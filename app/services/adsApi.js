@@ -141,6 +141,47 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
 
     }
 
+    function getProfileInfo()  {
+
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "get",
+            url: API_URL + "/api/user/Profile",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleError ) );
+
+
+    }
+
+    function setProfileInfo( name, email, phone, townId ) {
+
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/user/Profile",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            params: {
+                Name: name,
+                Email: email,
+                PhoneNumber: phone,
+                TownId: townId
+            }
+        });
+
+        return( request.then( handleSuccess, handleError ) );
+
+
+    }
+
+
     function testpost( name ) {
 
         var request = $http({
@@ -169,6 +210,8 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         login: login,
         checkLogin: checkLogin,
         logout: logout,
+        getProfileInfo: getProfileInfo,
+        setProfileInfo: setProfileInfo,
         test: 'test'
     };
 

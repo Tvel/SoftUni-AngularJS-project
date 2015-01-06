@@ -54,7 +54,7 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
         AdsApi.register(self.username, self.password, self.passwordconf, self.name, self.email, self.phone, self.town)
             .then(function(data){
                 //console.log(data);
-                self.addAlert('success', 'Register Successful, plase <a href="#/login">login</a>');
+                self.addAlert('success', 'Register Successful, plase <a href="#/login">login</a> if not redirected.');
 
                 $location.path('/home');
 
