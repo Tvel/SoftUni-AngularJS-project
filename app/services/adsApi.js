@@ -4,12 +4,30 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
 
     function getTowns() {
         return $http.get( API_URL +'/api/Towns')
-            .then( handleSuccess, handleError );
+            .then( handleSuccess, handleError )
+            .then ( function (response){
+                $cookieStore.put('Towns', response);
+            return ( response );
+        });
+
+
+    }
+
+    function getSavedTowns(){
+        return $cookieStore.get('Towns');
     }
 
     function getCategories() {
-        return $http.get( API_URL + '/api/Categories')
-            .then( handleSuccess, handleError );
+        return $http.get(API_URL + '/api/Categories')
+            .then(handleSuccess, handleError)
+            .then(function (response) {
+            $cookieStore.put('Categories', response);
+            return ( response );
+        });
+    }
+
+    function getSavedCategories(){
+        return $cookieStore.get('Categories');
     }
 
     //GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}
@@ -133,7 +151,9 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
 
     return {
         getTowns: getTowns,
+        getSavedTowns: getSavedTowns,
         getCategories: getCategories,
+        getSavedCategories: getSavedCategories,
         getAds: getAds,
         register: register,
         login: login,

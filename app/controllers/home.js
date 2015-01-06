@@ -40,23 +40,26 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     self.pagCurrentPage = Number(self.startPage);
     console.log('PagCurrentPage: '+self.pagCurrentPage);
 
+    self.towns = AdsApi.getSavedTowns();
+    self.categories = AdsApi.getSavedCategories();
     function getAds() {
 
-        AdsApi.getAds(self.categoryId, self.townId, self.startPage, self.pageSize).then(function(ads){
-            self.ads = ads;
-            console.log(ads);
-            self.pagTotalItems = self.ads.numItems;
+        AdsApi.getAds(self.categoryId, self.townId, self.startPage, self.pageSize)
+            .then(function(ads){
+                self.ads = ads;
+                console.log(ads);
+                self.pagTotalItems = self.ads.numItems;
         });
 
     }
 
-    AdsApi.getTowns().then(function(towns){
-        self.towns = towns;
-    });
-
+    AdsApi.getTowns()
+        .then(function(towns){
+            self.towns = towns;
+        });
     AdsApi.getCategories().then(function(cats){
         self.categories = cats;
-    });
+        });
 
     getAds();
 
