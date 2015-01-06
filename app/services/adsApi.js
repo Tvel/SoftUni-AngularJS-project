@@ -9,8 +9,6 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
                 $cookieStore.put('Towns', response);
             return ( response );
         });
-
-
     }
 
     function getSavedTowns(){
@@ -29,6 +27,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
     function getSavedCategories(){
         return $cookieStore.get('Categories');
     }
+
 
     //GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}
     function getAds(categoryId, townId, startPage, pageSize) {
@@ -176,8 +175,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
 
 
 
-    // I transform the error response, unwrapping the application dta from
-    // the API response payload.
+
     function handleError( response ) {
 
         // The API response from the server should be returned in a
@@ -188,9 +186,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
             ! angular.isObject( response.data ) ||
             ! response.data.error
         ) {
-
             return( $q.reject( "An unknown error occurred." ) );
-
         }
 
         // Otherwise, use expected error message.
@@ -199,8 +195,6 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
     }
 
 
-    // I transform the successful response, unwrapping the application data
-    // from the API response payload.
     function handleSuccess( response ) {
 
         return( response.data );

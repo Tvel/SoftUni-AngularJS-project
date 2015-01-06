@@ -19,6 +19,22 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
             templateUrl: 'template/register.html',
             controller: 'RegisterController as register'
         });
+        $routeProvider.when('/editprofile', {
+            templateUrl: 'template/editprofile.html',
+            controller: 'editProfileController as editProfile'
+        });
+        $routeProvider.when('/publish', {
+            templateUrl: 'template/publish.html',
+            controller: 'PublishAdController as publishAd'
+        });
+        $routeProvider.when('/myads', {
+            templateUrl: 'template/myads.html',
+            controller: 'MyAdsController as myAds'
+        });
+        $routeProvider.when('/editad', {
+            templateUrl: 'template/editad.html',
+            controller: 'EditAdController as editAd'
+        });
         $routeProvider.otherwise({redirectTo: '/home'});
 
         //$locationProvider.html5Mode(true);

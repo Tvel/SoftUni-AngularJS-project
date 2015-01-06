@@ -1,8 +1,8 @@
 <div class="panel-body">
     <h3 class="text-center small-margin"><strong>Navigation</strong></h3>
     <hr>
-    <a class="btn-link-active btn btn-block" href="">Home</a>
-    <a class="btn btn-link btn-block" href="">My ads</a>
-    <a class="btn btn-link btn-block" href="">Publish new Ad</a>
-    <a class="btn btn-link btn-block" href="">Edit profile</a>
+    <a class="btn-link btn btn-block" href="#/home" ng-class="{true: 'btn-link-active'}[active == 'Home']">Home</a>
+    <a ng-if="menushow" class="btn btn-link btn-block" href="#/myads" ng-class="{true: 'btn-link-active'}[active == 'My ads']">My ads</a>
+    <a ng-if="menushow" class="btn btn-link btn-block" href="#/publish" ng-class="{true: 'btn-link-active'}[active == 'Publish new Ad']">Publish new Ad</a>
+    <a ng-if="menushow" class="btn btn-link btn-block" href="#/editprofile" ng-class="{true: 'btn-link-active'}[active == 'Edit profile']">Edit profile</a>
 </div>
