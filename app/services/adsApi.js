@@ -70,7 +70,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         var request = $http({
             method: "post",
             url: API_URL +"/api/user/Register",
-            params: {
+            data: {
                 Username: Username,
                 Password: Password,
                 ConfirmPassword: ConfirmPassword,
@@ -81,7 +81,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
             }
         });
 
-        return( request.then( handleSuccess, handleError )
+        return( request.then( handleSuccess, handleRegisterError )
             .then(function(response){
                 console.log(response);
                 $cookieStore.put('userdata', response);
@@ -191,6 +191,22 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
 
         // Otherwise, use expected error message.
         return( $q.reject( response.data.error_description ) );
+
+    }
+
+    function handleRegisterError( response ) {
+
+        if (
+            ! angular.isObject( response.data ) ||
+            ! response.data.message
+        ) {
+            return( $q.reject( "An unknown error occurred." ) );
+        }
+
+
+
+        // Otherwise, use expected error message.
+        return( $q.reject( response.data.modelState ) );
 
     }
 
