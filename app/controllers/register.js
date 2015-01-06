@@ -4,7 +4,6 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
 
     self.header = {title:'Register'};
 
-    self.test = 'TEST';
 
     AdsApi.checkLogin()
         .then(
@@ -19,9 +18,7 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
         //{ type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
         //{ type: 'success', msg: 'Well done! You successfully read this important alert message.' }
     ];
-
     var killInterval = undefined;
-
     self.addAlert = function(type, msg) {
         self.alerts.push({type: type ,msg: msg});
         console.log(self.alerts);
@@ -35,7 +32,6 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
             }, 5000)
         }
     };
-
     self.closeAlert = function(index) {
         self.alerts.splice(index, 1);
 
@@ -46,6 +42,12 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
             }
         }
     };
+
+    self.towns = AdsApi.getSavedTowns();
+    AdsApi.getTowns()
+        .then(function(towns){
+            self.towns = towns;
+        });
 
 
 }]);

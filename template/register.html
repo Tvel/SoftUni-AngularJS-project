@@ -11,22 +11,80 @@
             <alert ng-repeat="alert in register.alerts" type="{{alert.type}}" close="register.closeAlert($index)">{{alert.msg}}</alert>
         </div>
 
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h2 class="text-center small-margin"><strong>Register</strong></h2>
+                    <h2 class="text-center small-margin"><strong>User Registration</strong></h2>
                     <hr>
                     <form ng-submit="register.Submit()">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" required class="form-control" ng-model="register.username" id="username" placeholder="Enter username">
+
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" required class="form-control" ng-model="register.username" id="username" placeholder="Enter username">
+                                </div>
+                            </div>
+                            <!--<div class="col-md-6" style="height: 75px; ">-->
+                            <!--</div>-->
                         </div>
-                        <div class="form-group">
-                            <label for="username">Password</label>
-                            <input type="password" required class="form-control" ng-model="register.password" id="password" placeholder="Password">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="username">Password</label>
+                                    <input type="password" required class="form-control" ng-model="register.password" id="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="passwordconf">Confirm Password</label>
+                                    <input type="password" required class="form-control" ng-model="register.passwordconf" id="passwordconf" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" required class="form-control" ng-model="register.name" id="name" placeholder="Enter Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="number"  class="form-control" ng-model="register.phone" id="phone" placeholder="Enter Phone">
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-defaul btn-lg">Login</button>
-                        <a class="pull-right login-register" href="#/register">Register here</a>
+
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" required class="form-control" ng-model="register.email" id="email" placeholder="Enter Email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="town">Town</label>
+                                    <select type="text" class="form-control" ng-model="register.town" id="town" placeholder="Choose Town">
+                                        <option  value=""> </option>
+                                        <option ng-repeat="town in register.towns" value="{{town.id}}">{{town.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-defaul btn-lg ">Register</button>
+                            </div>
+                            <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
+                            <a class=" login-register " style="height: 45px; vertical-align: middle; display:block; " href="#/login">Login here</a>
+                        </div>
+                        </div>
                     </form>
                 </div>
             </div>
