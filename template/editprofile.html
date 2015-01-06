@@ -26,7 +26,7 @@
 
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" required require  ng-pattern="editProfile.pattern"  class="form-control" ng-model="editProfile.profile.phoneNumber" id="phone" placeholder="Enter Phone">
+                                    <input type="tel" required require  class="form-control" ng-model="editProfile.profile.phoneNumber" id="phone" placeholder="Enter Phone">
                                 </div>
 
 
@@ -51,7 +51,7 @@
                                 <button type="submit" class="btn btn-defaul btn-lg ">Edit</button>
                             </div>
                             <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
-                                <button ng-click="editProfile.refreshInfo()" class="btn btn-defaul btn-lg ">Cancel</button>
+                                <a ng-click="editProfile.refreshInfo()" class="btn btn-defaul btn-lg ">Cancel</a>
                             </div>
                         </div>
                     </form>
@@ -91,7 +91,7 @@
                                 <button type="submit" class="btn btn-defaul btn-lg ">Change Password</button>
                             </div>
                             <div class="col-md-6 text-center">
-                                <button type="submit" class="btn btn-defaul btn-lg ">Cancel</button>
+                                <a ng-click="editProfile.clearPasswords()" class="btn btn-defaul btn-lg ">Cancel</a>
                             </div>
                         </div>
                     </form>
