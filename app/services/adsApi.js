@@ -238,16 +238,20 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      *
      */
     self.getUserAds = function (status, startPage, pageSize){
-        if (status == 'all') categoryId = '';
+        if (status == 'all') status = '';
 
         if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
         if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
 
+        var userdata = $cookieStore.get('userdata');
         //console.log(status + startPage + pageSize);
 
         var request = $http({
             method: "get",
             url: API_URL + "/api/user/Ads",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
             params: {
                 Status: status,
                 StartPage: startPage,

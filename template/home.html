@@ -11,7 +11,7 @@
         <div ng-repeat="ad in home.ads.ads" class="panel panel-default panel-main col-md-12">
             <div class="panel-body">
                 <h2 class="bottom-margin"><strong>{{ad.title}}</strong> <small class="pull-right ">{{ad.date | date:'d-MMM-yyyy'}}</small></h2>
-                <div class="col-md-4">
+                <div class="col-md-4 publishimage adimage">
                     <img ng-src="{{ad.imageDataUrl}}" class="img-responsive" alt="Responsive image">
                 </div>
                 <div class="col-md-8">
