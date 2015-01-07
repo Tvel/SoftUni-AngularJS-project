@@ -169,6 +169,50 @@ input[readonly] {
     cursor: default; !important;
 }
 
+.publishimage{
+    height: 150px;
+    background-color: #c5e0b4;
+    margin-bottom: 10px;
+}
+
+.publishimage img {
+    margin-top: 15px;
+    margin-bottom: auto;
+    max-height: 120px;
+    max-width: 150px;
+}
+
+.panel-publish{
+
+}
+.panel-publish label{
+    text-align: right;
+    vertical-align: middle;
+    /*padding-bottom: 10px;*/
+    padding-top: 5px;
+    /*padding-left: 0;*/
+    padding-right: 0;
+    margin: 0;
+}
+
+.publish-bottom label{
+   margin-right: -3px;
+}
+.publish-bottom select{
+    margin-left: 6px;
+}
+
+.fileinput{
+    position: absolute;
+top: 0;
+left: 0;
+z-index: 2;
+width: 100%;
+height: 100%;
+opacity: 0;
+}
+
+
 .buttonnn{
     background-color: #71ae48;
 }

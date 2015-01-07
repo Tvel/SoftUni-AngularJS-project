@@ -201,6 +201,28 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         return( request.then( handleSuccess, handleRegisterError) );
     }
 
+    function postAd( title, text, image, cat, town ) {
+
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "post",
+            url: API_URL + "/api/user/Ads",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                Title: title,
+                Text: text,
+                ImageDataURL: image,
+                CategoryId: cat,
+                TownId: town
+            }
+        });
+
+        return( request.then( handleSuccess, handleRegisterError) );
+    }
+
 
     function testpost( name ) {
 
@@ -233,6 +255,7 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         getProfileInfo: getProfileInfo,
         setProfileInfo: setProfileInfo,
         changePassword: changePassword,
+        postAd: postAd,
         test: 'test'
     };
 

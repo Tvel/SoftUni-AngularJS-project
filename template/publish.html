@@ -1,0 +1,93 @@
+<header header-main headerinfo="publishAd.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="publishAd.ifLogged" active="publishAd.menuactive" menu-navigation></div>
+    </div>
+
+    <div class="col-md-10">
+        <div class="col-md-12 alert-height">
+            <alert ng-repeat="alert in publishAd.alerts" type="{{alert.type}}" close="publishAd.closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+
+        <div class="col-md-8  col-md-offset-2">
+            <div class="panel panel-default panel-publish ">
+                <div class="panel-body">
+                    <h2 class="text-center small-margin"><strong>Publish New Ad</strong></h2>
+                    <hr>
+                    <form name="publishAd.editProfileForm" ng-submit="publishAd.submitPublishAd()">
+
+                        <div class="form-group small-margin col-md-8">
+                            <div class="col-md-3 control-label text-right remove-right-padding bottom-margin">
+                                <label for="name">Title:</label>
+                            </div>
+                            <div class="col-sm-9 remove-right-padding bottom-margin">
+                                <input type="text" required class="form-control" ng-model="publishAd.ad.title" id="name" placeholder="Enter Name">
+                            </div>
+
+                            <label for="text" class="col-sm-3 control-label">Text:</label>
+                            <div class="col-sm-9 remove-right-padding">
+                                <input style="height: 100px" type="text" required class="form-control" ng-model="publishAd.ad.text" id="text" placeholder="Enter Name">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 publishimage pull-right">
+                            <img  class="center-block" style=""  ng-src="data:{{publishAd.ad.img.filetype}};base64,{{publishAd.ad.img.base64}}" alt=""/>
+                        </div>
+
+                        <div class="col-md-12"></div>
+
+                        <div class="form-group small-margin col-md-8">
+                            <div class="col-md-3 control-label text-right remove-right-padding bottom-margin">
+                                <label for="inputPicture">Image:</label>
+                            </div>
+                            <div class="col-md-9 remove-right-padding">
+                                <input type="text"  class="form-control" ng-value="publishAd.ad.img.filename" id="inputPicture" placeholder="Enter Phone">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input base-sixty-four-input type="file"  class="form-control fileinput" ng-model="publishAd.ad.img" id="inputPicture" placeholder="Enter Phone">
+                            <a ng-click="publishAd.clickBrowse()"  class="btn btn-defaut ">Browse</a>
+                        </div>
+
+                        <div class="col-md-12 bottom-margin"></div>
+                        <div class="form-group col-md-2 publish-bottom">
+                                <div class="col-md-12 control-label text-right remove-right-padding bottom-margin">
+                                    <label for="town">Category:</label>
+                                </div>
+                        </div>
+                        <div class="col-md-10 remove-right-padding publish-bottom">
+                            <select type="text" class="form-control" ng-model="publishAd.ad.categoryId" id="town" placeholder="Choose Town">
+                                <option selected value=""> </option>
+                                <option ng-repeat="cat in publishAd.categories" value="{{cat.id}}">{{cat.name}}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12"></div>
+                        <div class="form-group col-md-2 publish-bottom">
+                            <div class="col-md-12 control-label text-right remove-right-padding bottom-margin">
+                                <label for="category" style="margin-right: -21px">Town:</label>
+                            </div>
+                        </div>
+                        <div class="col-md-10 remove-right-padding publish-bottom bottom-margin">
+                                <select type="text" class="form-control" ng-model="publishAd.ad.townId" id="category" placeholder="Choose Town">
+                                    <option selected  value=""> </option>
+                                    <option ng-repeat="town in publishAd.towns" value="{{town.id}}">{{town.name}}</option>
+                                </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-defaul btn-lg ">Publish</button>
+                            </div>
+                            <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
+                                <a href="" class="btn btn-defaul btn-lg ">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
