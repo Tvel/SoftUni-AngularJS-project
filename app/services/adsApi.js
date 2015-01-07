@@ -1,36 +1,36 @@
-app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cookieStore) {
+app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, $q, $cookieStore, config) {
+    var self = this;
+    var API_URL = config.API_URL;
 
-    var API_URL = 'http://softuni-ads.azurewebsites.net';
-
-    function getTowns() {
+    self.getTowns = function getTowns() {
         return $http.get( API_URL +'/api/Towns')
             .then( handleSuccess, handleError )
             .then ( function (response){
                 $cookieStore.put('Towns', response);
             return ( response );
         });
-    }
+    };
 
-    function getSavedTowns(){
+    self.getSavedTowns = function getSavedTowns(){
         return $cookieStore.get('Towns');
-    }
+    };
 
-    function getCategories() {
+    self.getCategories = function getCategories() {
         return $http.get(API_URL + '/api/Categories')
             .then(handleSuccess, handleError)
             .then(function (response) {
             $cookieStore.put('Categories', response);
             return ( response );
         });
-    }
+    };
 
-    function getSavedCategories(){
+    self.getSavedCategories = function getSavedCategories(){
         return $cookieStore.get('Categories');
-    }
+    };
 
 
     //GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}
-    function getAds(categoryId, townId, startPage, pageSize) {
+    self.getAds = function getAds(categoryId, townId, startPage, pageSize) {
         if (categoryId == 'all') categoryId = '';
         if (townId == 'all') townId = '';
 
@@ -51,9 +51,9 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         });
 
         return( request.then( handleSuccess, handleError ) );
-    }
+    };
 
-    function register(Username, Password, ConfirmPassword, Name, Email, Phone, TownId){
+    self.register = function register(Username, Password, ConfirmPassword, Name, Email, Phone, TownId){
         //requires : Username, Password, ConfirmPassword, Name, Email
         //optional : Phone, TownId
         //
@@ -86,9 +86,9 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
                 console.log(response);
                 $cookieStore.put('userdata', response);
             }));
-    }
+    };
 
-    function login(Username, Password){
+    self.login = function login(Username, Password){
         var request = $http({
             method: "post",
             url: API_URL + "/api/user/Login",
@@ -104,18 +104,18 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
                 $cookieStore.put('userdata', response);
             })
         );
-    }
+    };
 
-    function logout() {
+    self.logout = function logout() {
         $cookieStore.remove('userdata');
 
         var deferred = $q.defer();
 
         return deferred.resolve( {msg: 'Successful logout'} );
 
-    }
+    };
 
-    function checkLogin() {
+    self.checkLogin = function checkLogin() {
         var userdata = $cookieStore.get('userdata');
 
         //console.log( userdata);
@@ -139,9 +139,9 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
 
         return deferred.promise;
 
-    }
+    };
 
-    function getProfileInfo()  {
+    self.getProfileInfo = function getProfileInfo()  {
 
         var userdata = $cookieStore.get('userdata');
 
@@ -156,9 +156,9 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         return( request.then( handleSuccess, handleError ) );
 
 
-    }
+    };
 
-    function setProfileInfo( name, email, phone, townId ) {
+    self.setProfileInfo = function setProfileInfo( name, email, phone, townId ) {
 
         var userdata = $cookieStore.get('userdata');
 
@@ -179,9 +179,9 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         return( request.then( handleSuccess, handleError ) );
 
 
-    }
+    };
 
-    function changePassword( oldPass, newPass, newPassConf ) {
+    self.changePassword = function changePassword( oldPass, newPass, newPassConf ) {
 
         var userdata = $cookieStore.get('userdata');
 
@@ -199,9 +199,9 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         });
 
         return( request.then( handleSuccess, handleRegisterError) );
-    }
+    };
 
-    function postAd( title, text, image, cat, town ) {
+    self.postAd = function postAd( title, text, image, cat, town ) {
 
         var userdata = $cookieStore.get('userdata');
 
@@ -221,7 +221,44 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
         });
 
         return( request.then( handleSuccess, handleRegisterError) );
-    }
+    };
+
+
+    /**
+     *  GET api/user/Ads?Status={Status}&StartPage={StartPage}&PageSize={PageSize}
+     *
+     * @param {status} status  Status for the required page
+     *  All - 'all'
+     *  Inactive - 0
+     *  WaitingApproval - 1
+     *  Published - 2
+     *  Rejected - 3
+     * @param {startPage} startPage The page to be displayed
+     * @param {pageSize} pageSize The page size to be displayed
+     *
+     */
+    self.getUserAds = function (status, startPage, pageSize){
+        if (status == 'all') categoryId = '';
+
+        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+
+        //console.log(status + startPage + pageSize);
+
+        var request = $http({
+            method: "get",
+            url: API_URL + "/api/user/Ads",
+            params: {
+                Status: status,
+                StartPage: startPage,
+                PageSize: pageSize
+            }
+        });
+
+        return( request.then( handleSuccess, handleError ) );
+    };
+
+
 
 
     function testpost( name ) {
@@ -242,22 +279,22 @@ app.factory('AdsApi', [ '$http','$q', '$cookieStore' ,function($http, $q, $cooki
     }
 
 
-    return {
-        getTowns: getTowns,
-        getSavedTowns: getSavedTowns,
-        getCategories: getCategories,
-        getSavedCategories: getSavedCategories,
-        getAds: getAds,
-        register: register,
-        login: login,
-        checkLogin: checkLogin,
-        logout: logout,
-        getProfileInfo: getProfileInfo,
-        setProfileInfo: setProfileInfo,
-        changePassword: changePassword,
-        postAd: postAd,
-        test: 'test'
-    };
+    //return {
+    //    getTowns: getTowns,
+    //    getSavedTowns: getSavedTowns,
+    //    getCategories: getCategories,
+    //    getSavedCategories: getSavedCategories,
+    //    getAds: getAds,
+    //    register: register,
+    //    login: login,
+    //    checkLogin: checkLogin,
+    //    logout: logout,
+    //    getProfileInfo: getProfileInfo,
+    //    setProfileInfo: setProfileInfo,
+    //    changePassword: changePassword,
+    //    postAd: postAd,
+    //    test: 'test'
+    //};
 
 
 
