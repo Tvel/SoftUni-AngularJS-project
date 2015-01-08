@@ -46,7 +46,7 @@
                     <p>{{ad.status}}</p>
                     <a ng-if="ad.status == 'WaitingApproval' || ad.status == 'Published'"      href="#/deactivate/{{ad.id}}" class="btn btn-default btn-lg btn-block">Deactivate</a>
                     <a ng-if="ad.status == 'Inactive'"class="btn btn-default btn-lg btn-block" href="#/editad/{{ad.id}}">Edit</a>
-                    <a ng-if="ad.status == 'Inactive'"class="btn btn-default btn-lg btn-block" href="#/publishagain/{{ad.id}}" >Publish Again</a>
+                    <a ng-if="ad.status == 'Inactive'"class="btn btn-default btn-lg btn-block" href="#/publish/{{ad.id}}" >Publish Again</a>
                     <a ng-if="ad.status == 'Inactive'"class="btn btn-default btn-lg btn-block" href="#/delete/{{ad.id}}" >Delete</a>
                 </div>
             </div>

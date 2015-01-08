@@ -41,7 +41,7 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
         });
         $routeProvider.when('/publish/:id', {
             templateUrl: 'template/ad-options.html',
-            controller: 'PublishAgainController as adOption'
+            controller: 'PublishAgainAdController as adOption'
         });
         $routeProvider.when('/delete/:id', {
             templateUrl: 'template/ad-options.html',

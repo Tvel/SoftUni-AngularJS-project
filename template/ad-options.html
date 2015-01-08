@@ -11,7 +11,7 @@
             <alert ng-repeat="alert in adOption.alerts" type="{{alert.type}}" close="adOption.closeAlert($index)">{{alert.msg}}</alert>
         </div>
 
-       <div  user-ad  ad="adOption.ad" title="adOption.title" button-name="'Deactivate'" submit-click="adOption.submitClick" cancel-click="adOption.cancelClick">
+       <div  user-ad  ad="adOption.ad" title="adOption.title" button-name="adOption.buttonName" submit-click="adOption.submitClick" cancel-click="adOption.cancelClick">
        </div>
 
     </div>
