@@ -8,6 +8,6 @@ angular.module('adsProject')
             link: function(scope,element){
                 element.addClass('panel panel-default panel-side');
             },
-            templateUrl: 'template/menu-navigation.html'
+            templateUrl: 'template/menus/menu-navigation.html'
         }
     }]);

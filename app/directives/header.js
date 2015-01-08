@@ -24,6 +24,6 @@ angular.module('adsProject')
                     $location.path('#/home');
                 };
             },
-            templateUrl: 'template/header.html'
+            templateUrl: 'template/menus/header.html'
         }
     }]);

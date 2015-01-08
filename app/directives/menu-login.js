@@ -4,6 +4,6 @@ angular.module('adsProject')
             link: function(scope,element){
                 element.addClass('panel panel-default panel-side');
             },
-            templateUrl: 'template/menu-login.html'
+            templateUrl: 'template/menus/menu-login.html'
         }
     }]);
