@@ -27,7 +27,6 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$rout
                 //function first(p){for(var i in p)return p[i];}
                 self.closeAlert(0);
                 //console.log('boom alert');
-
             }, 5000)
         }
     };
@@ -98,7 +97,7 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$rout
             }, function(data){
                 console.error(data);
                 for (model in data) {
-                    var msg = data[model]
+                    var msg = data[model];
                     for (info in msg)
                         self.addAlert('danger', msg[info]);
                 }
