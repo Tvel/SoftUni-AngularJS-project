@@ -27,7 +27,7 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
     self.pageSize = 4;
     self.pagTotalItems = Infinity;
 
-    if ($routeParams.Status){
+    if ($routeParams.Status !== undefined){
         self.status = $routeParams.Status;
     }
     if ($routeParams.CategoryId){
