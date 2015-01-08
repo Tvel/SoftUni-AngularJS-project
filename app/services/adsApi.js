@@ -201,6 +201,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return( request.then( handleSuccess, handleRegisterError) );
     };
 
+
     self.postUserAd = function postAd( title, text, image, cat, town ) {
 
         var userdata = $cookieStore.get('userdata');
@@ -237,6 +238,13 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      */
     self.editUserAd = function postAd(id, changeImage, title, text, image, cat, town ) {
         var userdata = $cookieStore.get('userdata');
+
+        if (!changeImage) {
+            image = undefined;
+        }
+        if (image === "//:0" ) {
+            image = null;
+        }
 
         var request = $http({
             method: "put",

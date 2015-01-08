@@ -1,4 +1,4 @@
-app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', function( AdsApi, $location, $interval) {
+app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$routeParams', function( AdsApi, $location, $interval, $routeParams) {
     var self = this;
     self.header = {title:'Edit Ad'};
 
@@ -43,7 +43,19 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', functi
     };
     /// Alerts End
 
+    if ($routeParams.id){
+        self.id = $routeParams.id;
+    }
+    self.changeImageValue = false;
 
+    AdsApi.getUserAd(self.id)
+        .then(function(ad){
+            self.ad = ad;
+            console.log(ad);
+
+            self.image = self.ad.imageDataUrl;
+
+        });
 
 
     self.towns = AdsApi.getSavedTowns();
@@ -58,25 +70,26 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', functi
         });
 
 
-    self.clickBrowse = function(){
-        angular.element('#inputPicture').trigger('click');
+    //self.clickBrowse = function(){
+    //    angular.element('#inputPicture').trigger('click');
+    //};
+
+    self.changeImage = function(){
+        //console.log('change');
+        if( angular.isObject(  self.newImage) ) {
+            this.image = "data:" + self.newImage.filetype + ";base64," + self.newImage.base64;
+            self.changeImageValue = true;
+        }
     };
 
-
+    self.deleteImage = function(){
+       // console.log('delete');
+        this.image = "//:0";
+        self.changeImageValue = true;
+    };
 
     self.submitEditAd = function (){
-
-        //if (self.newpassword !== self.newpasswordconf) {
-        //    return  self.addAlert('danger','Password and confirmation are not the same');
-        //}
-        //if (self.changePassForm.$error.minlength) {
-        //    return  self.addAlert('danger','New Password must be longer that 2 symbols');
-        //}
-        //if (self.changePassForm.$error.maxlength) {
-        //    return  self.addAlert('danger','New Password must be shorter that 100 symbols');
-        //}
-
-        AdsApi.editUserAd(self.id, self.changeImage, self.ad.title, self.ad.text, "data:"+self.ad.img.filetype+";base64,"+self.ad.img.base64, self.ad.categoryId, self.ad.townId )
+        AdsApi.editUserAd(self.id, self.changeImageValue, self.ad.title, self.ad.text, self.image, self.ad.categoryId, self.ad.townId )
             .then(function(data){
                 //console.log(data);
                 self.addAlert('success', 'Advertisement submitted for approval. Once approved, it will be published.');
