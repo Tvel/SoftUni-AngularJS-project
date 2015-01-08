@@ -1,0 +1,18 @@
+<header header-main headerinfo="adOption.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="adOption.ifLogged" active="adOption.menuactive" menu-navigation></div>
+
+    </div>
+
+    <div class="col-md-10">
+        <div class="col-md-12 alert-height">
+            <alert ng-repeat="alert in adOption.alerts" type="{{alert.type}}" close="adOption.closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+
+       <div  user-ad  ad="adOption.ad" title="adOption.title" button-name="'Deactivate'" submit-click="adOption.submitClick" cancel-click="adOption.cancelClick">
+       </div>
+
+    </div>
+</div>

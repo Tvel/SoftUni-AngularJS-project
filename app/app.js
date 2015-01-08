@@ -28,12 +28,24 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
             controller: 'PublishAdController as publishAd'
         });
         $routeProvider.when('/myads', {
-            templateUrl: 'template/myads.html',
+            templateUrl: 'template/my-ads.html',
             controller: 'MyAdsController as myAds'
         });
         $routeProvider.when('/editad', {
             templateUrl: 'template/editad.html',
             controller: 'EditAdController as editAd'
+        });
+        $routeProvider.when('/deactivate/:id', {
+            templateUrl: 'template/ad-options.html',
+            controller: 'DeactivateAdController as adOption'
+        });
+        $routeProvider.when('/publish/:id', {
+            templateUrl: 'template/ad-options.html',
+            controller: 'PublishAgainController as adOption'
+        });
+        $routeProvider.when('/delete/:id', {
+            templateUrl: 'template/ad-options.html',
+            controller: 'DeleteAdController as adOption'
         });
         $routeProvider.otherwise({redirectTo: '/home'});
 

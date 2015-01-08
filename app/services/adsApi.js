@@ -262,7 +262,47 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return( request.then( handleSuccess, handleError ) );
     };
 
+    /**
+     *  GET api/user/Ads/{id}
+     *
+     * @param {id} id  ID for the required ad
+     *
+     *
+     */
+    self.getUserAd = function (id){
+        var userdata = $cookieStore.get('userdata');
 
+        var request = $http({
+            method: "get",
+            url: API_URL + "/api/user/Ads/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleError ) );
+    };
+
+    /**
+     *  PUT api/user/Ads/Deactivate/{id}
+     *
+     * @param {id} id  ID for the required ad
+     *
+     *
+     */
+    self.deactivateUserAd = function (id){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/user/Ads/Deactivate/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleError ) );
+    };
 
 
     function testpost( name ) {
