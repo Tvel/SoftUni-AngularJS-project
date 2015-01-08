@@ -61,7 +61,7 @@ app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$locatio
                 console.error(error);
             });
 
-        //window.history.back();
+        window.history.back();
     };
 
     self.cancelClick = function() {

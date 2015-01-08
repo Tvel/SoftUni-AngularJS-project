@@ -31,8 +31,8 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
             templateUrl: 'template/my-ads.html',
             controller: 'MyAdsController as myAds'
         });
-        $routeProvider.when('/editad', {
-            templateUrl: 'template/editad.html',
+        $routeProvider.when('/editad/:id', {
+            templateUrl: 'template/edit-ad.html',
             controller: 'EditAdController as editAd'
         });
         $routeProvider.when('/deactivate/:id', {

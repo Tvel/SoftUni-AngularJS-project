@@ -201,19 +201,53 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return( request.then( handleSuccess, handleRegisterError) );
     };
 
-    self.postAd = function postAd( title, text, image, cat, town ) {
+    self.postUserAd = function postAd( title, text, image, cat, town ) {
 
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
             method: "post",
-            url: API_URL + "/api/user/Ads",
+            url: API_URL + "/api/user/Ads/",
             headers: {
                 Authorization: 'Bearer ' + userdata.access_token
             },
             data: {
                 Title: title,
                 Text: text,
+                ImageDataURL: image,
+                CategoryId: cat,
+                TownId: town
+            }
+        });
+
+        return( request.then( handleSuccess, handleRegisterError) );
+    };
+
+
+    /**
+     *  PUT api/user/Ads/{id}
+     *
+     * @param {id} id  ID for the required ad
+     * @param {boolean} changeImage
+     * @param title
+     * @param text
+     * @param image
+     * @param cat
+     * @param town
+     */
+    self.editUserAd = function postAd(id, changeImage, title, text, image, cat, town ) {
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/user/Ads/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                Title: title,
+                Text: text,
+                ChangeImage: changeImage,
                 ImageDataURL: image,
                 CategoryId: cat,
                 TownId: town

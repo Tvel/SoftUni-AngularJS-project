@@ -1,0 +1,82 @@
+<header header-main headerinfo="editAd.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="editAd.ifLogged" active="editAd.menuactive" menu-navigation></div>
+    </div>
+
+    <div class="col-md-10">
+        <div class="col-md-12 alert-height">
+            <alert ng-repeat="alert in editAd.alerts" type="{{alert.type}}" close="editAd.closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+
+        <div class="col-md-10  col-md-offset-1">
+            <div class="panel panel-default panel-publish ">
+                <div class="panel-body">
+                    <h2 class="text-center small-margin"><strong>Edit Ad</strong></h2>
+                    <hr>
+                    <form name="editAd.editProfileForm" ng-submit="editAd.submiteditAd()">
+
+                        <div class="form-group small-margin col-md-8">
+                            <div class="col-md-3 control-label text-right remove-right-padding bottom-margin">
+                                <label for="name">Title:</label>
+                            </div>
+                            <div class="col-sm-9 remove-right-padding bottom-margin">
+                                <input type="text" required class="form-control" ng-model="editAd.ad.title" id="name" placeholder="Enter Name">
+                            </div>
+
+                            <label for="text" class="col-sm-3 control-label">Text:</label>
+                            <div class="col-sm-9 remove-right-padding bottom-margin">
+                                <input style="height: 100px" type="text" required class="form-control" ng-model="editAd.ad.text" id="text" placeholder="Enter Name">
+                            </div>
+
+                            <div class="col-md-3 control-label text-right remove-right-padding bottom-margin">
+                                <label for="inputPicture">Image:</label>
+                            </div>
+                            <div class="col-md-9 remove-right-padding bottom-margin">
+                                <input type="text"  class="form-control" ng-value="editAd.ad.img.filename" id="inputPicture" placeholder="Enter Phone">
+                            </div>
+
+                            <label for="text" class="col-sm-3 control-label">Category:</label>
+                            <div class="col-sm-9 remove-right-padding bottom-margin">
+                                <select type="text" class="form-control" ng-model="editAd.ad.categoryId" id="town" placeholder="Choose Town">
+                                    <option selected value=""> </option>
+                                    <option ng-repeat="cat in editAd.categories" value="{{cat.id}}">{{cat.name}}</option>
+                                </select>
+                            </div>
+
+                            <label for="text" class="col-sm-3 control-label">Town:</label>
+                            <div class="col-sm-9 remove-right-padding bottom-margin">
+                                <select type="text" class="form-control" ng-model="editAd.ad.townId" id="category" placeholder="Choose Town">
+                                    <option selected  value=""> </option>
+                                    <option ng-repeat="town in editAd.towns" ng-selected="town.name == editAd.ad.townId" value="{{town.id}}">{{town.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 publishimage pull-right">
+                            <img  class="center-block" style=""  ng-src="data:{{editAd.ad.img.filetype}};base64,{{editAd.ad.img.base64}}" alt=""/>
+
+                            <div class="col-md-12">
+                                <input base-sixty-four-input type="file"  class="form-control fileinput" ng-model="editAd.ad.img" id="inputPicture" placeholder="Enter Phone">
+                                <a ng-click="editAd.clickBrowse()"  class="btn btn-defaut btn-sm ">Browse</a>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-defaul btn-lg ">Publish</button>
+                            </div>
+                            <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
+                                <a href="" class="btn btn-defaul btn-lg ">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
