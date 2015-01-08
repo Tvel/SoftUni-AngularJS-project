@@ -325,6 +325,27 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return( request.then( handleSuccess, handleError ) );
     };
 
+    /**
+     *  DELETE api/user/Ads/{id}
+     *
+     * @param {id} id  ID for the required ad
+     *
+     *
+     */
+    self.deleteUserAd = function (id){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "delete",
+            url: API_URL + "/api/user/Ads/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleError ) );
+    };
+
 
     function testpost( name ) {
 
