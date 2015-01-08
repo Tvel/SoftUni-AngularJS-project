@@ -1,4 +1,4 @@
-app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
+app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location', '$interval', function( AdsApi, $routeParams, $location, $interval) {
     var self = this;
     self.header = {title:'Deactivate Ad'};
 
@@ -31,7 +31,6 @@ app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location'
     };
     self.closeAlert = function(index) {
         self.alerts.splice(index, 1);
-
         if (self.alerts.length == 0) {
             if (angular.isDefined(killInterval)) {
                 $interval.cancel(killInterval);
@@ -40,6 +39,9 @@ app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location'
         }
     };
 
+    if ($routeParams.id){
+        self.id = $routeParams.id;
+    }
 
     AdsApi.getUserAd(self.id)
         .then(function(ad){
@@ -51,12 +53,12 @@ app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location'
     self.title = 'Confirm Deactivating Ad?';
     self.buttonName = 'Deactivate';
     self.submitClick = function() {
-
         console.log('submit!');
         AdsApi.deactivateUserAd(self.id)
             .then(function(ad){
-
-
+                self.addAlert('success', 'Ad is deactivated');
+            }, function(error){
+                console.error(error);
             });
 
         //window.history.back();
@@ -66,9 +68,7 @@ app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location'
         window.history.back();
     };
 
-    if ($routeParams.id){
-        self.id = $routeParams.id;
-    }
+
 
 
 
