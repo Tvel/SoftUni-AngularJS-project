@@ -104,7 +104,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
         return( request.then( handleSuccess, handleErrorTypeOne )
             .then(function(response){
-                console.log(response);
+                //console.log(response);
                 $cookieStore.put('userdata', response);
             })
         );
