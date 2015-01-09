@@ -52,8 +52,6 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
     };
 
 
-
-
     function handleErrorTypeOne( response ) {
 
         if (
