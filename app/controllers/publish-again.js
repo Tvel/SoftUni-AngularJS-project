@@ -15,10 +15,13 @@ app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$locatio
     });
 
     self.alerts = [];
+    /*
+     * Interval is needed so alerts can be closed one by one every 5 seconds
+     */
     var killInterval = undefined;
     self.addAlert = function(type, msg) {
         self.alerts.push({type: type ,msg: msg});
-        console.log(self.alerts);
+        //console.log(self.alerts);
 
         if (!angular.isDefined(killInterval)) {
             killInterval = $interval(function () {
@@ -45,15 +48,14 @@ app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$locatio
     AdsApi.getUserAd(self.id)
         .then(function(ad){
             self.ad = ad;
-            console.log(ad);
-
+            //console.log(ad);
         });
 
     self.title = 'Confirm Publishing Ad?';
     self.buttonName = 'Publish';
 
     self.submitClick = function() {
-        console.log('submit!');
+        //console.log('submit!');
         AdsApi.publishAgainUserAd(self.id)
             .then(function(ad){
                 self.addAlert('success', 'Ad is Published');
@@ -65,7 +67,7 @@ app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$locatio
     };
 
     self.cancelClick = function() {
-        console.log('cancel!');
+        //console.log('cancel!');
         window.history.back();
     };
 

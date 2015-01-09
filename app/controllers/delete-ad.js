@@ -15,16 +15,17 @@ app.controller('DeleteAdController',  [ 'AdsApi','$routeParams', '$location', '$
     });
 
     self.alerts = [];
+    /*
+     * Interval is needed so alerts can be closed one by one every 5 seconds
+     */
     var killInterval = undefined;
     self.addAlert = function(type, msg) {
         self.alerts.push({type: type ,msg: msg});
-        console.log(self.alerts);
+        //console.log(self.alerts);
 
         if (!angular.isDefined(killInterval)) {
             killInterval = $interval(function () {
-                //function first(p){for(var i in p)return p[i];}
                 self.closeAlert(0);
-                //console.log('boom alert');
             }, 5000)
         }
     };
@@ -48,12 +49,9 @@ app.controller('DeleteAdController',  [ 'AdsApi','$routeParams', '$location', '$
             console.log(ad);
 
         });
-
     self.title = 'Confirm Deleting Ad?';
     self.buttonName = 'Delete';
-
     self.submitClick = function() {
-        //console.log('submit!');
         AdsApi.deleteUserAd(self.id)
             .then(function(ad){
                 self.addAlert('success', 'Ad is Deleted');
@@ -63,12 +61,9 @@ app.controller('DeleteAdController',  [ 'AdsApi','$routeParams', '$location', '$
 
         window.history.back();
     };
-
     self.cancelClick = function() {
-        //console.log('cancel!');
         window.history.back();
     };
-
 
 
 }]);

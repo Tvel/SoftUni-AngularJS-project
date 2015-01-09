@@ -18,6 +18,9 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
     );
 
     self.alerts = [];
+    /*
+     * Interval is needed so alerts can be closed one by one every 5 seconds
+     */
     var killInterval = undefined;
     self.addAlert = function(type, msg) {
         self.alerts.push({type: type ,msg: msg});
@@ -25,10 +28,7 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
 
         if (!angular.isDefined(killInterval)) {
             killInterval = $interval(function () {
-                //function first(p){for(var i in p)return p[i];}
                 self.closeAlert(0);
-                //console.log('boom alert');
-
             }, 5000)
         }
     };

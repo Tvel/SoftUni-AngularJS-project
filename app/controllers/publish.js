@@ -17,17 +17,17 @@ app.controller('PublishAdController',  [ 'AdsApi', '$location', '$interval', fun
 
     ///Alerts
         self.alerts = [];
+        /*
+         * Interval is needed so alerts can be closed one by one every 5 seconds
+         */
         var killInterval = undefined;
         self.addAlert = function(type, msg) {
             self.alerts.push({type: type ,msg: msg});
-            console.log(self.alerts);
+            //console.log(self.alerts);
 
             if (!angular.isDefined(killInterval)) {
                 killInterval = $interval(function () {
-                    //function first(p){for(var i in p)return p[i];}
                     self.closeAlert(0);
-                    //console.log('boom alert');
-
                 }, 5000)
             }
         };
@@ -63,16 +63,6 @@ app.controller('PublishAdController',  [ 'AdsApi', '$location', '$interval', fun
 
 
     self.submitPublishAd = function (){
-
-        //if (self.newpassword !== self.newpasswordconf) {
-        //    return  self.addAlert('danger','Password and confirmation are not the same');
-        //}
-        //if (self.changePassForm.$error.minlength) {
-        //    return  self.addAlert('danger','New Password must be longer that 2 symbols');
-        //}
-        //if (self.changePassForm.$error.maxlength) {
-        //    return  self.addAlert('danger','New Password must be shorter that 100 symbols');
-        //}
 
         AdsApi.postUserAd(self.ad.title, self.ad.text, "data:"+self.ad.img.filetype+";base64,"+self.ad.img.base64, self.ad.categoryId, self.ad.townId )
             .then(function(data){

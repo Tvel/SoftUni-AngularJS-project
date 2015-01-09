@@ -15,6 +15,9 @@ app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location'
     });
 
     self.alerts = [];
+    /*
+     * Interval is needed so alerts can be closed one by one every 5 seconds
+     */
     var killInterval = undefined;
     self.addAlert = function(type, msg) {
         self.alerts.push({type: type ,msg: msg});
@@ -22,10 +25,7 @@ app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location'
 
         if (!angular.isDefined(killInterval)) {
             killInterval = $interval(function () {
-                //function first(p){for(var i in p)return p[i];}
                 self.closeAlert(0);
-                //console.log('boom alert');
-
             }, 5000)
         }
     };
@@ -49,11 +49,9 @@ app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location'
             console.log(ad);
 
         });
-
     self.title = 'Confirm Deactivating Ad?';
     self.buttonName = 'Deactivate';
     self.submitClick = function() {
-        console.log('submit!');
         AdsApi.deactivateUserAd(self.id)
             .then(function(ad){
                 self.addAlert('success', 'Ad is deactivated');
@@ -64,7 +62,6 @@ app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location'
         window.history.back();
     };
     self.cancelClick = function() {
-        console.log('cancel!');
         window.history.back();
     };
 

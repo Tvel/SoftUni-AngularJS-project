@@ -1,9 +1,7 @@
 app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', function( AdsApi, $location, $interval) {
     var self = this;
 
-
     self.header = {title:'Register'};
-
 
     AdsApi.checkLogin()
         .then(
@@ -14,21 +12,18 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
         function(error){console.log(error)}
     );
 
-    self.alerts = [
-        //{ type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-        //{ type: 'success', msg: 'Well done! You successfully read this important alert message.' }
-    ];
+    self.alerts = [];
+    /*
+     * Interval is needed so alerts can be closed one by one every 5 seconds
+     */
     var killInterval = undefined;
     self.addAlert = function(type, msg) {
         self.alerts.push({type: type ,msg: msg});
-        console.log(self.alerts);
+        //console.log(self.alerts);
 
         if (!angular.isDefined(killInterval)) {
             killInterval = $interval(function () {
-                //function first(p){for(var i in p)return p[i];}
                 self.closeAlert(0);
-                //console.log('boom alert');
-
             }, 5000)
         }
     };
@@ -55,9 +50,7 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
             .then(function(data){
                 //console.log(data);
                 self.addAlert('success', 'Register Successful, plase <a href="#/login">login</a> if not redirected.');
-
                 $location.path('/home');
-
 
             }, function(data){
                 console.error(data);

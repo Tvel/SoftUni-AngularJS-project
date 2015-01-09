@@ -15,7 +15,6 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
     });
 
 
-
     self.statusList = [
         {id: 0, name: 'Inactive'},
         {id: 1, name: 'Waiting Approval'},
@@ -33,21 +32,9 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
     if ($routeParams.StartPage){
         self.startPage = $routeParams.StartPage;
     }
-
     self.maxSize = 5;
     self.itemsPerPage = self.pageSize;
     self.pagCurrentPage = Number(self.startPage);
-    //console.log('PagCurrentPage: '+self.pagCurrentPage);
-
-    //self.towns = AdsApi.getSavedTowns();
-    //self.categories = AdsApi.getSavedCategories();
-    //AdsApi.getTowns()
-    //    .then(function(towns){
-    //        self.towns = towns;
-    //    });
-    //AdsApi.getCategories().then(function(cats){
-    //    self.categories = cats;
-    //});
 
 
     function getUserAds() {
@@ -58,13 +45,11 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
                 self.pagTotalItems = self.ads.numItems;
             });
     }
-
-
     getUserAds();
 
     self.test =  AdsApi.test;
     self.filterByStatus = function(id){
-        console.log('StatusFilter: '+id);
+       // console.log('StatusFilter: '+id);
         self.status = id;
         $location.path('/myads').search({Status: self.status, StartPage: self.startPage});
 
@@ -72,7 +57,7 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
 
 
     self.pageChanged  = function(){
-        console.log('PageChange:' + self.pagCurrentPage);
+        //console.log('PageChange:' + self.pagCurrentPage);
         self.startPage = Number(self.pagCurrentPage);
         $location.path('/myads').search({
             Status: self.status,
@@ -80,7 +65,6 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
         });
     };
 
-    //console.log($routeParams);
 
 
 

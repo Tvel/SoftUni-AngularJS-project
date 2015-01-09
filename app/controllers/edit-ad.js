@@ -17,16 +17,17 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$rout
 
     ///Alerts
     self.alerts = [];
+    /*
+     * Interval is needed so alerts can be closed one by one every 5 seconds
+     */
     var killInterval = undefined;
     self.addAlert = function(type, msg) {
         self.alerts.push({type: type ,msg: msg});
-        console.log(self.alerts);
+        //console.log(self.alerts);
 
         if (!angular.isDefined(killInterval)) {
             killInterval = $interval(function () {
-                //function first(p){for(var i in p)return p[i];}
                 self.closeAlert(0);
-                //console.log('boom alert');
             }, 5000)
         }
     };
@@ -51,12 +52,9 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$rout
         .then(function(ad){
             self.ad = ad;
             //console.log(ad);
-
             self.image = self.ad.imageDataUrl;
 
         });
-
-
     self.towns = AdsApi.getSavedTowns();
     AdsApi.getTowns()
         .then(function(towns){
@@ -69,10 +67,6 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$rout
         });
 
 
-    //self.clickBrowse = function(){
-    //    angular.element('#inputPicture').trigger('click');
-    //};
-
     self.changeImage = function(){
         //console.log('change');
         if( angular.isObject(  self.newImage) ) {
@@ -80,7 +74,6 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$rout
             self.changeImageValue = true;
         }
     };
-
     self.deleteImage = function(){
        // console.log('delete');
         this.image = "//:0";
