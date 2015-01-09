@@ -100,6 +100,8 @@ footer{
     color: #000000;
     text-shadow: none;
     border-radius: 0px;
+    overflow-wrap:  break-word;
+
 
 }
 
@@ -170,17 +172,17 @@ input[readonly] {
 }
 
 .publishimage{
-
+    height: auto;
     margin-bottom: 10px;
 }
 
 .publishimage img {
-    height: 180px;
+
     width: 140px;
     background-color: #c5e0b4;
     margin-top: 15px;
     margin-bottom: auto;
-    max-height: 120px;
+    min-height: 180px;
     max-width: 150px;
     padding: 10px;
     border: dotted 1px #517f34;

@@ -1,10 +1,14 @@
+/**
+ *  AdsApi handles all server communication and user login, logout.
+ *
+ */
 app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, $q, $cookieStore, config) {
     var self = this;
     var API_URL = config.API_URL;
 
     self.getTowns = function getTowns() {
         return $http.get( API_URL +'/api/Towns')
-            .then( handleSuccess, handleError )
+            .then( handleSuccess, handleErrorTypeOne )
             .then ( function (response){
                 $cookieStore.put('Towns', response);
             return ( response );
@@ -17,7 +21,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
     self.getCategories = function getCategories() {
         return $http.get(API_URL + '/api/Categories')
-            .then(handleSuccess, handleError)
+            .then(handleSuccess, handleErrorTypeOne)
             .then(function (response) {
             $cookieStore.put('Categories', response);
             return ( response );
@@ -50,7 +54,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
     self.register = function register(Username, Password, ConfirmPassword, Name, Email, Phone, TownId){
@@ -81,7 +85,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleRegisterError )
+        return( request.then( handleSuccess, handleErrorTypeTwo )
             .then(function(response){
                 console.log(response);
                 $cookieStore.put('userdata', response);
@@ -98,7 +102,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError )
+        return( request.then( handleSuccess, handleErrorTypeOne )
             .then(function(response){
                 console.log(response);
                 $cookieStore.put('userdata', response);
@@ -107,11 +111,22 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
     };
 
     self.logout = function logout() {
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "post",
+            url: API_URL + "/api/user/Logout",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
         $cookieStore.remove('userdata');
 
-        var deferred = $q.defer();
-
-        return deferred.resolve( {msg: 'Successful logout'} );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        //var deferred = $q.defer();
+        //
+        //return deferred.resolve( {msg: 'Successful logout'} );
 
     };
 
@@ -153,7 +168,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
 
 
     };
@@ -176,7 +191,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
 
 
     };
@@ -198,7 +213,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleRegisterError) );
+        return( request.then( handleSuccess, handleErrorTypeTwo) );
     };
 
 
@@ -221,7 +236,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleRegisterError) );
+        return( request.then( handleSuccess, handleErrorTypeTwo) );
     };
 
 
@@ -262,7 +277,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleRegisterError) );
+        return( request.then( handleSuccess, handleErrorTypeTwo) );
     };
 
 
@@ -301,7 +316,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
     /**
@@ -322,7 +337,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
     /**
@@ -343,7 +358,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
     /**
@@ -364,8 +379,9 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
+
 
     /**
      *  DELETE api/user/Ads/{id}
@@ -385,55 +401,14 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleError ) );
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
 
-    function testpost( name ) {
-
-        var request = $http({
-            method: "post",
-            url: "api/test",
-            params: {
-                action: "add"
-            },
-            data: {
-                name: name
-            }
-        });
-
-        return( request.then( handleSuccess, handleError ) );
-
-    }
 
 
-    //return {
-    //    getTowns: getTowns,
-    //    getSavedTowns: getSavedTowns,
-    //    getCategories: getCategories,
-    //    getSavedCategories: getSavedCategories,
-    //    getAds: getAds,
-    //    register: register,
-    //    login: login,
-    //    checkLogin: checkLogin,
-    //    logout: logout,
-    //    getProfileInfo: getProfileInfo,
-    //    setProfileInfo: setProfileInfo,
-    //    changePassword: changePassword,
-    //    postAd: postAd,
-    //    test: 'test'
-    //};
+    function handleErrorTypeOne( response ) {
 
-
-
-
-
-    function handleError( response ) {
-
-        // The API response from the server should be returned in a
-        // nomralized format. However, if the request was not handled by the
-        // server (or what not handles properly - ex. server error), then we
-        // may have to normalize it on our end, as best we can.
         if (
             ! angular.isObject( response.data ) ||
             ! response.data.error
@@ -446,7 +421,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
     }
 
-    function handleRegisterError( response ) {
+    function handleErrorTypeTwo( response ) {
 
         if (
             ! angular.isObject( response.data ) ||
@@ -454,8 +429,6 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         ) {
             return( $q.reject( "An unknown error occurred." ) );
         }
-
-
 
         // Otherwise, use expected error message.
         return( $q.reject( response.data.modelState ) );

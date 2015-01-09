@@ -37,7 +37,7 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
     self.maxSize = 5;
     self.itemsPerPage = self.pageSize;
     self.pagCurrentPage = Number(self.startPage);
-    console.log('PagCurrentPage: '+self.pagCurrentPage);
+    //console.log('PagCurrentPage: '+self.pagCurrentPage);
 
     //self.towns = AdsApi.getSavedTowns();
     //self.categories = AdsApi.getSavedCategories();
@@ -54,7 +54,7 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
         AdsApi.getUserAds(self.status, self.startPage, self.pageSize)
             .then(function(ads){
                 self.ads = ads;
-                console.log(ads);
+                //console.log(ads);
                 self.pagTotalItems = self.ads.numItems;
             });
     }

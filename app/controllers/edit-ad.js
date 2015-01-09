@@ -50,7 +50,7 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$rout
     AdsApi.getUserAd(self.id)
         .then(function(ad){
             self.ad = ad;
-            console.log(ad);
+            //console.log(ad);
 
             self.image = self.ad.imageDataUrl;
 
