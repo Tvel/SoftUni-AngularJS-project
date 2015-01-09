@@ -9,7 +9,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
     /**
      *  POST api/admin/Towns
      *
-     * @param name new name for the category
+     * @param name new name for the town
      */
     self.adminNewTown = function ( name){
         var userdata = $cookieStore.get('userdata');
@@ -33,7 +33,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      * @param {number} id  id for the required Town
      *
-     * @param name new name for the category
+     * @param name new name for the town
      */
     self.adminUpdateTown = function (id, name){
         var userdata = $cookieStore.get('userdata');
