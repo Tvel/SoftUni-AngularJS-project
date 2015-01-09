@@ -17,7 +17,6 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
         }
     );
 
-
     self.towns = AdsApi.getSavedTowns();
     AdsApi.getTowns()
         .then(function(towns){
@@ -33,8 +32,6 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
             });
     };
     self.refreshInfo();
-
-
 
 
     self.submitEdit = function (){
@@ -78,7 +75,6 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
                     for (info in msg)
                         self.addAlert('danger', msg[info]);
                 }
-
 
             });
     }

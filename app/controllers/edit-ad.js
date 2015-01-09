@@ -15,7 +15,6 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$rout
         }
     );
 
-
     if ($routeParams.id){
         self.id = $routeParams.id;
     }

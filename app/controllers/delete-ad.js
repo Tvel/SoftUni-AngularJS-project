@@ -14,7 +14,6 @@ app.controller('DeleteAdController',  [ 'AdsApi','$routeParams', '$location', '$
 
     });
 
-
     if ($routeParams.id){
         self.id = $routeParams.id;
     }
