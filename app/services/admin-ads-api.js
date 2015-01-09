@@ -8,6 +8,48 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
 
 
     /**
+     *  PUT api/admin/Ads/Approve/{id}
+     *
+     * @param {id} id  ID for the required ad
+     *
+     *
+     */
+    self.adminApproveAd = function (id){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/admin/Ads/Approve/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  PUT api/admin/Ads/Reject/{id}
+     *
+     * @param {id} id  ID for the required ad
+     *
+     *
+     */
+    self.adminRejectAd = function (id){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/admin/Ads/Reject/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
      *  GET api/admin/Ads?Status={Status}&CategoryId={CategoryId}&TownId={TownId}&SortBy={SortBy}&StartPage={StartPage}&PageSize={PageSize}
      *
      * @param {status} status  Status for the required page
