@@ -7,6 +7,8 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
     var API_URL = config.API_URL;
 
 
+
+
     /**
      *  GET api/admin/Users?SortBy={SortBy}&StartPage={StartPage}&PageSize={PageSize}
      *
