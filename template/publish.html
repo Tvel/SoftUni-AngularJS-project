@@ -22,17 +22,17 @@
                                 <label for="name">Title:</label>
                             </div>
                             <div class="col-sm-9 remove-right-padding bottom-margin">
-                                <input type="text" required class="form-control" ng-model="publishAd.ad.title" id="name" placeholder="Enter Name">
+                                <input type="text" required class="form-control" ng-model="publishAd.ad.title" id="name" placeholder="Enter Title">
                             </div>
 
                             <label for="text" class="col-sm-3 control-label">Text:</label>
                             <div class="col-sm-9 remove-right-padding">
-                                <input style="height: 100px" type="text" required class="form-control" ng-model="publishAd.ad.text" id="text" placeholder="Enter Name">
+                                <textarea rows="6"  style="resize: none" type="text" required class="form-control" ng-model="publishAd.ad.text" id="text" placeholder="Enter Text"></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-4 publishimage pull-right">
-                            <img  class="center-block" style=""  ng-src="data:{{publishAd.ad.img.filetype}};base64,{{publishAd.ad.img.base64}}" alt=""/>
+                            <img  class="center-block" style="width: auto; min-width: 150px; min-height: 100px; max-width: 170px; max-height: 200px"  ng-src="data:{{publishAd.ad.img.filetype}};base64,{{publishAd.ad.img.base64}}" alt=""/>
                         </div>
 
                         <div class="col-md-12"></div>
@@ -42,11 +42,11 @@
                                 <label for="inputPicture">Image:</label>
                             </div>
                             <div class="col-md-9 remove-right-padding">
-                                <input type="text"  class="form-control" ng-value="publishAd.ad.img.filename" id="inputPicture" placeholder="Enter Phone">
+                                <input type="text"  class="form-control" ng-value="publishAd.ad.img.filename" id="inputPicture" placeholder="Choose Image">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <input base-sixty-four-input type="file"  class="form-control fileinput" ng-model="publishAd.ad.img" id="inputPicture" placeholder="Enter Phone">
+                            <input base-sixty-four-input type="file"  class="form-control fileinput" ng-model="publishAd.ad.img"  placeholder="Choose Image">
                             <a ng-click="publishAd.clickBrowse()"  class="btn btn-defaut ">Browse</a>
                         </div>
 
