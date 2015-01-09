@@ -8,6 +8,28 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
 
 
     /**
+     *  DELETE api/admin/Ads/{id}
+     *
+     * @param {id} id  ID for the required ad
+     *
+     *
+     */
+    self.adminDeleteAd = function (id){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "delete",
+            url: API_URL + "/api/admin/Ads/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+
+    /**
      *  PUT api/admin/Ads/{id}
      *
      * @param {id} id  ID for the required ad
