@@ -30,7 +30,7 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
     if ($routeParams.Status !== undefined){
         self.status = $routeParams.Status;
     }
-    if ($routeParams.CategoryId){
+    if ($routeParams.StartPage){
         self.startPage = $routeParams.StartPage;
     }
 
