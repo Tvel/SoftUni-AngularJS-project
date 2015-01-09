@@ -6,8 +6,268 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
     var self = this;
     var API_URL = config.API_URL;
 
+    /**
+     *  POST api/admin/Towns
+     *
+     * @param name new name for the category
+     */
+    self.adminNewTown = function ( name){
+        var userdata = $cookieStore.get('userdata');
 
+        var request = $http({
+            method: "post",
+            url: API_URL + "/api/admin/Towns",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                name: name
+            }
+        });
 
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  PUT api/admin/Towns/{id}
+     *
+     * @param {number} id  id for the required Town
+     *
+     * @param name new name for the category
+     */
+    self.adminUpdateTown = function (id, name){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/admin/Towns/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                name: name
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  DELETE api/admin/Towns/{id}
+     *
+     * @param {number} id  id for the required town
+     *
+     */
+    self.adminDeleteTown = function (id){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "delete",
+            url: API_URL + "/api/admin/Towns/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  GET api/admin/Towns?SortBy={SortBy}&StartPage={StartPage}&PageSize={PageSize}
+     *
+     * @param sortBy Sorting expression, e.g. 'Title', '-Title' (descending), 'Owner.Name'.
+     * @param {startPage} startPage The page to be displayed
+     * @param {pageSize} pageSize The page size to be displayed
+     *
+     */
+    self.getAdminTowns = function ( sortBy, startPage, pageSize){
+
+        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+
+        var userdata = $cookieStore.get('userdata');
+        //console.log(status + startPage + pageSize);
+
+        var request = $http({
+            method: "get",
+            url: API_URL + "/api/admin/Towns",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            params: {
+                SortBy: sortBy,
+                StartPage: startPage,
+                PageSize: pageSize
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  POST api/admin/Categories
+     *
+     * @param name new name for the category
+     */
+    self.adminNewCategory = function ( name){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "post",
+            url: API_URL + "/api/admin/Categories",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                name: name
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  PUT api/admin/Categories/{id}
+     *
+     * @param {number} id  id for the required category
+     *
+     * @param name new name for the category
+     */
+    self.adminUpdateCategory = function (id, name){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/admin/Categories/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                name: name
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  DELETE api/admin/Categories/{id}
+     *
+     * @param {number} id  id for the required category
+     *
+     */
+    self.adminDeleteCategory = function (id){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "delete",
+            url: API_URL + "/api/admin/Categories/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  GET api/admin/Categories?SortBy={SortBy}&StartPage={StartPage}&PageSize={PageSize}
+     *
+     * @param sortBy Sorting expression, e.g. 'Title', '-Title' (descending), 'Owner.Name'.
+     * @param {startPage} startPage The page to be displayed
+     * @param {pageSize} pageSize The page size to be displayed
+     *
+     */
+    self.getAdminCategories = function ( sortBy, startPage, pageSize){
+
+        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+
+        var userdata = $cookieStore.get('userdata');
+        //console.log(status + startPage + pageSize);
+
+        var request = $http({
+            method: "get",
+            url: API_URL + "/api/admin/Categories",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            params: {
+                SortBy: sortBy,
+                StartPage: startPage,
+                PageSize: pageSize
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  DELETE api/admin/User/{username}
+     *
+     * @param {string} username  name for the required user
+     *
+     */
+    self.adminDeleteUser = function (username){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "delete",
+            url: API_URL + "/api/admin/Ads/Approve/" + username,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  PUT api/admin/SetPassword
+     *
+     * @param {string} username username for the required user
+     * @param newPass new password
+     * @param confPass confirm password
+     */
+    self.adminChangePasswordUser = function (username, newPass, confPass){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/admin/SetPassword",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                Username: username,
+                NewPassword: newPass,
+                ConfirmPassword: confPass
+
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  PUT api/admin/User/{username}
+     *
+     * @param {string} username username for the required user
+     *
+     */
+    self.adminUpdateUser = function (username){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/admin/User/" + username,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
 
     /**
      *  GET api/admin/Users?SortBy={SortBy}&StartPage={StartPage}&PageSize={PageSize}
@@ -27,7 +287,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
 
         var request = $http({
             method: "get",
-            url: API_URL + "/api/user/Ads",
+            url: API_URL + "/api/admin/Users",
             headers: {
                 Authorization: 'Bearer ' + userdata.access_token
             },
@@ -62,7 +322,6 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
         return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
-
     /**
      *  PUT api/admin/Ads/{id}
      *
@@ -79,7 +338,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param date
      * @param status
      */
-    self.adminApproveAd = function (id, title, text, changeImage, image, owner, catId, townId, date, status){
+    self.adminUpdateAd = function (id, title, text, changeImage, image, owner, catId, townId, date, status){
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -110,7 +369,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      *
      */
-    self.adminAds = function (id){
+    self.adminAd = function (id){
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
