@@ -7,7 +7,6 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
     var API_URL = config.API_URL;
 
 
-
     /**
      *  GET api/admin/Ads?Status={Status}&CategoryId={CategoryId}&TownId={TownId}&SortBy={SortBy}&StartPage={StartPage}&PageSize={PageSize}
      *
@@ -41,7 +40,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             },
             params: {
                 Status: status,
-                CagegoryId: categoryId,
+                CategoryId: categoryId,
                 TownId: townId,
                 SortBy: sortBy,
                 StartPage: startPage,
