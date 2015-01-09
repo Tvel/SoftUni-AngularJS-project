@@ -8,6 +8,67 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
 
 
     /**
+     *  PUT api/admin/Ads/{id}
+     *
+     * @param {id} id  ID for the required ad
+     *
+     *
+     * @param title
+     * @param text
+     * @param changeImage
+     * @param image
+     * @param owner
+     * @param catId
+     * @param townId
+     * @param date
+     * @param status
+     */
+    self.adminApproveAd = function (id, title, text, changeImage, image, owner, catId, townId, date, status){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "put",
+            url: API_URL + "/api/admin/Ads/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                Title: title,
+                Text: text,
+                ChangeImage: changeImage,
+                ImageDataURL: image,
+                CategoryId: catId,
+                TownId: townId,
+                Date: date,
+                Status: status
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
+     *  GET api/admin/Ads/{id}
+     *
+     * @param {id} id  ID for the required ad
+     *
+     *
+     */
+    self.adminAds = function (id){
+        var userdata = $cookieStore.get('userdata');
+
+        var request = $http({
+            method: "get",
+            url: API_URL + "/api/admin/Ads/" + id,
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
      *  PUT api/admin/Ads/Approve/{id}
      *
      * @param {id} id  ID for the required ad
