@@ -8,6 +8,38 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
 
 
     /**
+     *  GET api/admin/Users?SortBy={SortBy}&StartPage={StartPage}&PageSize={PageSize}
+     *
+     * @param sortBy Sorting expression, e.g. 'Title', '-Title' (descending), 'Owner.Name'.
+     * @param {startPage} startPage The page to be displayed
+     * @param {pageSize} pageSize The page size to be displayed
+     *
+     */
+    self.getAdminUsers = function ( sortBy, startPage, pageSize){
+
+        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+
+        var userdata = $cookieStore.get('userdata');
+        //console.log(status + startPage + pageSize);
+
+        var request = $http({
+            method: "get",
+            url: API_URL + "/api/user/Ads",
+            headers: {
+                Authorization: 'Bearer ' + userdata.access_token
+            },
+            params: {
+                SortBy: sortBy,
+                StartPage: startPage,
+                PageSize: pageSize
+            }
+        });
+
+        return( request.then( handleSuccess, handleErrorTypeOne ) );
+    };
+
+    /**
      *  DELETE api/admin/Ads/{id}
      *
      * @param {id} id  ID for the required ad
