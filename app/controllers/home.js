@@ -2,6 +2,7 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     var self = this;
     self.header = {title:'Home'};
 
+
     AdsApi.checkLogin().then(function( data){
         // if logged
         self.ifNotLogged = false;
@@ -50,9 +51,7 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
                 //console.log(ads);
                 self.pagTotalItems = self.ads.numItems;
         });
-
     }
-
     AdsApi.getTowns()
         .then(function(towns){
             self.towns = towns;
@@ -60,19 +59,19 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     AdsApi.getCategories().then(function(cats){
         self.categories = cats;
         });
-
     getAds();
 
-    self.test =  AdsApi.test;
+
+
     self.filterByCategory = function(id){
-        console.log('CatFilter: '+id);
+        //console.log('CatFilter: '+id);
         self.categoryId = id;
         $location.path('/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage});
         //getAds();
     };
 
     self.filterByTown = function(id){
-        console.log('TownFilter: '+id);
+        //console.log('TownFilter: '+id);
         self.townId = id;
         var path = "/home?CategoryId=" +self.categoryId  + '&TownId='+ self.townId+ '&StartPage=' + self.startPage;
         $location.path('/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage});
@@ -81,8 +80,7 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     };
 
     self.pageChanged  = function(){
-
-        console.log('PageChange:' + self.pagCurrentPage);
+        //console.log('PageChange:' + self.pagCurrentPage);
         self.startPage = Number(self.pagCurrentPage);
         $location.path('/home').search({
             CategoryId: self.categoryId,
@@ -93,14 +91,6 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
         //getAds();
 
     };
-
-    //console.log($routeParams);
-
-
-
-
-
-
 
 
 }]);
