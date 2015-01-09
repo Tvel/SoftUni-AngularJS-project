@@ -6,6 +6,10 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
     var self = this;
     var API_URL = config.API_URL;
 
+    /**
+     * GET api/Towns
+     *
+     */
     self.getTowns = function getTowns() {
         return $http.get( API_URL +'/api/Towns')
             .then( handleSuccess, handleErrorTypeOne )
@@ -15,10 +19,18 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         });
     };
 
+    /**
+     * Gets the local Towns storage, helps reduce loading flicker
+     * @returns {*} local cookie storage of the Towns
+     */
     self.getSavedTowns = function getSavedTowns(){
         return $cookieStore.get('Towns');
     };
 
+    /**
+     * GET api/Categories
+     *
+     */
     self.getCategories = function getCategories() {
         return $http.get(API_URL + '/api/Categories')
             .then(handleSuccess, handleErrorTypeOne)
@@ -28,12 +40,22 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         });
     };
 
+    /**
+     * Gets the local Category storage, helps reduce loading flicker
+     * @returns {*} local cookie storage of the categories
+     */
     self.getSavedCategories = function getSavedCategories(){
         return $cookieStore.get('Categories');
     };
 
-
-    //GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}
+    /**
+     * GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}
+     * @param categoryId
+     * @param townId
+     * @param startPage
+     * @param pageSize
+     * @returns {*}
+     */
     self.getAds = function getAds(categoryId, townId, startPage, pageSize) {
         if (categoryId == 'all') categoryId = '';
         if (townId == 'all') townId = '';
@@ -57,31 +79,38 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
-    self.register = function register(Username, Password, ConfirmPassword, Name, Email, Phone, TownId){
-        //requires : Username, Password, ConfirmPassword, Name, Email
-        //optional : Phone, TownId
-        //
-        //returns :
-        //{
-        //    "access_token": "CfZxR56Gx0ViDB0rNF9aNdi3NBtobyLoJsNOQlwnWlE0cHkPjRV_l-YQNeTxeRUhl3dEQ_pi1csjKuNAs7zJdOOYkiYEd6k9DoRQubf12d8hyKgjBRnRtvTCqj2bNf37vzHeZO69wSXx16ILWvyfEbz-Gc67tHUi8Y-rAEXXi1MOgUbsbk6G7YHpiV2sFX6-o979ONnEoEt8vEe0cOFfNagWW3f3km6EZTKwGH0qqw98q6wAYCOkpZYLglxMh390vYaKTozaRBy0qw5n0f09M4zaXtgpGtOg36vX_NtzzhXYCJ2oVI3j3Kchjv6-gw7Y1EVmJxy10GDbJTz-b32bYV8_DuASu_4JqEvG8uKwoCJWUKaForft0ECbLpkdHQ61S20wwizbNU1goI0DccMSuQev7207Z862VVhmlHj9f4XJW20YWUVsKHbm4Wqo_jGAHasOGt9wkpf9fxG0UTWaFIsv1aYGGLrUb_luWcmDbic",
-        //    "token_type": "bearer",
-        //    "expires_in": 1209599,
-        //    "username": "tostos",
-        //    ".issued": "Fri, 02 Jan 2015 21:27:13 GMT",
-        //    ".expires": "Fri, 16 Jan 2015 21:27:13 GMT"
-        //}
+    /**
+     * POST api/user/Register
+     * @param username
+     * @param password
+     * @param confirmPassword
+     * @param name
+     * @param email
+     * @param phone
+     * @param townId
+     *
+     * return:{
+     *       "access_token": "<token>",
+     *       "token_type": "bearer",
+     *       "expires_in": <seconds>,
+     *       "username": "<username>",
+     *       ".issued": "<date>",
+     *       ".expires": "<date>"
+     *    }
+     */
+    self.register = function register(username, password, confirmPassword, name, email, phone, townId){
 
         var request = $http({
             method: "post",
             url: API_URL +"/api/user/Register",
             data: {
-                Username: Username,
-                Password: Password,
-                ConfirmPassword: ConfirmPassword,
-                Name: Name,
-                Email: Email,
-                Phone: Phone,
-                TownId: TownId
+                Username: username,
+                Password: password,
+                ConfirmPassword: confirmPassword,
+                Name: name,
+                Email: email,
+                Phone: phone,
+                TownId: townId
             }
         });
 
@@ -92,6 +121,12 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }));
     };
 
+    /**
+     * POST api/user/Login
+     *
+     * @param Username
+     * @param Password
+     */
     self.login = function login(Username, Password){
         var request = $http({
             method: "post",
@@ -110,6 +145,10 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         );
     };
 
+    /**
+     * POST api/user/Logout
+     *
+     */
     self.logout = function logout() {
         var userdata = $cookieStore.get('userdata');
 
@@ -130,6 +169,10 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
     };
 
+    /**
+     * Checks if user is logged in and if session is expired
+     *
+     */
     self.checkLogin = function checkLogin() {
         var userdata = $cookieStore.get('userdata');
 
@@ -156,6 +199,10 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
     };
 
+    /**
+     * GET api/user/Profile
+     *
+     */
     self.getProfileInfo = function getProfileInfo()  {
 
         var userdata = $cookieStore.get('userdata');
@@ -173,6 +220,13 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
     };
 
+    /**
+     * PUT api/user/Profile
+     * @param name
+     * @param email
+     * @param phone
+     * @param townId
+     */
     self.setProfileInfo = function setProfileInfo( name, email, phone, townId ) {
 
         var userdata = $cookieStore.get('userdata');
@@ -196,6 +250,13 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
     };
 
+    /**
+     * PUT api/user/ChangePassword
+     * @param oldPass
+     * @param newPass
+     * @param newPassConf
+     *
+     */
     self.changePassword = function changePassword( oldPass, newPass, newPassConf ) {
 
         var userdata = $cookieStore.get('userdata');
@@ -216,7 +277,14 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return( request.then( handleSuccess, handleErrorTypeTwo) );
     };
 
-
+    /**
+     * POST api/user/Ads
+     * @param title
+     * @param text
+     * @param image
+     * @param cat categoryId
+     * @param town TownId
+     */
     self.postUserAd = function postAd( title, text, image, cat, town ) {
 
         var userdata = $cookieStore.get('userdata');
@@ -238,7 +306,6 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
         return( request.then( handleSuccess, handleErrorTypeTwo) );
     };
-
 
     /**
      *  PUT api/user/Ads/{id}
@@ -279,7 +346,6 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
         return( request.then( handleSuccess, handleErrorTypeTwo) );
     };
-
 
     /**
      *  GET api/user/Ads?Status={Status}&StartPage={StartPage}&PageSize={PageSize}
@@ -382,7 +448,6 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
-
     /**
      *  DELETE api/user/Ads/{id}
      *
@@ -403,8 +468,6 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
         return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
-
-
 
 
     function handleErrorTypeOne( response ) {
@@ -434,7 +497,6 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return( $q.reject( response.data.modelState ) );
 
     }
-
 
     function handleSuccess( response ) {
 
