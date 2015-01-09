@@ -55,7 +55,6 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
 
     };
 
-
     self.pageChanged  = function(){
         //console.log('PageChange:' + self.pagCurrentPage);
         self.startPage = Number(self.pagCurrentPage);
@@ -64,13 +63,5 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
             StartPage: self.startPage
         });
     };
-
-
-
-
-
-
-
-
 
 }]);

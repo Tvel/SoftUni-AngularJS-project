@@ -33,7 +33,6 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
     };
     self.refreshInfo();
 
-
     self.submitEdit = function (){
         AdsApi.setProfileInfo(self.profile.name, self.profile.email, self.profile.phoneNumber, self.profile.townId)
             .then(function(data){
@@ -78,6 +77,5 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', f
 
             });
     }
-
 
 }]);

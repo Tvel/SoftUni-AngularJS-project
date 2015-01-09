@@ -45,13 +45,4 @@ app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$locatio
         window.history.back();
     };
 
-
-
-
-
-
-
-
-
-
 }]);

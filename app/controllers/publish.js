@@ -15,8 +15,6 @@ app.controller('PublishAdController',  [ 'AdsApi', '$location', '$interval', fun
         }
     );
 
-
-
     self.towns = AdsApi.getSavedTowns();
     AdsApi.getTowns()
         .then(function(towns){
@@ -32,7 +30,6 @@ app.controller('PublishAdController',  [ 'AdsApi', '$location', '$interval', fun
     self.clickBrowse = function(){
         angular.element('#inputPicture').trigger('click');
     };
-
 
 
     self.submitPublishAd = function (){
@@ -52,6 +49,5 @@ app.controller('PublishAdController',  [ 'AdsApi', '$location', '$interval', fun
                 }
             });
     }
-
 
 }]);

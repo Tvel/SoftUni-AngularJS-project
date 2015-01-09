@@ -12,7 +12,6 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
         function(error){console.log(error)}
     );
 
-
     self.towns = AdsApi.getSavedTowns();
     AdsApi.getTowns()
         .then(function(towns){
@@ -34,8 +33,6 @@ app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', func
                         for (info in msg)
                         self.addAlert('danger', msg[info]);
                     }
-
-
             });
     }
 

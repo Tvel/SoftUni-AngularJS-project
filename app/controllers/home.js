@@ -2,7 +2,6 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     var self = this;
     self.header = {title:'Home'};
 
-
     AdsApi.checkLogin().then(function( data){
         // if logged
         self.ifNotLogged = false;
@@ -14,7 +13,6 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
         self.ifLogged = false;
 
     });
-
 
 
     self.categoryId = 'all';
@@ -62,7 +60,6 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     getAds();
 
 
-
     self.filterByCategory = function(id){
         //console.log('CatFilter: '+id);
         self.categoryId = id;
@@ -91,6 +88,5 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
         //getAds();
 
     };
-
 
 }]);
