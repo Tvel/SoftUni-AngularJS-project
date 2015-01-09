@@ -7,9 +7,7 @@
     </div>
 
     <div class="col-md-10">
-        <div class="col-md-12 alert-height">
-            <alert ng-repeat="alert in adOption.alerts" type="{{alert.type}}" close="adOption.closeAlert($index)">{{alert.msg}}</alert>
-        </div>
+        <div alert-ads add-alert="adOption.addAlert"></div>
 
        <div  user-ad  ad="adOption.ad" title="adOption.title" button-name="adOption.buttonName" submit-click="adOption.submitClick" cancel-click="adOption.cancelClick">
        </div>

@@ -6,9 +6,7 @@
     </div>
 
     <div class="col-md-10">
-        <div class="col-md-12 alert-height">
-            <alert ng-repeat="alert in publishAd.alerts" type="{{alert.type}}" close="publishAd.closeAlert($index)">{{alert.msg}}</alert>
-        </div>
+        <div alert-ads add-alert="publishAd.addAlert"></div>
 
         <div class="col-md-8  col-md-offset-2">
             <div class="panel panel-default panel-publish ">

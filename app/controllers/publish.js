@@ -15,33 +15,6 @@ app.controller('PublishAdController',  [ 'AdsApi', '$location', '$interval', fun
         }
     );
 
-    ///Alerts
-        self.alerts = [];
-        /*
-         * Interval is needed so alerts can be closed one by one every 5 seconds
-         */
-        var killInterval = undefined;
-        self.addAlert = function(type, msg) {
-            self.alerts.push({type: type ,msg: msg});
-            //console.log(self.alerts);
-
-            if (!angular.isDefined(killInterval)) {
-                killInterval = $interval(function () {
-                    self.closeAlert(0);
-                }, 5000)
-            }
-        };
-        self.closeAlert = function(index) {
-            self.alerts.splice(index, 1);
-
-            if (self.alerts.length == 0) {
-                if (angular.isDefined(killInterval)) {
-                    $interval.cancel(killInterval);
-                    killInterval = undefined;
-                }
-            }
-        };
-    /// Alerts End
 
 
     self.towns = AdsApi.getSavedTowns();
