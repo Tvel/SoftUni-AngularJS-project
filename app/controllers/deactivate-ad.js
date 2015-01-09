@@ -1,4 +1,4 @@
-app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location', '$interval', function( AdsApi, $routeParams, $location, $interval) {
+app.controller('DeactivateAdController',  [ 'AdsApi','$routeParams', '$location',  function( AdsApi, $routeParams, $location) {
     var self = this;
     self.header = {title:'Deactivate Ad'};
 

@@ -1,4 +1,4 @@
-app.controller('RegisterController',  [ 'AdsApi', '$location', '$interval', function( AdsApi, $location, $interval) {
+app.controller('RegisterController',  [ 'AdsApi', '$location',  function( AdsApi, $location) {
     var self = this;
 
     self.header = {title:'Register'};

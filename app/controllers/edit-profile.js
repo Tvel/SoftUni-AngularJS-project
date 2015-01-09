@@ -1,4 +1,4 @@
-app.controller('editProfileController',  [ 'AdsApi', '$location', '$interval', function( AdsApi, $location, $interval) {
+app.controller('editProfileController',  [ 'AdsApi', '$location', function( AdsApi, $location) {
     var self = this;
     self.header = {title:'Edit User Profile'};
 

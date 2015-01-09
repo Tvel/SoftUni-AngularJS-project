@@ -1,4 +1,4 @@
-app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$location', '$interval', function( AdsApi, $routeParams, $location, $interval) {
+app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
     var self = this;
     self.header = {title:'Publish Again Ad'};
 

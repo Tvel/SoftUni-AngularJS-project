@@ -1,4 +1,4 @@
-app.controller('DeleteAdController',  [ 'AdsApi','$routeParams', '$location', '$interval', function( AdsApi, $routeParams, $location, $interval) {
+app.controller('DeleteAdController',  [ 'AdsApi','$routeParams', '$location',  function( AdsApi, $routeParams, $location) {
     var self = this;
     self.header = {title:'Delete Ad'};
 

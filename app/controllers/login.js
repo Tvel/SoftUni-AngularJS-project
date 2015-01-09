@@ -1,4 +1,4 @@
-app.controller('LoginController',  [ 'AdsApi', '$location', '$interval', function( AdsApi, $location, $interval) {
+app.controller('LoginController',  [ 'AdsApi', '$location',  function( AdsApi, $location) {
 var self = this;
 
     self.header = {title:'Login'};

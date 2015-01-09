@@ -1,4 +1,4 @@
-app.controller('EditAdController',  [ 'AdsApi', '$location', '$interval', '$routeParams', function( AdsApi, $location, $interval, $routeParams) {
+app.controller('EditAdController',  [ 'AdsApi', '$location', '$routeParams', function( AdsApi, $location,  $routeParams) {
     var self = this;
     self.header = {title:'Edit Ad'};
 
