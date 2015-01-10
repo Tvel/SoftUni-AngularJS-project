@@ -76,6 +76,7 @@ footer{
     border: 1px dotted #517f34;
     padding: 0.5em;
     margin-bottom: 0.5em;
+    min-height: 34px;
 }
 
 .login-register {
@@ -243,7 +244,9 @@ opacity: 0;
         padding: 20px
     }
 }
-
+.adminheader , .adminheader .col-md-12{
+    background-color: #fdd866;
+}
 
 
 .buttonnn{

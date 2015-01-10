@@ -428,7 +428,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
     /**
      *  GET api/admin/Ads?Status={Status}&CategoryId={CategoryId}&TownId={TownId}&SortBy={SortBy}&StartPage={StartPage}&PageSize={PageSize}
      *
-     * @param {status} status  Status for the required page
+     * @param status  Status for the required page
      *  All - 'all'
      *  Inactive - 0
      *  WaitingApproval - 1
@@ -437,12 +437,14 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param categoryId
      * @param townId
      * @param sortBy Sorting expression, e.g. 'Title', '-Title' (descending), 'Owner.Name'.
-     * @param {startPage} startPage The page to be displayed
-     * @param {pageSize} pageSize The page size to be displayed
+     * @param {number} startPage The page to be displayed
+     * @param {number} pageSize The page size to be displayed
      *
      */
     self.getAdminAds = function (status, categoryId, townId, sortBy, startPage, pageSize){
         if (status == 'all') status = '';
+        if (categoryId == 'all') categoryId = '';
+        if (townId == 'all') townId = '';
 
         if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
         if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
@@ -452,7 +454,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
 
         var request = $http({
             method: "get",
-            url: API_URL + "/api/user/Ads",
+            url: API_URL + "/api/admin/Ads",
             headers: {
                 Authorization: 'Bearer ' + userdata.access_token
             },

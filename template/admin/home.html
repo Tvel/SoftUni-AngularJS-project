@@ -14,11 +14,23 @@
                 <h2 class="bottom-margin"><strong>{{ad.title}}</strong> <small class="pull-right ">{{ad.date | date:'d-MMM-yyyy'}}</small></h2>
                 <div class="col-md-4 publishimage adimage">
                     <img ng-src="{{ad.imageDataUrl}}" class="img-responsive" alt="">
+
+                    <label for="username" class=" control-label text-right remove-right-padding" style="margin-top: 75px">Status:</label>
+                    <div class=" remove-right-padding">
+                        <p id="username" >{{ad.status}}</p>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <form class="form-horizontal">
+                <div class="col-md-8 form-horizontal">
+                    <!--<form class="form-horizontal">-->
                         <div class="form-group clearfix">
                             <p>{{ad.text}}</p>
+                        </div>
+
+                        <div class="form-group small-margin">
+                            <label for="username" class="col-sm-2 control-label text-right remove-right-padding">UserName</label>
+                            <div class="col-sm-10 remove-right-padding">
+                                <p id="username" >{{ad.ownerUsername}}</p>
+                            </div>
                         </div>
 
                         <div class="form-group small-margin">
@@ -42,7 +54,27 @@
                             </div>
                         </div>
 
-                    </form>
+                        <div class="form-group small-margin">
+                            <label for="town" class="col-sm-2 control-label remove-right-padding">Town</label>
+                            <div class="col-sm-10 remove-right-padding">
+                                <p id="town">{{ad.townName}}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group small-margin">
+                            <label for="category" class="col-sm-2 control-label remove-right-padding">Category</label>
+                            <div class="col-sm-10 remove-right-padding">
+                                <p id="category">{{ad.categoryName}}</p>
+                            </div>
+                        </div>
+
+                    <!--</form>-->
+                </div>
+                <div class="col-md-12" style="border-top:  2px solid green; padding-top:20px">
+                    <div class="col-md-3"> <a ng-href="#/admin/ads/approve/{{ad.id}}" class="btn btn-defaul btn-lg btn-block">Approve</a>  </div>
+                    <div class="col-md-3"> <a ng-href="#/admin/ads/reject/{{ad.id}}"  class="btn btn-defaul btn-lg btn-block">Reject</a>   </div>
+                    <div class="col-md-3"> <a ng-href="#/admin/ads/edit/{{ad.id}}"    class="btn btn-defaul btn-lg btn-block">Edit</a>     </div>
+                    <div class="col-md-3"> <a ng-href="#/admin/ads/delete/{{ad.id}}"  class="btn btn-defaul btn-lg btn-block">Delete</a>   </div>
                 </div>
             </div>
         </div>
