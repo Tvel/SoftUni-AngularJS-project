@@ -67,7 +67,11 @@ app.controller('EditAdController',  [ 'AdsApi', '$location', '$routeParams', fun
                         self.addAlert('danger', msg[info]);
                 }
             });
-    }
+    };
+
+    self.cancelClick = function() {
+        window.history.back();
+    };
 
 
 }]);

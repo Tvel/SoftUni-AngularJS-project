@@ -77,5 +77,4 @@ app.controller('editProfileController',  [ 'AdsApi', '$location', function( AdsA
 
             });
     }
-
 }]);
