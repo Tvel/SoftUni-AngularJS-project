@@ -1,0 +1,111 @@
+<header header-main headerinfo="editAd.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="editAd.ifLogged" active="editAd.menuactive" menu-admin-navigation></div>
+    </div>
+
+    <div class="col-md-10">
+        <div alert-ads add-alert="editAd.addAlert"></div>
+
+        <div class="col-md-10  col-md-offset-1">
+            <div class="panel panel-default panel-publish ">
+                <div class="panel-body">
+                    <h2 class="text-center small-margin"><strong>Edit Ad</strong></h2>
+                    <hr>
+                    <form name="editAd.editProfileForm" ng-submit="editAd.submitEditAd()">
+
+                        <!--row 1-->
+                        <div class="form-group small-margin col-md-9">
+                            <div class="col-md-2 control-label text-right remove-right-padding bottom-margin">
+                                <label for="title">Title:</label>
+                            </div>
+                            <div class="col-sm-10 remove-right-padding bottom-margin">
+                                <input type="text" required class="form-control" ng-model="editAd.ad.title" id="title" placeholder="Enter Title">
+                            </div>
+
+                            <label for="text" class="col-sm-2 control-label">Text:</label>
+                            <div class="col-sm-10 remove-right-padding bottom-margin">
+                                <textarea rows="4" style="resize: none"  style="height: 100px" type="text" required class="form-control" ng-model="editAd.ad.text" id="text" placeholder="Enter Text"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 publishimage pull-right">
+                            <img  class="center-block" style=""  ng-src="{{editAd.image}}" alt=""/>
+                        </div>
+                        <!-- end row 1-->
+
+                        <!--row 2-->
+                        <div class="form-group small-margin col-md-9">
+                            <div class="col-md-2 control-label text-right remove-right-padding bottom-margin">
+                                <label for="inputPicture">Image:</label>
+                            </div>
+                            <div class="col-md-7 remove-right-padding bottom-margin">
+                                <input type="text"  class="form-control" ng-value="editAd.newImage.filename" id="inputPicture" placeholder="Choose Image">
+                            </div>
+                            <div class="col-md-3">
+                                <input base-sixty-four-input type="file"  class="form-control fileinput" ng-model="editAd.newImage"  placeholder="Choose Image">
+                                <a class="btn btn-default btn-block">Browse</a>
+                            </div>
+                            <div class="col-md-12"></div>
+
+                            <label for="username" class="col-sm-2 control-label">UserName:</label>
+                            <div class="col-sm-4 remove-right-padding bottom-margin">
+                                <input type="text" required class="form-control" ng-model="editAd.ad.ownerUsername" id="username" placeholder="Enter UserName">
+                            </div>
+                            <div class="col-sm-12 remove-right-padding "></div>
+
+                            <label for="category" class="col-sm-2 control-label">Category:</label>
+                            <div class="col-sm-4 remove-right-padding bottom-margin">
+                                <select type="text" class="form-control" ng-model="editAd.ad.categoryId" id="category" placeholder="Choose Town">
+                                    <option selected value=""> </option>
+                                    <option ng-repeat="cat in editAd.categories" ng-selected="cat.id == editAd.ad.categoryId" value="{{cat.id}}">{{cat.name}}</option>
+                                </select>
+                            </div>
+
+                            <label for="town" class="col-sm-2 control-label">Town:</label>
+                            <div class="col-sm-4 remove-right-padding bottom-margin">
+                                <select type="text" class="form-control" ng-model="editAd.ad.townId" id="town" placeholder="Choose Town">
+                                    <option selected  value=""> </option>
+                                    <option ng-repeat="town in editAd.towns" ng-selected="town.id == editAd.ad.townId" value="{{town.id}}">{{town.name}}</option>
+                                </select>
+                            </div>
+
+
+                            <label for="date" class="col-sm-2 control-label">Date:</label>
+                            <div class="col-sm-4 remove-right-padding bottom-margin">
+                                <input type="date" required class="form-control" ng-model="editAd.date" id="date" placeholder="Enter Date">
+                            </div>
+
+                            <label for="date" class="col-sm-2 control-label">Status:</label>
+                            <div class="col-sm-4 remove-right-padding bottom-margin">
+                                <select type="text" class="form-control" ng-model="editAd.ad.status" id="date" placeholder="Choose Town">
+                                    <option ng-selected="'Inactive' == editAd.ad.status" value="0">Inactive</option>
+                                    <option ng-selected="'WaitingApproval' == editAd.ad.status" value="1">WaitingApproval</option>
+                                    <option ng-selected="'Published' == editAd.ad.status" value="2">Published</option>
+                                    <option ng-selected="'Rejected' == editAd.ad.status" value="3">Rejected</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 publishimage pull-right">
+                            <a ng-click="editAd.changeImage()"  class="btn btn-default btn-block">Change Image</a>
+                            <a ng-click="editAd.deleteImage()"  class="btn btn-default btn-block">Delete Image</a>
+                        </div>
+                        <!--end row 2-->
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-default btn-lg  ">Edit Ad</button>
+                            </div>
+                            <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
+                                <a href="" class="btn btn-default btn-lg ">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

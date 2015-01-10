@@ -54,7 +54,7 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
             controller: 'AdminHomeController as home'
         });
         $routeProvider.when('/admin/ads/edit/:id', {
-            templateUrl: 'template/admin/edit-ad.html',
+            templateUrl: 'template/admin/admin-edit-ad.html',
             controller: 'AdminEditAdController as editAd'
         });
         $routeProvider.when('/admin/ads/delete/:id', {
@@ -69,7 +69,6 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
             templateUrl: 'template/admin/admin-ad-options.html',
             controller: 'AdminRejectAdController as adOption'
         });
-
 
         $routeProvider.when('/admin/users/list', {
             templateUrl: 'template/admin/users.html',
