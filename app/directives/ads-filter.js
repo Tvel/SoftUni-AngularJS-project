@@ -6,7 +6,7 @@ angular.module('adsProject')
                 activeid: '=filterid',
                 clickfn:  '=clickfn',
                 filterlist: '=filterlist',
-                hileAll: '=hideAll'
+                showAll: '=?showAll'
             },
             link: function(scope,element){
                 element.addClass('panel panel-default panel-side');
