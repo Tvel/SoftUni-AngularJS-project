@@ -141,6 +141,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             .then(function(response){
                 //console.log(response);
                 $cookieStore.put('userdata', response);
+                return response;
             })
         );
     };

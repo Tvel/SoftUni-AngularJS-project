@@ -51,7 +51,7 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
         // Admin routes
         $routeProvider.when('/admin/home', {
             templateUrl: 'template/admin/home.html',
-            controller: 'AdminHomeController as editAd'
+            controller: 'AdminHomeController as home'
         });
         $routeProvider.when('/admin/ads/edit/:id', {
             templateUrl: 'template/admin/edit-ad.html',

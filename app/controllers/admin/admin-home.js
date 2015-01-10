@@ -1,4 +1,4 @@
-app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
+app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams', '$location', function( AdsApi, AdminAdsApi, $routeParams, $location) {
     var self = this;
     self.header = {title:'Home'};
 
@@ -49,7 +49,7 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
                 self.ads = ads;
                 //console.log(ads);
                 self.pagTotalItems = self.ads.numItems;
-        });
+            });
     }
     AdsApi.getTowns()
         .then(function(towns){
@@ -57,7 +57,7 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
         });
     AdsApi.getCategories().then(function(cats){
         self.categories = cats;
-        });
+    });
     getAds();
 
 

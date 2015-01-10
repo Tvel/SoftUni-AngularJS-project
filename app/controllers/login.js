@@ -15,9 +15,10 @@ var self = this;
     self.Submit = function (){
         AdsApi.login(self.username, self.password)
             .then(function(data){ //success
-                //console.log(data);
+                console.log(data);
                 self.addAlert('success', 'Login Successful');
-                $location.path('/home');
+                if(data.isAdmin) $location.path('admin/home');
+                else $location.path('/home');
 
             }, function(data){  //error
                 console.error('Error: ' +data);
