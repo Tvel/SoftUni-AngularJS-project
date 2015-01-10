@@ -84,36 +84,36 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
         });
 
         $routeProvider.when('/admin/categories/list', {
-            templateUrl: 'template/admin/category.html',
-            controller: 'AdminCategoriesController as categories'
+            templateUrl: 'template/admin/admin-categories.html',
+            controller: 'AdminCategoriesController as cats'
         });
         $routeProvider.when('/admin/categories/create', {
-            templateUrl: 'template/admin/edit-category.html',
+            templateUrl: 'template/admin/admin-category-create.html',
             controller: 'AdminCreateCategoryController as category'
         });
         $routeProvider.when('/admin/categories/edit/:id', {
-            templateUrl: 'template/admin/edit-category.html',
+            templateUrl: 'template/admin/admin-category-edit.html',
             controller: 'AdminEditCategoryController as category'
         });
         $routeProvider.when('/admin/categories/delete/:id', {
-            templateUrl: 'template/admin/delete-category.html',
+            templateUrl: 'template/admin/admin-category-delete.html',
             controller: 'AdminDeleteCategoryController as category'
         });
 
         $routeProvider.when('/admin/towns/list', {
-            templateUrl: 'template/admin/town.html',
+            templateUrl: 'template/admin/admin-towns.html',
             controller: 'AdminTownsController as towns'
         });
         $routeProvider.when('/admin/towns/create', {
-            templateUrl: 'template/admin/edit-town.html',
+            templateUrl: 'template/admin/admin-town-create.html',
             controller: 'AdminCreateTownController as town'
         });
         $routeProvider.when('/admin/towns/edit/:id', {
-            templateUrl: 'template/admin/edit-town.html',
+            templateUrl: 'template/admin/admin-town-edit.html',
             controller: 'AdminEditTownController as town'
         });
         $routeProvider.when('/admin/towns/delete/:id', {
-            templateUrl: 'template/admin/delete-town.html',
+            templateUrl: 'template/admin/admin-town-delete.html',
             controller: 'AdminDeleteTownController as town'
         });
 

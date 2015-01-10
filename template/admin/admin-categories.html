@@ -1,0 +1,41 @@
+<header header-admin headerinfo="cats.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="cats.ifLogged" active="cats.header.title" menu-admin-navigation></div>
+
+    </div>
+
+    <div class="col-md-10 ">
+
+        <div class=" col-md-offset-1 col-md-10 table-responsive">
+            <table class=" table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="categories in cats.cats.categories">
+                    <td>{{categories.id}}</td>
+                    <td>{{categories.username}}</td>
+                    <td>
+                        <a ng-href="#/admin/categories/edit/{{categories.id}}/?Name={{categories.username}}">Edit </a>
+                        <a ng-href="#/admin/categories/delete/{{categories.id}}/?Name={{categories.username}}"> Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12 text-center">
+            <pagination total-items="cats.pagTotalItems" ng-change="cats.pageChanged()"  items-per-page="cats.itemsPerPage" ng-model="cats.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+        </div>
+        <div class="col-md-12 text-center">
+            <a ng-href="#/admin/categories/create" class="btn btn-default">Create New Category</a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+<header header-admin headerinfo="towns.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="towns.ifLogged" active="towns.header.title" menu-admin-navigation></div>
+
+    </div>
+
+    <div class="col-md-10 ">
+
+        <div class=" col-md-offset-1 col-md-10 table-responsive">
+            <table class=" table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="towns in towns.towns.towns">
+                    <td>{{towns.id}}</td>
+                    <td>{{towns.username}}</td>
+                    <td>
+                        <a ng-href="#/admin/towns/edit/{{towns.id}}/?Name={{towns.username}}">Edit </a>
+                        <a ng-href="#/admin/towns/delete/{{towns.id}}/?Name={{towns.username}}"> Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12 text-center">
+            <pagination total-items="towns.pagTotalItems" ng-change="towns.pageChanged()"  items-per-page="towns.itemsPerPage" ng-model="towns.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+        </div>
+        <div class="col-md-12 text-center">
+            <a ng-href="#/admin/towns/create" class="btn btn-default">Create New Town</a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,39 @@
+<header header-admin headerinfo="category.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="category.ifLogged" active="category.menuactive" menu-admin-navigation></div>
+    </div>
+
+    <div class="col-md-10">
+        <div alert-ads add-alert="category.addAlert"></div>
+
+        <div class="col-md-6  col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="text-center small-margin"><strong>Edit Category</strong></h2>
+                    <hr>
+                    <form name="category.editProfileForm" ng-submit="category.submitEditCategory()">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" required class="form-control" ng-model="category.profile.name" id="name" placeholder="Enter Name">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-6 text-center">
+                                    <button type="submit" class="btn btn-defaul btn-lg ">Edit</button>
+                                </div>
+                                <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
+                                    <a ng-click="category.cancelClick()" class="btn btn-defaul btn-lg ">Cancel</a>
+                                </div>
+                            </div>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+</div>

@@ -222,7 +222,6 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
         return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
-
     /**
      *  PUT api/admin/SetPassword
      *
