@@ -1,13 +1,13 @@
 app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams', '$location', function( AdsApi, AdminAdsApi, $routeParams, $location) {
     var self = this;
-    self.header = {title:'Home'};
+    self.header = {title:'Ads'};
 
     AdsApi.checkLogin().then(function( data){
         // if logged
         if(data.isAdmin) $location.path('admin/home');
         self.ifNotLogged = false;
         self.ifLogged = true;
-        self.header = {title:'Home', username: data.username};
+        self.header = {title:'Ads', username: data.username};
     },function(){
         // if not logged
         self.ifNotLogged = true;
@@ -15,13 +15,22 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
 
     });
 
-
+    self.statusList = [
+        {id: 0, name: 'Inactive'},
+        {id: 1, name: 'Waiting Approval'},
+        {id: 2, name: 'Published'},
+        {id: 3, name: 'Rejected'}
+    ];
+    self.status = 'all';
     self.categoryId = 'all';
     self.townId = 'all';
     self.startPage = 1;
     self.pageSize = 4;
     self.pagTotalItems = Infinity;
 
+    if ($routeParams.Status !== undefined){
+        self.status = $routeParams.Status;
+    }
     if ($routeParams.CategoryId){
         self.categoryId = $routeParams.CategoryId;
     }
@@ -44,7 +53,7 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
     self.categories = AdsApi.getSavedCategories();
     function getAds() {
 
-        AdsApi.getAds(self.categoryId, self.townId, self.startPage, self.pageSize)
+        AdminAdsApi.getAdminAds( self.status, self.categoryId, self.townId, self.startPage, self.pageSize)
             .then(function(ads){
                 self.ads = ads;
                 //console.log(ads);
@@ -75,6 +84,12 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
         $location.path('/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage});
 
         //getAds();
+    };
+    self.filterByStatus = function(id){
+        // console.log('StatusFilter: '+id);
+        self.status = id;
+        $location.path('/myads').search({Status: self.status, StartPage: self.startPage});
+
     };
 
     self.pageChanged  = function(){
