@@ -71,15 +71,15 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
         });
 
         $routeProvider.when('/admin/users/list', {
-            templateUrl: 'template/admin/users.html',
+            templateUrl: 'template/admin/admin-users.html',
             controller: 'AdminUsersController as users'
         });
         $routeProvider.when('/admin/users/edit/:id', {
-            templateUrl: 'template/admin/edit-user.html',
+            templateUrl: 'template/admin/admin-edit-user.html',
             controller: 'AdminEditUserController as user'
         });
         $routeProvider.when('/admin/users/delete/:id', {
-            templateUrl: 'template/admin/delete-user.html',
+            templateUrl: 'template/admin/admin-delete-user.html',
             controller: 'AdminDeleteUserController as user'
         });
 

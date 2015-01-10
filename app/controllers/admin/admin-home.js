@@ -102,7 +102,7 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
 
     };
     self.filterBySort = function(id){
-        // console.log('ortFilter: '+id);
+        // console.log('SortFilter: '+id);
         self.sort = id;
         $location.path('/admin/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage, Status: self.status, SortBy: self.sort});
 
@@ -113,7 +113,6 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
         self.startPage = Number(self.pagCurrentPage);
         $location.path('/admin/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage, Status: self.status, SortBy: self.sort});
 
-        //getAds();
 
     };
 

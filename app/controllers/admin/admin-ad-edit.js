@@ -33,7 +33,7 @@ app.controller('AdminEditAdController',  [ 'AdminAdsApi','AdsApi','$routeParams'
     AdminAdsApi.adminAd(self.id)
         .then(function(ad){
             self.ad = ad;
-            console.log(ad);
+            //console.log(ad);
             self.image = self.ad.imageDataUrl;
             self.date = new Date(self.ad.date);
 

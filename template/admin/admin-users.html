@@ -1,0 +1,42 @@
+<header header-admin headerinfo="users.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="users.ifLogged" active="users.header.title" menu-admin-navigation></div>
+
+    </div>
+
+    <div class="col-md-10 ">
+
+        <div class="col-md-12 table-responsive">
+            <table class=" table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in users.users.users">
+                    <td>{{user.username}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phoneNumber}}</td>
+                    <td>
+                        <a href="">Edit</a>
+                        <a href=""> Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12 text-center">
+            <pagination total-items="users.pagTotalItems" ng-change="users.pageChanged()"  items-per-page="users.itemsPerPage" ng-model="users.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+        </div>
+    </div>
+
+</div>
