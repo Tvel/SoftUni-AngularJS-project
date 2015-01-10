@@ -26,8 +26,8 @@
                     <td>{{user.email}}</td>
                     <td>{{user.phoneNumber}}</td>
                     <td>
-                        <a ng-href="#/admin/users/edit/{{user.id}}">Edit </a>
-                        <a ng-href="#/admin/users/delete/{{user.id}}"> Delete</a>
+                        <a ng-href="#/admin/users/edit/{{user.username}}/?Name={{user.name}}&Email={{user.email}}&PhoneNumber={{user.phoneNumber}}&TownId={{user.townId}}">Edit </a>
+                        <a ng-href="#/admin/users/delete/{{user.username}}/?Name={{user.name}}&Email={{user.email}}&PhoneNumber={{user.phoneNumber}}"> Delete</a>
                     </td>
                 </tr>
                 </tbody>

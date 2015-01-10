@@ -222,6 +222,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
         return( request.then( handleSuccess, handleErrorTypeOne ) );
     };
 
+
     /**
      *  PUT api/admin/SetPassword
      *
@@ -255,7 +256,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param {string} username username for the required user
      *
      */
-    self.adminUpdateUser = function (username){
+    self.adminUpdateUser = function (username, name, email, phone, townid, isAdmin){
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -263,6 +264,13 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             url: API_URL + "/api/admin/User/" + username,
             headers: {
                 Authorization: 'Bearer ' + userdata.access_token
+            },
+            data: {
+                Name: name,
+                Email: email,
+                PhoneNumber: phone,
+                TownId: townid,
+                IsAdmin: isAdmin
             }
         });
 

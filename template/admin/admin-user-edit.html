@@ -1,0 +1,92 @@
+<header header-admin headerinfo="editProfile.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="editProfile.ifLogged" active="editProfile.menuactive" menu-admin-navigation></div>
+    </div>
+
+    <div class="col-md-10">
+        <div alert-ads add-alert="editProfile.addAlert"></div>
+
+        <div class="col-md-5  col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="text-center small-margin"><strong>Edit Profile</strong></h2>
+                    <hr>
+                    <form name="editProfile.editProfileForm" ng-submit="editProfile.submitEditUser()">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" required class="form-control" ng-model="editProfile.profile.name" id="name" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" required require  class="form-control" ng-model="editProfile.profile.phoneNumber" id="phone" placeholder="Enter Phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" required class="form-control" ng-model="editProfile.profile.email" id="email" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="town">Town</label>
+                                <select type="text" class="form-control" ng-model="editProfile.profile.townId" id="town" placeholder="Choose Town">
+                                    <option  value=""> </option>
+                                    <option ng-selected="editProfile.profile.townId" ng-repeat="town in editProfile.towns" value="{{town.id}}">{{town.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="admin">IsAdmin</label>
+                                <input type="checkbox" class="form-control" ng-model="editProfile.profile.isAdmin" id="admin" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-defaul btn-lg ">Edit</button>
+                            </div>
+                            <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
+                                <a ng-click="editProfile.cancelClick()" class="btn btn-defaul btn-lg ">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 ">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="text-center small-margin"><strong>Change Password</strong></h2>
+                    <hr>
+                    <form name="editProfile.changePassForm" ng-submit="editProfile.submitChangePass()">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="oldpassword">OldPassword</label>
+                                <input type="password" required class="form-control" ng-model="editProfile.oldpassword" name="oldpassword" id="oldpassword" placeholder="Old Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="newpassword">Password</label>
+                                <input type="password" required class="form-control" ng-minlength="2" ng-maxlength="100" ng-model="editProfile.newpassword" id="newpassword" name="newpassword" placeholder="New Password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newpasswordconf">Confirm Password</label>
+                                <input type="password" required class="form-control"  ng-minlength="2" ng-maxlength="100" ng-model="editProfile.newpasswordconf" id="newpasswordconf" name="newpasswordconf" placeholder="Confirm New Password">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-defaul btn-lg ">Change Password</button>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <a ng-click="editProfile.clearPasswords()" class="btn btn-defaul btn-lg ">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
