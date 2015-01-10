@@ -58,15 +58,15 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
             controller: 'AdminEditAdController as editAd'
         });
         $routeProvider.when('/admin/ads/delete/:id', {
-            templateUrl: 'template/admin/ad-options.html',
+            templateUrl: 'template/admin/admin-ad-options.html',
             controller: 'AdminDeleteAdController as adOption'
         });
         $routeProvider.when('/admin/ads/approve/:id', {
-            templateUrl: 'template/admin/ad-options.html',
+            templateUrl: 'template/admin/admin-ad-options.html',
             controller: 'AdminApproveAdController as adOption'
         });
         $routeProvider.when('/admin/ads/reject/:id', {
-            templateUrl: 'template/admin/ad-options.html',
+            templateUrl: 'template/admin/admin-ad-options.html',
             controller: 'AdminRejectAdController as adOption'
         });
 

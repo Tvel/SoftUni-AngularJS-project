@@ -12,7 +12,7 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
         // if not logged
         self.ifNotLogged = true;
         self.ifLogged = false;
-
+        $location.path('login');
     });
 
     self.statusList = [
@@ -67,7 +67,7 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
         AdminAdsApi.getAdminAds( self.status, self.categoryId, self.townId, self.sort,  self.startPage, self.pageSize)
             .then(function(ads){
                 self.ads = ads;
-                console.log(ads);
+                //console.log(ads);
                 self.pagTotalItems = self.ads.numItems;
             });
     }
