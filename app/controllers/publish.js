@@ -26,11 +26,9 @@ app.controller('PublishAdController',  [ 'AdsApi', '$location',  function( AdsAp
             self.categories = categories;
         });
 
-
     self.clickBrowse = function(){
         angular.element('#inputPicture').trigger('click');
     };
-
 
     self.submitPublishAd = function (){
 
