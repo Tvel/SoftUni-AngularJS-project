@@ -50,7 +50,7 @@ footer{
     border-color: inherit;
 }
 
-.panel-default .btn{
+.panel-default .btn, .btn{
     background-color: #71ae48;
     color: #ffffff;
     font-weight: bold;
@@ -58,6 +58,10 @@ footer{
     white-space: normal;
 }
 
+.btn:hover {
+    background-color: #71ae48;
+    color: #ffffff;
+}
 
 .panel-side {
     border-radius: 0px;
@@ -246,6 +250,28 @@ opacity: 0;
 }
 .adminheader , .adminheader .col-md-12{
     background-color: #fdd866;
+}
+
+.table tr {
+    background-color: #a8d08d;
+
+}
+
+.table-bordered>thead>tr>th{
+    border: 1px solid #fdfdfe;
+
+}
+
+.table-bordered>tbody>tr>td{
+    border: 1px solid #fdfdfe;
+
+}
+
+.table-striped>tbody>tr:nth-child(odd) {
+    background-color: #c4dfb3;
+}
+.table-striped>tbody>tr:nth-child(even) {
+    background-color: #a8d08d;
 }
 
 
