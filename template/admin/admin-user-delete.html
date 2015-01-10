@@ -1,0 +1,57 @@
+<header header-admin headerinfo="deleteProfile.header"></header>
+
+<div class="row">
+    <div class="col-md-2">
+        <div menushow="deleteProfile.ifLogged" active="deleteProfile.menuactive" menu-admin-navigation></div>
+    </div>
+
+    <div class="col-md-10">
+        <div alert-ads add-alert="deleteProfile.addAlert"></div>
+
+        <div class="col-md-6  col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="text-center small-margin"><strong>Delete Profile</strong></h2>
+                    <hr>
+                    <form name="deleteProfile.editProfileForm" ng-submit="deleteProfile.submitDeleteUser()">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input readonly type="text" required class="form-control" ng-model="deleteProfile.profile.name" id="name" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input readonly type="tel" required require  class="form-control" ng-model="deleteProfile.profile.phoneNumber" id="phone" placeholder="Enter Phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input readonly type="email" required class="form-control" ng-model="deleteProfile.profile.email" id="email" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="town">Town</label>
+                                <select type="text" readonly class="form-control" ng-model="deleteProfile.profile.townId" id="town" placeholder="Choose Town">
+                                    <option  value=""> </option>
+                                    <option ng-selected="deleteProfile.profile.townId" ng-repeat="town in deleteProfile.towns" value="{{town.id}}">{{town.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label for="admin">IsAdmin</label>
+                                <input type="checkbox" readonly class="form-control" ng-model="deleteProfile.profile.isAdmin" id="admin" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-defaul btn-lg ">Delete</button>
+                            </div>
+                            <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
+                                <a ng-click="deleteProfile.cancelClick()" class="btn btn-defaul btn-lg ">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

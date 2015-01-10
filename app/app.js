@@ -79,8 +79,8 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
             controller: 'AdminEditUserController as editProfile'
         });
         $routeProvider.when('/admin/users/delete/:username', {
-            templateUrl: 'template/admin/admin-delete-user.html',
-            controller: 'AdminDeleteUserController as user'
+            templateUrl: 'template/admin/admin-user-delete.html',
+            controller: 'AdminDeleteUserController as deleteProfile'
         });
 
         $routeProvider.when('/admin/categories/list', {

@@ -213,7 +213,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
 
         var request = $http({
             method: "delete",
-            url: API_URL + "/api/admin/Ads/Approve/" + username,
+            url: API_URL + "/api/admin/User/" + username,
             headers: {
                 Authorization: 'Bearer ' + userdata.access_token
             }
