@@ -24,10 +24,10 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     if ($routeParams.CategoryId){
         self.categoryId = $routeParams.CategoryId;
     }
-    if ($routeParams.CategoryId){
+    if ($routeParams.TownId){
         self.townId = $routeParams.TownId;
     }
-    if ($routeParams.CategoryId){
+    if ($routeParams.StartPage){
         self.startPage = $routeParams.StartPage;
     }
     //if ($routeParams.CategoryId){
