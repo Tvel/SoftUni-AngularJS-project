@@ -2,9 +2,11 @@
     <h3 class="text-center small-margin"><strong>{{title}}</strong></h3>
     <hr>
     <ul class="list-unstyled">
-        <li><a ng-if="showAll" ng-click="clickfn('all');" class="btn-link btn btn-block" ng-class="{true: 'btn-link-active'}[activeid == 'all']">All</a></li>
+        <li><a ng-if="showAll" ng-click="clickfn('all');" class="btn-link btn btn-block"
+               ng-class="{true: 'btn-link-active'}[activeid == 'all']">All</a></li>
         <li ng-repeat="item in filterlist">
-            <a ng-click="clickfn(item.id);" class="btn btn-link btn-block" ng-class="{true: 'btn-link-active'}[activeid == item.id]">{{item.name}}</a>
+            <a ng-click="clickfn(item.id);" class="btn btn-link btn-block"
+               ng-class="{true: 'btn-link-active'}[activeid == item.id]">{{item.name}}</a>
         </li>
     </ul>
 </div>

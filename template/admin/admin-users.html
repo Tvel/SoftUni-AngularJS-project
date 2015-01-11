@@ -27,7 +27,8 @@
                     <td>{{user.phoneNumber}}</td>
                     <td>
                         <a ng-href="#/admin/users/edit/{{user.username}}/?Name={{user.name}}&Email={{user.email}}&PhoneNumber={{user.phoneNumber}}&TownId={{user.townId}}">Edit </a>
-                        <a ng-href="#/admin/users/delete/{{user.username}}/?Name={{user.name}}&Email={{user.email}}&PhoneNumber={{user.phoneNumber}}&TownId={{user.townId}}&Id={{user.id}}"> Delete</a>
+                        <a ng-href="#/admin/users/delete/{{user.username}}/?Name={{user.name}}&Email={{user.email}}&PhoneNumber={{user.phoneNumber}}&TownId={{user.townId}}&Id={{user.id}}">
+                            Delete</a>
                     </td>
                 </tr>
                 </tbody>
@@ -35,7 +36,9 @@
         </div>
 
         <div class="col-md-12 text-center">
-            <pagination total-items="users.pagTotalItems" ng-change="users.pageChanged()"  items-per-page="users.itemsPerPage" ng-model="users.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+            <pagination total-items="users.pagTotalItems" ng-change="users.pageChanged()"
+                        items-per-page="users.itemsPerPage" ng-model="users.pagCurrentPage" max-size="5"
+                        class="pagination" boundary-links="true"></pagination>
         </div>
     </div>
 

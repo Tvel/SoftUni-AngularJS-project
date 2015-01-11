@@ -31,7 +31,9 @@
         </div>
 
         <div class="col-md-12 text-center">
-            <pagination total-items="towns.pagTotalItems" ng-change="towns.pageChanged()"  items-per-page="towns.itemsPerPage" ng-model="towns.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+            <pagination total-items="towns.pagTotalItems" ng-change="towns.pageChanged()"
+                        items-per-page="towns.itemsPerPage" ng-model="towns.pagCurrentPage" max-size="5"
+                        class="pagination" boundary-links="true"></pagination>
         </div>
         <div class="col-md-12 text-center bottom-margin">
             <a ng-href="#/admin/towns/create" class="btn btn-default">Create New Town</a>

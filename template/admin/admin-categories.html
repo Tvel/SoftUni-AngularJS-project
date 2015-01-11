@@ -23,7 +23,8 @@
                     <td>{{categories.username}}</td>
                     <td>
                         <a ng-href="#/admin/categories/edit/{{categories.id}}/?Name={{categories.username}}">Edit </a>
-                        <a ng-href="#/admin/categories/delete/{{categories.id}}/?Name={{categories.username}}"> Delete</a>
+                        <a ng-href="#/admin/categories/delete/{{categories.id}}/?Name={{categories.username}}">
+                            Delete</a>
                     </td>
                 </tr>
                 </tbody>
@@ -31,7 +32,9 @@
         </div>
 
         <div class="col-md-12 text-center">
-            <pagination total-items="cats.pagTotalItems" ng-change="cats.pageChanged()"  items-per-page="cats.itemsPerPage" ng-model="cats.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+            <pagination total-items="cats.pagTotalItems" ng-change="cats.pageChanged()"
+                        items-per-page="cats.itemsPerPage" ng-model="cats.pagCurrentPage" max-size="5"
+                        class="pagination" boundary-links="true"></pagination>
         </div>
         <div class="col-md-12 text-center bottom-margin">
             <a ng-href="#/admin/categories/create" class="btn btn-default">Create New Category</a>

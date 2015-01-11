@@ -20,7 +20,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input type="text" required class="form-control" ng-model="register.username" id="username" placeholder="Enter username">
+                                    <input type="text" required class="form-control" ng-model="register.username"
+                                           id="username" placeholder="Enter username">
                                 </div>
                             </div>
                             <!--<div class="col-md-6" style="height: 75px; ">-->
@@ -31,27 +32,32 @@
 
                                 <div class="form-group">
                                     <label for="username">Password</label>
-                                    <input type="password" required class="form-control" ng-model="register.password" id="password" placeholder="Password">
+                                    <input type="password" required class="form-control" ng-model="register.password"
+                                           id="password" placeholder="Password">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="passwordconf">Confirm Password</label>
-                                    <input type="password" required class="form-control" ng-model="register.passwordconf" id="passwordconf" placeholder="Confirm Password">
+                                    <input type="password" required class="form-control"
+                                           ng-model="register.passwordconf" id="passwordconf"
+                                           placeholder="Confirm Password">
                                 </div>
                             </div>
-                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" required class="form-control" ng-model="register.name" id="name" placeholder="Enter Name">
+                                    <input type="text" required class="form-control" ng-model="register.name" id="name"
+                                           placeholder="Enter Name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="number"  class="form-control" ng-model="register.phone" id="phone" placeholder="Enter Phone">
+                                    <input type="number" class="form-control" ng-model="register.phone" id="phone"
+                                           placeholder="Enter Phone">
                                 </div>
                             </div>
                         </div>
@@ -60,15 +66,18 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" required class="form-control" ng-model="register.email" id="email" placeholder="Enter Email">
+                                    <input type="email" required class="form-control" ng-model="register.email"
+                                           id="email" placeholder="Enter Email">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="town">Town</label>
-                                    <select type="text" class="form-control" ng-model="register.town" id="town" placeholder="Choose Town">
-                                        <option  value=""> </option>
-                                        <option ng-repeat="town in register.towns" value="{{town.id}}">{{town.name}}</option>
+                                    <select type="text" class="form-control" ng-model="register.town" id="town"
+                                            placeholder="Choose Town">
+                                        <option value=""></option>
+                                        <option ng-repeat="town in register.towns" value="{{town.id}}">{{town.name}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -80,8 +89,10 @@
                                 <button type="submit" class="btn btn-defaul btn-lg ">Register</button>
                             </div>
                             <div class="col-md-6 text-center" style="height: 45px; vertical-align: middle;">
-                            <a class=" login-register " style="height: 45px; vertical-align: middle; display:block; " href="#/login">Login here</a>
-                        </div>
+                                <a class=" login-register "
+                                   style="height: 45px; vertical-align: middle; display:block; " href="#/login">Login
+                                    here</a>
+                            </div>
                         </div>
                     </form>
                 </div>

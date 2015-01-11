@@ -21,17 +21,21 @@
                                 <label for="title">Title:</label>
                             </div>
                             <div class="col-sm-10 remove-right-padding bottom-margin">
-                                <input type="text" required class="form-control" ng-model="editAd.ad.title" id="title" placeholder="Enter Title">
+                                <input type="text" required class="form-control" ng-model="editAd.ad.title" id="title"
+                                       placeholder="Enter Title">
                             </div>
 
                             <label for="text" class="col-sm-2 control-label">Text:</label>
+
                             <div class="col-sm-10 remove-right-padding bottom-margin">
-                                <textarea rows="4" style="resize: none"  style="height: 100px" type="text" required class="form-control" ng-model="editAd.ad.text" id="text" placeholder="Enter Text"></textarea>
+                                <textarea rows="4" style="resize: none" style="height: 100px" type="text" required
+                                          class="form-control" ng-model="editAd.ad.text" id="text"
+                                          placeholder="Enter Text"></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-3 publishimage pull-right">
-                            <img  class="center-block" style=""  ng-src="{{editAd.image}}" alt=""/>
+                            <img class="center-block" style="" ng-src="{{editAd.image}}" alt=""/>
                         </div>
                         <!-- end row 1-->
 
@@ -41,47 +45,65 @@
                                 <label for="inputPicture">Image:</label>
                             </div>
                             <div class="col-md-7 remove-right-padding bottom-margin">
-                                <input type="text"  class="form-control" ng-value="editAd.newImage.filename" id="inputPicture" placeholder="Choose Image">
+                                <input type="text" class="form-control" ng-value="editAd.newImage.filename"
+                                       id="inputPicture" placeholder="Choose Image">
                             </div>
                             <div class="col-md-3">
-                                <input base-sixty-four-input type="file"  class="form-control fileinput" ng-model="editAd.newImage"  placeholder="Choose Image">
+                                <input base-sixty-four-input type="file" class="form-control fileinput"
+                                       ng-model="editAd.newImage" placeholder="Choose Image">
                                 <a class="btn btn-default btn-block">Browse</a>
                             </div>
                             <div class="col-md-12"></div>
 
                             <label for="username" class="col-sm-2 control-label">UserName:</label>
+
                             <div class="col-sm-4 remove-right-padding bottom-margin">
-                                <input type="text" required class="form-control" ng-model="editAd.ad.ownerUsername" id="username" placeholder="Enter UserName">
+                                <input type="text" required class="form-control" ng-model="editAd.ad.ownerUsername"
+                                       id="username" placeholder="Enter UserName">
                             </div>
                             <div class="col-sm-12 remove-right-padding "></div>
 
                             <label for="category" class="col-sm-2 control-label">Category:</label>
+
                             <div class="col-sm-4 remove-right-padding bottom-margin">
-                                <select type="text" class="form-control" ng-model="editAd.ad.categoryId" id="category" placeholder="Choose Town">
-                                    <option selected value=""> </option>
-                                    <option ng-repeat="cat in editAd.categories" ng-selected="cat.id == editAd.ad.categoryId" value="{{cat.id}}">{{cat.name}}</option>
+                                <select type="text" class="form-control" ng-model="editAd.ad.categoryId" id="category"
+                                        placeholder="Choose Town">
+                                    <option selected value=""></option>
+                                    <option ng-repeat="cat in editAd.categories"
+                                            ng-selected="cat.id == editAd.ad.categoryId" value="{{cat.id}}">{{cat.name}}
+                                    </option>
                                 </select>
                             </div>
 
                             <label for="town" class="col-sm-2 control-label">Town:</label>
+
                             <div class="col-sm-4 remove-right-padding bottom-margin">
-                                <select type="text" class="form-control" ng-model="editAd.ad.townId" id="town" placeholder="Choose Town">
-                                    <option selected  value=""> </option>
-                                    <option ng-repeat="town in editAd.towns" ng-selected="town.id == editAd.ad.townId" value="{{town.id}}">{{town.name}}</option>
+                                <select type="text" class="form-control" ng-model="editAd.ad.townId" id="town"
+                                        placeholder="Choose Town">
+                                    <option selected value=""></option>
+                                    <option ng-repeat="town in editAd.towns" ng-selected="town.id == editAd.ad.townId"
+                                            value="{{town.id}}">{{town.name}}
+                                    </option>
                                 </select>
                             </div>
 
 
                             <label for="date" class="col-sm-2 control-label">Date:</label>
+
                             <div class="col-sm-4 remove-right-padding bottom-margin">
-                                <input type="date" required class="form-control" ng-model="editAd.date" id="date" placeholder="Enter Date">
+                                <input type="date" required class="form-control" ng-model="editAd.date" id="date"
+                                       placeholder="Enter Date">
                             </div>
 
                             <label for="date" class="col-sm-2 control-label">Status:</label>
+
                             <div class="col-sm-4 remove-right-padding bottom-margin">
-                                <select type="text" class="form-control" ng-model="editAd.ad.status" id="date" placeholder="Choose Town">
+                                <select type="text" class="form-control" ng-model="editAd.ad.status" id="date"
+                                        placeholder="Choose Town">
                                     <option ng-selected="'Inactive' == editAd.ad.status" value="0">Inactive</option>
-                                    <option ng-selected="'WaitingApproval' == editAd.ad.status" value="1">WaitingApproval</option>
+                                    <option ng-selected="'WaitingApproval' == editAd.ad.status" value="1">
+                                        WaitingApproval
+                                    </option>
                                     <option ng-selected="'Published' == editAd.ad.status" value="2">Published</option>
                                     <option ng-selected="'Rejected' == editAd.ad.status" value="3">Rejected</option>
                                 </select>
@@ -89,8 +111,8 @@
                         </div>
 
                         <div class="col-md-3 publishimage pull-right">
-                            <a ng-click="editAd.changeImage()"  class="btn btn-default btn-block">Change Image</a>
-                            <a ng-click="editAd.deleteImage()"  class="btn btn-default btn-block">Delete Image</a>
+                            <a ng-click="editAd.changeImage()" class="btn btn-default btn-block">Change Image</a>
+                            <a ng-click="editAd.deleteImage()" class="btn btn-default btn-block">Delete Image</a>
                         </div>
                         <!--end row 2-->
 

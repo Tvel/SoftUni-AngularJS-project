@@ -10,7 +10,9 @@
 
         <div ng-repeat="ad in home.ads.ads" class="panel panel-default panel-main col-md-12">
             <div class="panel-body">
-                <h2 class="bottom-margin"><strong>{{ad.title}}</strong> <small class="pull-right ">{{ad.date | date:'d-MMM-yyyy'}}</small></h2>
+                <h2 class="bottom-margin"><strong>{{ad.title}}</strong>
+                    <small class="pull-right ">{{ad.date | date:'d-MMM-yyyy'}}</small>
+                </h2>
                 <div class="col-md-4 publishimage adimage">
                     <img ng-src="{{ad.imageDataUrl}}" class="img-responsive" alt="">
                 </div>
@@ -21,21 +23,25 @@
                         </div>
 
                         <div class="form-group small-margin">
-                            <label for="name" class="col-sm-2 control-label text-right remove-right-padding">Name</label>
+                            <label for="name"
+                                   class="col-sm-2 control-label text-right remove-right-padding">Name</label>
+
                             <div class="col-sm-10 remove-right-padding">
-                                <p id="name" >{{ad.ownerName}}</p>
+                                <p id="name">{{ad.ownerName}}</p>
                             </div>
                         </div>
 
                         <div class="form-group small-margin">
                             <label for="email" class="col-sm-2 control-label remove-right-padding">Email</label>
+
                             <div class="col-sm-10 remove-right-padding">
-                                <p id="email" >{{ad.ownerEmail}}</p>
+                                <p id="email">{{ad.ownerEmail}}</p>
                             </div>
                         </div>
 
                         <div class="form-group small-margin">
                             <label for="tel" class="col-sm-2 control-label remove-right-padding">Tel.</label>
+
                             <div class="col-sm-10 remove-right-padding">
                                 <p id="tel">{{ad.ownerPhone}}</p>
                             </div>
@@ -47,14 +53,18 @@
         </div>
 
         <div class="col-md-12 text-center">
-            <pagination total-items="home.pagTotalItems" ng-change="home.pageChanged()"  items-per-page="home.itemsPerPage" ng-model="home.pagCurrentPage" max-size="5" class="pagination" boundary-links="true"></pagination>
+            <pagination total-items="home.pagTotalItems" ng-change="home.pageChanged()"
+                        items-per-page="home.itemsPerPage" ng-model="home.pagCurrentPage" max-size="5"
+                        class="pagination" boundary-links="true"></pagination>
         </div>
 
     </div>
 
     <div class="col-md-2">
-        <div ads-filter filtertitle="'Categories'" filterid="home.categoryId" clickfn="home.filterByCategory" filterlist="home.categories" ></div>
-        <div ads-filter filtertitle="'Towns'" filterid="home.townId" clickfn="home.filterByTown" filterlist="home.towns"></div>
+        <div ads-filter filtertitle="'Categories'" filterid="home.categoryId" clickfn="home.filterByCategory"
+             filterlist="home.categories"></div>
+        <div ads-filter filtertitle="'Towns'" filterid="home.townId" clickfn="home.filterByTown"
+             filterlist="home.towns"></div>
     </div>
-    </div>
+</div>
 </div>
