@@ -1,13 +1,13 @@
 angular.module('adsProject')
-    .directive('headerAdmin', ['AdsApi', '$location', function(AdsApi, $location) {
+    .directive('headerAdmin', ['AdsApi', '$location', function (AdsApi, $location) {
         return {
             scope: {
                 headerInfo: '=headerinfo'
             },
-            link: function(scope,element){
+            link: function (scope, element) {
                 element.addClass('row adminheader');
             },
-            controller: function($scope, AdsApi, $location){
+            controller: function ($scope, AdsApi, $location) {
 
                 $scope.showLogout = false;
                 if ($scope.headerInfo !== undefined) {
@@ -16,7 +16,7 @@ angular.module('adsProject')
                     }
                 }
 
-                $scope.logout = function() {
+                $scope.logout = function () {
                     AdsApi.logout();
                     //    .then(function(){
                     //

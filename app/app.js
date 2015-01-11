@@ -118,10 +118,6 @@ var app = angular.module('adsProject', ['ngRoute', 'ui.bootstrap', 'ngCookies'])
         });
 
 
-
-
-
-
         $routeProvider.otherwise({redirectTo: '/home'});
 
         //$locationProvider.html5Mode(true);

@@ -2,7 +2,7 @@
  *  AdminAdsApi handles all admin server communication.
  *
  */
-app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,function($http, $q, $cookieStore, config, AdsApi) {
+app.service('AdminAdsApi', ['$http', '$q', '$cookieStore', 'config', 'AdsApi', function ($http, $q, $cookieStore, config, AdsApi) {
     var self = this;
     var API_URL = config.API_URL;
 
@@ -11,7 +11,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      * @param name new name for the town
      */
-    self.adminNewTown = function ( name){
+    self.adminNewTown = function (name) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -25,7 +25,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -35,7 +35,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      * @param name new name for the town
      */
-    self.adminUpdateTown = function (id, name){
+    self.adminUpdateTown = function (id, name) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -49,7 +49,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -58,7 +58,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param {number} id  id for the required town
      *
      */
-    self.adminDeleteTown = function (id){
+    self.adminDeleteTown = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -69,7 +69,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -80,10 +80,10 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param {pageSize} pageSize The page size to be displayed
      *
      */
-    self.getAdminTowns = function ( sortBy, startPage, pageSize){
+    self.getAdminTowns = function (sortBy, startPage, pageSize) {
 
-        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
-        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+        if (Number(startPage) < 0 || Number(startPage) > 100000) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000) pageSize = 4;
 
         var userdata = $cookieStore.get('userdata');
         //console.log(status + startPage + pageSize);
@@ -101,7 +101,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -109,7 +109,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      * @param name new name for the category
      */
-    self.adminNewCategory = function ( name){
+    self.adminNewCategory = function (name) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -123,7 +123,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -133,7 +133,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      * @param name new name for the category
      */
-    self.adminUpdateCategory = function (id, name){
+    self.adminUpdateCategory = function (id, name) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -147,7 +147,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -156,7 +156,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param {number} id  id for the required category
      *
      */
-    self.adminDeleteCategory = function (id){
+    self.adminDeleteCategory = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -167,7 +167,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -178,10 +178,10 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param {pageSize} pageSize The page size to be displayed
      *
      */
-    self.getAdminCategories = function ( sortBy, startPage, pageSize){
+    self.getAdminCategories = function (sortBy, startPage, pageSize) {
 
-        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
-        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+        if (Number(startPage) < 0 || Number(startPage) > 100000) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000) pageSize = 4;
 
         var userdata = $cookieStore.get('userdata');
         //console.log(status + startPage + pageSize);
@@ -199,7 +199,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -208,7 +208,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param {string} username  name for the required user
      *
      */
-    self.adminDeleteUser = function (username){
+    self.adminDeleteUser = function (username) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -219,7 +219,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -229,7 +229,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param newPass new password
      * @param confPass confirm password
      */
-    self.adminChangePasswordUser = function (username, newPass, confPass){
+    self.adminChangePasswordUser = function (username, newPass, confPass) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -246,7 +246,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -254,8 +254,13 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      * @param {string} username username for the required user
      *
+     * @param name
+     * @param email
+     * @param phone
+     * @param townid
+     * @param isAdmin
      */
-    self.adminUpdateUser = function (username, name, email, phone, townid, isAdmin){
+    self.adminUpdateUser = function (username, name, email, phone, townid, isAdmin) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -273,7 +278,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -284,10 +289,10 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param {pageSize} pageSize The page size to be displayed
      *
      */
-    self.getAdminUsers = function ( sortBy, startPage, pageSize){
+    self.getAdminUsers = function (sortBy, startPage, pageSize) {
 
-        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
-        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+        if (Number(startPage) < 0 || Number(startPage) > 100000) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000) pageSize = 4;
 
         var userdata = $cookieStore.get('userdata');
         //console.log(status + startPage + pageSize);
@@ -305,7 +310,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -315,7 +320,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      *
      */
-    self.adminDeleteAd = function (id){
+    self.adminDeleteAd = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -326,7 +331,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -345,7 +350,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param date
      * @param status
      */
-    self.adminUpdateAd = function (id, title, text, changeImage, image, owner, catId, townId, date, status){
+    self.adminUpdateAd = function (id, title, text, changeImage, image, owner, catId, townId, date, status) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -366,7 +371,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -376,7 +381,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      *
      */
-    self.adminAd = function (id){
+    self.adminAd = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -387,7 +392,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -397,7 +402,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      *
      */
-    self.adminApproveAd = function (id){
+    self.adminApproveAd = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -408,7 +413,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -418,7 +423,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      *
      *
      */
-    self.adminRejectAd = function (id){
+    self.adminRejectAd = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -429,7 +434,7 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -448,13 +453,13 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
      * @param {number} pageSize The page size to be displayed
      *
      */
-    self.getAdminAds = function (status, categoryId, townId, sortBy, startPage, pageSize){
+    self.getAdminAds = function (status, categoryId, townId, sortBy, startPage, pageSize) {
         if (status == 'all') status = '';
         if (categoryId == 'all') categoryId = '';
         if (townId == 'all') townId = '';
 
-        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
-        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+        if (Number(startPage) < 0 || Number(startPage) > 100000) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000) pageSize = 4;
 
         var userdata = $cookieStore.get('userdata');
         //console.log(status + startPage + pageSize);
@@ -475,40 +480,39 @@ app.service('AdminAdsApi', [ '$http', '$q', '$cookieStore', 'config', 'AdsApi' ,
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
 
-    function handleErrorTypeOne( response ) {
+    function handleErrorTypeOne(response) {
 
         if (
-            ! angular.isObject( response.data ) ||
-            ! response.data.error
+            !angular.isObject(response.data) || !response.data.error
         ) {
-            return( $q.reject( "An unknown error occurred." ) );
+            return ( $q.reject("An unknown error occurred.") );
         }
 
         // Otherwise, use expected error message.
-        return( $q.reject( response.data.error_description ) );
+        return ( $q.reject(response.data.error_description) );
 
     }
-    function handleErrorTypeTwo( response ) {
+
+    function handleErrorTypeTwo(response) {
 
         if (
-            ! angular.isObject( response.data ) ||
-            ! response.data.message
+            !angular.isObject(response.data) || !response.data.message
         ) {
-            return( $q.reject( "An unknown error occurred." ) );
+            return ( $q.reject("An unknown error occurred.") );
         }
 
         // Otherwise, use expected error message.
-        return( $q.reject( response.data.modelState ) );
+        return ( $q.reject(response.data.modelState) );
 
     }
 
-    function handleSuccess( response ) {
+    function handleSuccess(response) {
 
-        return( response.data );
+        return ( response.data );
 
     }
 

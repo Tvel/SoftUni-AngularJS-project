@@ -2,7 +2,7 @@
  *  AdsApi handles all server communication and user login, logout.
  *
  */
-app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, $q, $cookieStore, config) {
+app.service('AdsApi', ['$http', '$q', '$cookieStore', 'config', function ($http, $q, $cookieStore, config) {
     var self = this;
     var API_URL = config.API_URL;
 
@@ -11,10 +11,10 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      *
      */
     self.getTowns = function getTowns() {
-        return $http.get( API_URL +'/api/Towns')
-            .then( handleSuccess, handleErrorTypeOne )
-            .then ( function (response){
-                $cookieStore.put('Towns', response);
+        return $http.get(API_URL + '/api/Towns')
+            .then(handleSuccess, handleErrorTypeOne)
+            .then(function (response) {
+            $cookieStore.put('Towns', response);
             return ( response );
         });
     };
@@ -23,7 +23,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      * Gets the local Towns storage, helps reduce loading flicker
      * @returns {*} local cookie storage of the Towns
      */
-    self.getSavedTowns = function getSavedTowns(){
+    self.getSavedTowns = function getSavedTowns() {
         return $cookieStore.get('Towns');
     };
 
@@ -35,16 +35,16 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         return $http.get(API_URL + '/api/Categories')
             .then(handleSuccess, handleErrorTypeOne)
             .then(function (response) {
-            $cookieStore.put('Categories', response);
-            return ( response );
-        });
+                $cookieStore.put('Categories', response);
+                return ( response );
+            });
     };
 
     /**
      * Gets the local Category storage, helps reduce loading flicker
      * @returns {*} local cookie storage of the categories
      */
-    self.getSavedCategories = function getSavedCategories(){
+    self.getSavedCategories = function getSavedCategories() {
         return $cookieStore.get('Categories');
     };
 
@@ -60,8 +60,8 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         if (categoryId == 'all') categoryId = '';
         if (townId == 'all') townId = '';
 
-        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
-        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+        if (Number(startPage) < 0 || Number(startPage) > 100000) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000) pageSize = 4;
 
         //console.log(categoryId + townId + startPage + pageSize);
 
@@ -70,13 +70,13 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             url: API_URL + "/api/Ads",
             params: {
                 CategoryId: categoryId,
-                TownId : townId,
+                TownId: townId,
                 StartPage: startPage,
                 PageSize: pageSize
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -98,11 +98,11 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      *       ".expires": "<date>"
      *    }
      */
-    self.register = function register(username, password, confirmPassword, name, email, phone, townId){
+    self.register = function register(username, password, confirmPassword, name, email, phone, townId) {
 
         var request = $http({
             method: "post",
-            url: API_URL +"/api/user/Register",
+            url: API_URL + "/api/user/Register",
             data: {
                 Username: username,
                 Password: password,
@@ -114,8 +114,8 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeTwo )
-            .then(function(response){
+        return ( request.then(handleSuccess, handleErrorTypeTwo)
+            .then(function (response) {
                 console.log(response);
                 $cookieStore.put('userdata', response);
             }));
@@ -127,7 +127,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      * @param Username
      * @param Password
      */
-    self.login = function login(Username, Password){
+    self.login = function login(Username, Password) {
         var request = $http({
             method: "post",
             url: API_URL + "/api/user/Login",
@@ -137,8 +137,8 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne )
-            .then(function(response){
+        return ( request.then(handleSuccess, handleErrorTypeOne)
+            .then(function (response) {
                 //console.log(response);
                 $cookieStore.put('userdata', response);
                 return response;
@@ -163,7 +163,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
 
         $cookieStore.remove('userdata');
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
         //var deferred = $q.defer();
         //
         //return deferred.resolve( {msg: 'Successful logout'} );
@@ -180,7 +180,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
         //console.log( userdata);
         var deferred = $q.defer();
 
-        if (angular.isDefined(userdata)){
+        if (angular.isDefined(userdata)) {
 
             var dateNow = new Date(new Date().getTime());
             var dateExpires = new Date(userdata['.expires']);
@@ -192,8 +192,9 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
                 deferred.resolve(userdata);
             }
         }
-        else {deferred.reject('not logged')}
-
+        else {
+            deferred.reject('not logged')
+        }
 
 
         return deferred.promise;
@@ -204,7 +205,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      * GET api/user/Profile
      *
      */
-    self.getProfileInfo = function getProfileInfo()  {
+    self.getProfileInfo = function getProfileInfo() {
 
         var userdata = $cookieStore.get('userdata');
 
@@ -216,7 +217,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
 
 
     };
@@ -228,7 +229,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      * @param phone
      * @param townId
      */
-    self.setProfileInfo = function setProfileInfo( name, email, phone, townId ) {
+    self.setProfileInfo = function setProfileInfo(name, email, phone, townId) {
 
         var userdata = $cookieStore.get('userdata');
 
@@ -246,7 +247,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
 
 
     };
@@ -258,7 +259,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      * @param newPassConf
      *
      */
-    self.changePassword = function changePassword( oldPass, newPass, newPassConf ) {
+    self.changePassword = function changePassword(oldPass, newPass, newPassConf) {
 
         var userdata = $cookieStore.get('userdata');
 
@@ -275,7 +276,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeTwo) );
+        return ( request.then(handleSuccess, handleErrorTypeTwo) );
     };
 
     /**
@@ -286,7 +287,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      * @param cat categoryId
      * @param town TownId
      */
-    self.postUserAd = function postAd( title, text, image, cat, town ) {
+    self.postUserAd = function postAd(title, text, image, cat, town) {
 
         var userdata = $cookieStore.get('userdata');
 
@@ -305,7 +306,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeTwo) );
+        return ( request.then(handleSuccess, handleErrorTypeTwo) );
     };
 
     /**
@@ -319,13 +320,13 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      * @param cat
      * @param town
      */
-    self.editUserAd = function postAd(id, changeImage, title, text, image, cat, town ) {
+    self.editUserAd = function postAd(id, changeImage, title, text, image, cat, town) {
         var userdata = $cookieStore.get('userdata');
 
         if (!changeImage) {
             image = undefined;
         }
-        if (image === "//:0" ) {
+        if (image === "//:0") {
             image = null;
         }
 
@@ -345,7 +346,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeTwo) );
+        return ( request.then(handleSuccess, handleErrorTypeTwo) );
     };
 
     /**
@@ -361,11 +362,11 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      * @param {pageSize} pageSize The page size to be displayed
      *
      */
-    self.getUserAds = function (status, startPage, pageSize){
+    self.getUserAds = function (status, startPage, pageSize) {
         if (status == 'all') status = '';
 
-        if (Number(startPage) < 0 || Number(startPage) > 100000 ) startPage = 1;
-        if (Number(pageSize) < 0 || Number(pageSize) > 1000 ) pageSize = 4;
+        if (Number(startPage) < 0 || Number(startPage) > 100000) startPage = 1;
+        if (Number(pageSize) < 0 || Number(pageSize) > 1000) pageSize = 4;
 
         var userdata = $cookieStore.get('userdata');
         //console.log(status + startPage + pageSize);
@@ -383,7 +384,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -393,7 +394,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      *
      *
      */
-    self.getUserAd = function (id){
+    self.getUserAd = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -404,7 +405,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -414,7 +415,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      *
      *
      */
-    self.deactivateUserAd = function (id){
+    self.deactivateUserAd = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -425,7 +426,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -435,7 +436,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      *
      *
      */
-    self.publishAgainUserAd = function (id){
+    self.publishAgainUserAd = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -446,7 +447,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
     /**
@@ -456,7 +457,7 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
      *
      *
      */
-    self.deleteUserAd = function (id){
+    self.deleteUserAd = function (id) {
         var userdata = $cookieStore.get('userdata');
 
         var request = $http({
@@ -467,41 +468,39 @@ app.service('AdsApi', [ '$http','$q', '$cookieStore', 'config' ,function($http, 
             }
         });
 
-        return( request.then( handleSuccess, handleErrorTypeOne ) );
+        return ( request.then(handleSuccess, handleErrorTypeOne) );
     };
 
 
-    function handleErrorTypeOne( response ) {
+    function handleErrorTypeOne(response) {
 
         if (
-            ! angular.isObject( response.data ) ||
-            ! response.data.error
+            !angular.isObject(response.data) || !response.data.error
         ) {
-            return( $q.reject( "An unknown error occurred." ) );
+            return ( $q.reject("An unknown error occurred.") );
         }
 
         // Otherwise, use expected error message.
-        return( $q.reject( response.data.error_description ) );
+        return ( $q.reject(response.data.error_description) );
 
     }
 
-    function handleErrorTypeTwo( response ) {
+    function handleErrorTypeTwo(response) {
 
         if (
-            ! angular.isObject( response.data ) ||
-            ! response.data.message
+            !angular.isObject(response.data) || !response.data.message
         ) {
-            return( $q.reject( "An unknown error occurred." ) );
+            return ( $q.reject("An unknown error occurred.") );
         }
 
         // Otherwise, use expected error message.
-        return( $q.reject( response.data.modelState ) );
+        return ( $q.reject(response.data.modelState) );
 
     }
 
-    function handleSuccess( response ) {
+    function handleSuccess(response) {
 
-        return( response.data );
+        return ( response.data );
 
     }
 }]);
