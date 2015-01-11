@@ -274,6 +274,10 @@ opacity: 0;
     background-color: #a8d08d;
 }
 
+.logoutbtn {
+    cursor: pointer;
+}
+
 
 .buttonnn{
     background-color: #71ae48;
