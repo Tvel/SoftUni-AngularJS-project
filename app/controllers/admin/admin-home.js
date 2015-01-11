@@ -1,14 +1,14 @@
-app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams', '$location', function( AdsApi, AdminAdsApi, $routeParams, $location) {
+app.controller('AdminHomeController', ['AdsApi', 'AdminAdsApi', '$routeParams', '$location', function (AdsApi, AdminAdsApi, $routeParams, $location) {
     var self = this;
-    self.header = {title:'Ads'};
+    self.header = {title: 'Ads'};
 
-    AdsApi.checkLogin().then(function( data){
+    AdsApi.checkLogin().then(function (data) {
         // if logged
-        if(!data.isAdmin) $location.path('home');
+        if (!data.isAdmin) $location.path('home');
         self.ifNotLogged = false;
         self.ifLogged = true;
-        self.header = {title:'Ads', username: data.username};
-    },function(){
+        self.header = {title: 'Ads', username: data.username};
+    }, function () {
         // if not logged
         self.ifNotLogged = true;
         self.ifLogged = false;
@@ -37,19 +37,19 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
     self.pageSize = 4;
     self.pagTotalItems = Infinity;
 
-    if ($routeParams.Status !== undefined){
+    if ($routeParams.Status !== undefined) {
         self.status = $routeParams.Status;
     }
-    if ($routeParams.CategoryId){
+    if ($routeParams.CategoryId) {
         self.categoryId = $routeParams.CategoryId;
     }
-    if ($routeParams.TownId){
+    if ($routeParams.TownId) {
         self.townId = $routeParams.TownId;
     }
-    if ($routeParams.StartPage){
+    if ($routeParams.StartPage) {
         self.startPage = $routeParams.StartPage;
     }
-    if ($routeParams.SortBy){
+    if ($routeParams.SortBy) {
         self.sort = $routeParams.SortBy;
     }
     //if ($routeParams.CategoryId){
@@ -64,54 +64,85 @@ app.controller('AdminHomeController',  [ 'AdsApi', 'AdminAdsApi','$routeParams',
     self.towns = AdsApi.getSavedTowns();
     self.categories = AdsApi.getSavedCategories();
     function getAds() {
-        AdminAdsApi.getAdminAds( self.status, self.categoryId, self.townId, self.sort,  self.startPage, self.pageSize)
-            .then(function(ads){
+        AdminAdsApi.getAdminAds(self.status, self.categoryId, self.townId, self.sort, self.startPage, self.pageSize)
+            .then(function (ads) {
                 self.ads = ads;
                 //console.log(ads);
                 self.pagTotalItems = self.ads.numItems;
             });
     }
+
     AdsApi.getTowns()
-        .then(function(towns){
+        .then(function (towns) {
             self.towns = towns;
         });
-    AdsApi.getCategories().then(function(cats){
+    AdsApi.getCategories().then(function (cats) {
         self.categories = cats;
     });
     getAds();
 
 
-    self.filterByCategory = function(id){
+    self.filterByCategory = function (id) {
         //console.log('CatFilter: '+id);
         self.categoryId = id;
-        $location.path('/admin/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage, Status: self.status, SortBy: self.sort});
+        $location.path('/admin/home').search({
+            CategoryId: self.categoryId,
+            TownId: self.townId,
+            StartPage: self.startPage,
+            Status: self.status,
+            SortBy: self.sort
+        });
         //getAds();
     };
 
-    self.filterByTown = function(id){
+    self.filterByTown = function (id) {
         //console.log('TownFilter: '+id);
         self.townId = id;
-        $location.path('/admin/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage, Status: self.status, SortBy: self.sort});
+        $location.path('/admin/home').search({
+            CategoryId: self.categoryId,
+            TownId: self.townId,
+            StartPage: self.startPage,
+            Status: self.status,
+            SortBy: self.sort
+        });
 
         //getAds();
     };
-    self.filterByStatus = function(id){
+    self.filterByStatus = function (id) {
         // console.log('StatusFilter: '+id);
         self.status = id;
-        $location.path('/admin/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage, Status: self.status, SortBy: self.sort});
+        $location.path('/admin/home').search({
+            CategoryId: self.categoryId,
+            TownId: self.townId,
+            StartPage: self.startPage,
+            Status: self.status,
+            SortBy: self.sort
+        });
 
     };
-    self.filterBySort = function(id){
+    self.filterBySort = function (id) {
         // console.log('SortFilter: '+id);
         self.sort = id;
-        $location.path('/admin/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage, Status: self.status, SortBy: self.sort});
+        $location.path('/admin/home').search({
+            CategoryId: self.categoryId,
+            TownId: self.townId,
+            StartPage: self.startPage,
+            Status: self.status,
+            SortBy: self.sort
+        });
 
     };
 
-    self.pageChanged  = function(){
+    self.pageChanged = function () {
         //console.log('PageChange:' + self.pagCurrentPage);
         self.startPage = Number(self.pagCurrentPage);
-        $location.path('/admin/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage, Status: self.status, SortBy: self.sort});
+        $location.path('/admin/home').search({
+            CategoryId: self.categoryId,
+            TownId: self.townId,
+            StartPage: self.startPage,
+            Status: self.status,
+            SortBy: self.sort
+        });
 
 
     };

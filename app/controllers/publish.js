@@ -1,15 +1,15 @@
-app.controller('PublishAdController',  [ 'AdsApi', '$location',  function( AdsApi, $location) {
+app.controller('PublishAdController', ['AdsApi', '$location', function (AdsApi, $location) {
     var self = this;
-    self.header = {title:'Publish New Ad'};
+    self.header = {title: 'Publish New Ad'};
 
     AdsApi.checkLogin()
         .then(
-        function(userdata){
-            self.header = {title:'Publish New Ad', username: userdata.username};
-            self.menuactive='Publish new Ad';
+        function (userdata) {
+            self.header = {title: 'Publish New Ad', username: userdata.username};
+            self.menuactive = 'Publish new Ad';
             self.ifLogged = true;
         },
-        function(error){
+        function (error) {
             console.log('not logged in, redirecting');
             $location.path('/home');
         }
@@ -17,28 +17,28 @@ app.controller('PublishAdController',  [ 'AdsApi', '$location',  function( AdsAp
 
     self.towns = AdsApi.getSavedTowns();
     AdsApi.getTowns()
-        .then(function(towns){
+        .then(function (towns) {
             self.towns = towns;
         });
     self.categories = AdsApi.getSavedCategories();
     AdsApi.getCategories()
-        .then(function(categories){
+        .then(function (categories) {
             self.categories = categories;
         });
 
-    self.clickBrowse = function(){
+    self.clickBrowse = function () {
         angular.element('#inputPicture').trigger('click');
     };
 
-    self.submitPublishAd = function (){
+    self.submitPublishAd = function () {
 
-        AdsApi.postUserAd(self.ad.title, self.ad.text, "data:"+self.ad.img.filetype+";base64,"+self.ad.img.base64, self.ad.categoryId, self.ad.townId )
-            .then(function(data){
+        AdsApi.postUserAd(self.ad.title, self.ad.text, "data:" + self.ad.img.filetype + ";base64," + self.ad.img.base64, self.ad.categoryId, self.ad.townId)
+            .then(function (data) {
                 //console.log(data);
                 self.addAlert('success', 'Advertisement submitted for approval. Once approved, it will be published.');
                 // $location.path('/home');
 
-            }, function(data){
+            }, function (data) {
                 console.error(data);
                 for (model in data) {
                     var msg = data[model]

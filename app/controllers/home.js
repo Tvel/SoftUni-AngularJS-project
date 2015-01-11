@@ -1,14 +1,14 @@
-app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
+app.controller('HomeController', ['AdsApi', '$routeParams', '$location', function (AdsApi, $routeParams, $location) {
     var self = this;
-    self.header = {title:'Home'};
+    self.header = {title: 'Home'};
 
-    AdsApi.checkLogin().then(function( data){
+    AdsApi.checkLogin().then(function (data) {
         // if logged
-        if(data.isAdmin) $location.path('admin/home');
+        if (data.isAdmin) $location.path('admin/home');
         self.ifNotLogged = false;
         self.ifLogged = true;
-        self.header = {title:'Home', username: data.username};
-    },function(){
+        self.header = {title: 'Home', username: data.username};
+    }, function () {
         // if not logged
         self.ifNotLogged = true;
         self.ifLogged = false;
@@ -22,13 +22,13 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     self.pageSize = 4;
     self.pagTotalItems = Infinity;
 
-    if ($routeParams.CategoryId){
+    if ($routeParams.CategoryId) {
         self.categoryId = $routeParams.CategoryId;
     }
-    if ($routeParams.TownId){
+    if ($routeParams.TownId) {
         self.townId = $routeParams.TownId;
     }
-    if ($routeParams.StartPage){
+    if ($routeParams.StartPage) {
         self.startPage = $routeParams.StartPage;
     }
     //if ($routeParams.CategoryId){
@@ -45,39 +45,40 @@ app.controller('HomeController',  [ 'AdsApi','$routeParams', '$location', functi
     function getAds() {
 
         AdsApi.getAds(self.categoryId, self.townId, self.startPage, self.pageSize)
-            .then(function(ads){
+            .then(function (ads) {
                 self.ads = ads;
                 //console.log(ads);
                 self.pagTotalItems = self.ads.numItems;
-        });
+            });
     }
+
     AdsApi.getTowns()
-        .then(function(towns){
+        .then(function (towns) {
             self.towns = towns;
         });
-    AdsApi.getCategories().then(function(cats){
+    AdsApi.getCategories().then(function (cats) {
         self.categories = cats;
-        });
+    });
     getAds();
 
 
-    self.filterByCategory = function(id){
+    self.filterByCategory = function (id) {
         //console.log('CatFilter: '+id);
         self.categoryId = id;
         $location.path('/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage});
         //getAds();
     };
 
-    self.filterByTown = function(id){
+    self.filterByTown = function (id) {
         //console.log('TownFilter: '+id);
         self.townId = id;
-        var path = "/home?CategoryId=" +self.categoryId  + '&TownId='+ self.townId+ '&StartPage=' + self.startPage;
+        var path = "/home?CategoryId=" + self.categoryId + '&TownId=' + self.townId + '&StartPage=' + self.startPage;
         $location.path('/home').search({CategoryId: self.categoryId, TownId: self.townId, StartPage: self.startPage});
 
         //getAds();
     };
 
-    self.pageChanged  = function(){
+    self.pageChanged = function () {
         //console.log('PageChange:' + self.pagCurrentPage);
         self.startPage = Number(self.pagCurrentPage);
         $location.path('/home').search({

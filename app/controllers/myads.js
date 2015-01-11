@@ -1,13 +1,13 @@
-app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
+app.controller('MyAdsController', ['AdsApi', '$routeParams', '$location', function (AdsApi, $routeParams, $location) {
     var self = this;
-    self.header = {title:'My Ads'};
+    self.header = {title: 'My Ads'};
 
-    AdsApi.checkLogin().then(function( data){
+    AdsApi.checkLogin().then(function (data) {
         // if logged
         self.ifNotLogged = false;
         self.ifLogged = true;
-        self.header = {title:'My Ads', username: data.username};
-    },function(){
+        self.header = {title: 'My Ads', username: data.username};
+    }, function () {
         // if not logged
         self.ifNotLogged = true;
         self.ifLogged = false;
@@ -26,10 +26,10 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
     self.pageSize = 4;
     self.pagTotalItems = Infinity;
 
-    if ($routeParams.Status !== undefined){
+    if ($routeParams.Status !== undefined) {
         self.status = $routeParams.Status;
     }
-    if ($routeParams.StartPage){
+    if ($routeParams.StartPage) {
         self.startPage = $routeParams.StartPage;
     }
     self.maxSize = 5;
@@ -39,23 +39,24 @@ app.controller('MyAdsController',  [ 'AdsApi','$routeParams', '$location', funct
 
     function getUserAds() {
         AdsApi.getUserAds(self.status, self.startPage, self.pageSize)
-            .then(function(ads){
+            .then(function (ads) {
                 self.ads = ads;
                 //console.log(ads);
                 self.pagTotalItems = self.ads.numItems;
             });
     }
+
     getUserAds();
 
-    self.test =  AdsApi.test;
-    self.filterByStatus = function(id){
-       // console.log('StatusFilter: '+id);
+    self.test = AdsApi.test;
+    self.filterByStatus = function (id) {
+        // console.log('StatusFilter: '+id);
         self.status = id;
         $location.path('/myads').search({Status: self.status, StartPage: self.startPage});
 
     };
 
-    self.pageChanged  = function(){
+    self.pageChanged = function () {
         //console.log('PageChange:' + self.pagCurrentPage);
         self.startPage = Number(self.pagCurrentPage);
         $location.path('/myads').search({

@@ -47,4 +47,4 @@ app.controller('DeleteAdController', ['AdsApi', '$routeParams', '$location',
         };
 
 
-}]);
+    }]);

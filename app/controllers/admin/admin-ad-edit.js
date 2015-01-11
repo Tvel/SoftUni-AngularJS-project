@@ -1,37 +1,37 @@
-app.controller('AdminEditAdController',  [ 'AdminAdsApi','AdsApi','$routeParams', '$location',  function( AdminAdsApi, AdsApi, $routeParams, $location) {
+app.controller('AdminEditAdController', ['AdminAdsApi', 'AdsApi', '$routeParams', '$location', function (AdminAdsApi, AdsApi, $routeParams, $location) {
     var self = this;
-    self.header = {title:'Edit Ad'};
+    self.header = {title: 'Edit Ad'};
 
-    AdsApi.checkLogin().then(function( data){
+    AdsApi.checkLogin().then(function (data) {
         // if logged
-        if(!data.isAdmin) $location.path('home');
+        if (!data.isAdmin) $location.path('home');
         self.ifNotLogged = false;
         self.ifLogged = true;
-        self.header = {title:'Edit Ad', username: data.username};
-    },function(){
+        self.header = {title: 'Edit Ad', username: data.username};
+    }, function () {
         // if not logged
         self.ifNotLogged = true;
         self.ifLogged = false;
         $location.path('login');
     });
 
-    if ($routeParams.id){
+    if ($routeParams.id) {
         self.id = $routeParams.id;
     }
 
     self.changeImageValue = false;
     self.towns = AdsApi.getSavedTowns();
     AdsApi.getTowns()
-        .then(function(towns){
+        .then(function (towns) {
             self.towns = towns;
         });
     self.categories = AdsApi.getSavedCategories();
     AdsApi.getCategories()
-        .then(function(categories){
+        .then(function (categories) {
             self.categories = categories;
         });
     AdminAdsApi.adminAd(self.id)
-        .then(function(ad){
+        .then(function (ad) {
             self.ad = ad;
             //console.log(ad);
             self.image = self.ad.imageDataUrl;
@@ -40,27 +40,27 @@ app.controller('AdminEditAdController',  [ 'AdminAdsApi','AdsApi','$routeParams'
         });
 
 
-    self.changeImage = function(){
+    self.changeImage = function () {
         //console.log('change');
-        if( angular.isObject(  self.newImage) ) {
+        if (angular.isObject(self.newImage)) {
             this.image = "data:" + self.newImage.filetype + ";base64," + self.newImage.base64;
             self.changeImageValue = true;
         }
     };
-    self.deleteImage = function(){
+    self.deleteImage = function () {
         // console.log('delete');
         this.image = "//:0";
         self.changeImageValue = true;
     };
 
-    self.submitEditAd = function (){
-        AdminAdsApi.adminUpdateAd(self.id, self.ad.title, self.ad.text, self.changeImageValue, self.image,self.ad.ownerUsername, self.ad.categoryId, self.ad.townId, self.date, self.ad.status )
-            .then(function(data){
+    self.submitEditAd = function () {
+        AdminAdsApi.adminUpdateAd(self.id, self.ad.title, self.ad.text, self.changeImageValue, self.image, self.ad.ownerUsername, self.ad.categoryId, self.ad.townId, self.date, self.ad.status)
+            .then(function (data) {
                 //console.log(data);
                 self.addAlert('success', 'Advertisement edited successfully.');
                 // $location.path('/home');
 
-            }, function(data){
+            }, function (data) {
                 console.error(data);
                 for (model in data) {
                     var msg = data[model];

@@ -46,4 +46,4 @@ app.controller('DeactivateAdController', ['AdsApi', '$routeParams', '$location',
             window.history.back();
         };
 
-}]);
+    }]);

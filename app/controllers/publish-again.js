@@ -1,13 +1,13 @@
-app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$location', function( AdsApi, $routeParams, $location) {
+app.controller('PublishAgainAdController', ['AdsApi', '$routeParams', '$location', function (AdsApi, $routeParams, $location) {
     var self = this;
-    self.header = {title:'Publish Again Ad'};
+    self.header = {title: 'Publish Again Ad'};
 
-    AdsApi.checkLogin().then(function( data){
+    AdsApi.checkLogin().then(function (data) {
         // if logged
         self.ifNotLogged = false;
         self.ifLogged = true;
-        self.header = {title:'Publish Again Ad', username: data.username};
-    },function(){
+        self.header = {title: 'Publish Again Ad', username: data.username};
+    }, function () {
         // if not logged
         self.ifNotLogged = true;
         self.ifLogged = false;
@@ -15,12 +15,12 @@ app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$locatio
     });
 
 
-    if ($routeParams.id){
+    if ($routeParams.id) {
         self.id = $routeParams.id;
     }
 
     AdsApi.getUserAd(self.id)
-        .then(function(ad){
+        .then(function (ad) {
             self.ad = ad;
             //console.log(ad);
         });
@@ -28,19 +28,19 @@ app.controller('PublishAgainAdController',  [ 'AdsApi','$routeParams', '$locatio
     self.title = 'Confirm Publishing Ad?';
     self.buttonName = 'Publish';
 
-    self.submitClick = function() {
+    self.submitClick = function () {
         //console.log('submit!');
         AdsApi.publishAgainUserAd(self.id)
-            .then(function(ad){
+            .then(function (ad) {
                 self.addAlert('success', 'Ad is Published');
-            }, function(error){
+            }, function (error) {
                 console.error(error);
             });
 
         window.history.back();
     };
 
-    self.cancelClick = function() {
+    self.cancelClick = function () {
         //console.log('cancel!');
         window.history.back();
     };

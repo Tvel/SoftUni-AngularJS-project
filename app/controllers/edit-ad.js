@@ -7,18 +7,18 @@ app.controller('EditAdController', ['AdsApi', '$location', '$routeParams',
 
         AdsApi.checkLogin()
             .then(
-                function (userdata) {
-                    self.header = {
-                        title: 'Edit Ad',
-                        username: userdata.username
-                    };
-                    self.menuactive = 'Edit Ad';
-                    self.ifLogged = true;
-                },
-                function (error) {
-                    console.log('not logged in, redirecting');
-                    $location.path('/home');
-                }
+            function (userdata) {
+                self.header = {
+                    title: 'Edit Ad',
+                    username: userdata.username
+                };
+                self.menuactive = 'Edit Ad';
+                self.ifLogged = true;
+            },
+            function (error) {
+                console.log('not logged in, redirecting');
+                $location.path('/home');
+            }
         );
 
         if ($routeParams.id) {
@@ -80,4 +80,4 @@ app.controller('EditAdController', ['AdsApi', '$location', '$routeParams',
         };
 
 
-}]);
+    }]);
